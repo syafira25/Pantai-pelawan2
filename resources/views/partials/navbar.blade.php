@@ -57,18 +57,50 @@
             </li>
 
             <li>
-                <a href="{{ route('kontak') }}" 
-                   class="{{ request()->routeIs('kontak') ? 'active' : '' }}">
-                   Kontak
+                <a href="{{ route('tiket') }}"
+                   class="{{ request()->routeIs('tiket*') ? 'active' : '' }}">
+                   Tiket
                 </a>
             </li>
 
-            <li>
-                <a href="{{ route('tiket') }}"
-                class="{{ request()->routeIs('tiket') ? 'active' : '' }}">
-                Tiket
-                </a>
-            </li>
+            @auth
+                <li class="user-dropdown">
+                    <button type="button" class="user-dropdown-btn">
+                        👤 {{ Auth::user()->name }} ▾
+                    </button>
+
+                    <div class="user-dropdown-menu">
+                        <div class="user-info-box">
+                            <div class="user-info-avatar">👤</div>
+                            <div>
+                                <h4>{{ Auth::user()->name }}</h4>
+                                <p>{{ Auth::user()->email }}</p>
+                            </div>
+                        </div>
+
+                        <a href="{{ route('profile.edit') }}" class="dropdown-link">
+                            ⚙️ Profil & Ganti Password
+                        </a>
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-logout">
+                                🚪 Keluar
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('login') }}">Login</a>
+                </li>
+
+                <li>
+                    <a href="{{ route('register') }}" class="nav-register-btn">
+                        Register
+                    </a>
+                </li>
+            @endauth
 
         </ul>
 

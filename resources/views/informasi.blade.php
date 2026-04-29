@@ -175,4 +175,92 @@
     </div>
 </section>
 
+<!-- KONTAK PENGELOLA -->
+<section class="section kontak-pengelola-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Kontak Pengelola</h2>
+            <p>Hubungi pengelola Pantai Pelawan melalui WhatsApp dan media sosial.</p>
+        </div>
+
+        <div class="contact-channel-grid contact-center-one">
+
+            <a href="https://wa.me/6285282770935?text=Halo%20saya%20ingin%20bertanya%20tentang%20Pantai%20Pelawan"
+               target="_blank"
+               class="contact-channel-card whatsapp-card">
+
+                <div class="contact-channel-icon">
+                    <img src="{{ asset('images/whatsapp.png') }}" alt="WhatsApp">
+                </div>
+
+                <div class="contact-channel-text">
+                    <span>Layanan Informasi</span>
+                    <h3>WhatsApp</h3>
+                    <p>Hubungi pengelola untuk informasi tiket, fasilitas, kondisi pantai, dan layanan wisata.</p>
+                </div>
+
+                <div class="contact-channel-action">
+                    Chat Sekarang
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="section kontak-pengelola-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Media Sosial</h2>
+            <p>Ikuti media sosial Pantai Pelawan untuk melihat informasi dan dokumentasi terbaru.</p>
+        </div>
+
+        <div class="contact-channel-grid contact-center-two">
+
+            <a href="https://www.instagram.com/r.syfira_?igsh=MXJ5ejBvbnFvNjBobg=="
+               target="_blank"
+               class="contact-channel-card instagram-card">
+
+                <div class="contact-channel-icon">
+                    <img src="{{ asset('images/instagram.png') }}" alt="Instagram">
+                </div>
+
+                <div class="contact-channel-text">
+                    <span>Media Promosi</span>
+                    <h3>Instagram</h3>
+                    <p>Lihat dokumentasi, informasi terbaru, dan aktivitas wisata Pantai Pelawan.</p>
+                </div>
+
+                <div class="contact-channel-action">
+                    Kunjungi Instagram
+                </div>
+            </a>
+
+            <a href="https://www.tiktok.com/@raaaaajz?_r=1&_t=ZS-95o7KMxW2J0"
+               target="_blank"
+               class="contact-channel-card tiktok-card">
+
+                <div class="contact-channel-icon">
+                    <img src="{{ asset('images/tiktok.png') }}" alt="TikTok">
+                </div>
+
+                <div class="contact-channel-text">
+                    <span>Video Wisata</span>
+                    <h3>TikTok</h3>
+                    <p>Tonton video singkat tentang suasana, daya tarik, dan pengalaman wisata.</p>
+                </div>
+
+                <div class="contact-channel-action">
+                    Kunjungi TikTok
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
 @endsection

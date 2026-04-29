@@ -258,4 +258,34 @@ Route::get('/tiket/{pemesanan}/payment', [TicketController::class, 'payment'])->
 Route::get('/tiket/{pemesanan}/finish', [TicketController::class, 'finish'])->name('tiket.finish');
 Route::post('/midtrans/notification', [TicketController::class, 'notification'])->name('midtrans.notification');
 
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+});
+
 require __DIR__ . '/auth.php';
+
+// HALAMAN TIKET UNTUK GUEST
+Route::get('/tiket', function () {
+    if (!auth()->check()) {
+        return view('auth-wisatawan');
+    }
+
+    return app(TicketController::class)->create();
+})->name('tiket');
+
+// PROSES TIKET HARUS LOGIN
+Route::post('/tiket', [TicketController::class, 'store'])
+    ->middleware('auth')
+    ->name('tiket.store');
+
+Route::get('/tiket/{pemesanan}/payment', [TicketController::class, 'payment'])
+    ->middleware('auth')
+    ->name('tiket.payment');
+
+Route::get('/tiket/{pemesanan}/finish', [TicketController::class, 'finish'])
+    ->middleware('auth')
+    ->name('tiket.finish');
+
+    

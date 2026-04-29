@@ -1174,3 +1174,708 @@ select {
         padding: 24px;
     }
 }
+
+.kontak-pengelola-section {
+    background: linear-gradient(180deg, #f0fdf4, #ffffff);
+}
+
+.wa-contact-card {
+    max-width: 1050px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 30px;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 42px;
+    box-shadow: 0 24px 60px rgba(20, 83, 45, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.14);
+    position: relative;
+    overflow: hidden;
+}
+
+.wa-contact-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 7px;
+    background: linear-gradient(90deg, #14532d, #22c55e, #86efac);
+}
+
+.wa-contact-card::after {
+    content: "";
+    position: absolute;
+    right: -90px;
+    bottom: -90px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.16), transparent 70%);
+    border-radius: 50%;
+}
+
+.wa-logo-box {
+    width: 150px;
+    height: 150px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #dcfce7, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 18px 40px rgba(34, 197, 94, 0.18);
+}
+
+.wa-logo-box img {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+}
+
+.wa-contact-content {
+    position: relative;
+    z-index: 1;
+}
+
+.wa-badge {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.wa-contact-content h3 {
+    font-size: 32px;
+    color: #14532d;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.wa-contact-content p {
+    color: #4b5563;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 720px;
+    margin-bottom: 24px;
+}
+
+.wa-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #25d366, #16a34a);
+    color: #ffffff;
+    padding: 15px 28px;
+    border-radius: 16px;
+    font-weight: 800;
+    box-shadow: 0 14px 30px rgba(34, 197, 94, 0.25);
+    transition: all 0.3s ease;
+}
+
+.wa-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 38px rgba(34, 197, 94, 0.32);
+}
+
+@media (max-width: 768px) {
+    .wa-contact-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 32px 24px;
+    }
+
+    .wa-logo-box {
+        margin: 0 auto;
+    }
+
+    .wa-contact-content h3 {
+        font-size: 26px;
+    }
+}
+
+/* KONTAK PENGELOLA */
+.kontak-pengelola-section {
+    background: linear-gradient(180deg, #f0fdf4, #ffffff);
+}
+
+.wa-contact-card {
+    max-width: 1050px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 30px;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 42px;
+    box-shadow: 0 24px 60px rgba(20, 83, 45, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.14);
+    position: relative;
+    overflow: hidden;
+}
+
+.wa-contact-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 7px;
+    background: linear-gradient(90deg, #14532d, #22c55e, #86efac);
+}
+
+.wa-contact-card::after {
+    content: "";
+    position: absolute;
+    right: -90px;
+    bottom: -90px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.16), transparent 70%);
+    border-radius: 50%;
+}
+
+.wa-logo-box {
+    width: 150px;
+    height: 150px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #dcfce7, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 18px 40px rgba(34, 197, 94, 0.18);
+}
+
+.wa-logo-box img {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+}
+
+.wa-contact-content {
+    position: relative;
+    z-index: 1;
+}
+
+.wa-badge {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.wa-contact-content h3 {
+    font-size: 32px;
+    color: #14532d;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.wa-contact-content p {
+    color: #4b5563;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 720px;
+    margin-bottom: 24px;
+}
+
+.wa-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #25d366, #16a34a);
+    color: #ffffff;
+    padding: 15px 28px;
+    border-radius: 16px;
+    font-weight: 800;
+    box-shadow: 0 14px 30px rgba(34, 197, 94, 0.25);
+    transition: all 0.3s ease;
+}
+
+.wa-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 38px rgba(34, 197, 94, 0.32);
+}
+
+/* SOCIAL MEDIA */
+.social-media-box {
+    margin-top: 28px;
+}
+
+.social-title {
+    font-size: 14px !important;
+    font-weight: 700;
+    color: #14532d !important;
+    margin-bottom: 12px !important;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 20px;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.social-btn.instagram {
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+    color: white;
+    box-shadow: 0 10px 25px rgba(221, 42, 123, 0.25);
+}
+
+.social-btn.tiktok {
+    background: #000000;
+    color: white;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.social-btn.instagram:hover,
+.social-btn.tiktok:hover {
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .wa-contact-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 32px 24px;
+    }
+
+    .wa-logo-box {
+        margin: 0 auto;
+    }
+
+    .wa-contact-content h3 {
+        font-size: 26px;
+    }
+
+    .social-buttons {
+        justify-content: center;
+    }
+}
+
+/* KONTAK PENGELOLA - CLEAN CARD */
+.kontak-pengelola-section {
+    background: linear-gradient(180deg, #f0fdf4, #ffffff);
+}
+
+.contact-channel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.contact-channel-card {
+    background: #ffffff;
+    border-radius: 26px;
+    padding: 28px 26px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 18px 45px rgba(20, 83, 45, 0.09);
+    border: 1px solid rgba(34, 197, 94, 0.12);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.contact-channel-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 6px;
+    background: linear-gradient(90deg, #14532d, #22c55e);
+}
+
+.contact-channel-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 24px 55px rgba(20, 83, 45, 0.14);
+}
+
+.contact-channel-icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+}
+
+.contact-channel-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.contact-channel-text span {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 7px 13px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+}
+
+.contact-channel-text h3 {
+    font-size: 24px;
+    color: #14532d;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.contact-channel-text p {
+    color: #4b5563;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+.contact-channel-action {
+    display: inline-flex;
+    padding: 12px 18px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 800;
+    transition: all 0.3s ease;
+}
+
+/* WHATSAPP */
+.whatsapp-card .contact-channel-icon {
+    background: #dcfce7;
+}
+
+.whatsapp-card .contact-channel-text span {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.whatsapp-card .contact-channel-action {
+    background: linear-gradient(135deg, #25d366, #16a34a);
+    color: #ffffff;
+}
+
+/* INSTAGRAM */
+.instagram-card::before {
+    background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af);
+}
+
+.instagram-card .contact-channel-icon {
+    background: #fce7f3;
+}
+
+.instagram-card .contact-channel-text span {
+    background: #fce7f3;
+    color: #be185d;
+}
+
+.instagram-card .contact-channel-action {
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+    color: #ffffff;
+}
+
+/* TIKTOK */
+.tiktok-card::before {
+    background: linear-gradient(90deg, #000000, #374151);
+}
+
+.tiktok-card .contact-channel-icon {
+    background: #f3f4f6;
+}
+
+.tiktok-card .contact-channel-text span {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.tiktok-card .contact-channel-action {
+    background: #000000;
+    color: #ffffff;
+}
+
+@media (max-width: 992px) {
+    .contact-channel-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.contact-center-one {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-center-one .contact-channel-card {
+    width: 100%;
+    max-width: 520px;
+}
+
+.contact-center-two {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 520px));
+    justify-content: center;
+    gap: 28px;
+}
+
+@media (max-width: 768px) {
+    .contact-center-two {
+        grid-template-columns: 1fr;
+    }
+}
+
+.auth-guest-card {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 45px;
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 35px;
+    align-items: center;
+    box-shadow: 0 24px 60px rgba(20, 83, 45, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.14);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-guest-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 7px;
+    background: linear-gradient(90deg, #14532d, #22c55e, #86efac);
+}
+
+.auth-guest-icon {
+    width: 140px;
+    height: 140px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #dcfce7, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    box-shadow: 0 18px 40px rgba(34, 197, 94, 0.18);
+}
+
+.auth-badge {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.auth-guest-content h2 {
+    font-size: 36px;
+    color: #14532d;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.auth-guest-content p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.auth-guest-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.auth-register-btn {
+    color: #ffffff;
+    background: linear-gradient(135deg, #14532d, #22c55e);
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .auth-guest-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 32px 24px;
+    }
+
+    .auth-guest-icon {
+        margin: 0 auto;
+    }
+
+    .auth-guest-buttons {
+        justify-content: center;
+    }
+}
+.nav-user {
+    font-weight: 600;
+    color: #ffffff;
+    margin-right: 5px;
+}
+
+.nav-logout-btn {
+    background: #facc15;
+    color: #14532d;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.nav-logout-btn:hover {
+    background: #fde047;
+}
+
+.nav-register-btn {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #ffffff !important;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.nav-register-btn:hover {
+    opacity: 0.9;
+}
+
+.logo a {
+    white-space: nowrap;
+}
+
+.user-dropdown {
+    position: relative;
+}
+
+.user-dropdown-btn {
+    border: none;
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.user-dropdown-btn:hover {
+    background: #facc15;
+    color: #14532d;
+}
+
+.user-dropdown-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 290px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.user-dropdown:hover .user-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.user-info-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 12px;
+}
+
+.user-info-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #14532d, #22c55e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.user-info-box h4 {
+    color: #14532d;
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.user-info-box p {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.dropdown-link,
+.dropdown-logout {
+    width: 100%;
+    display: block;
+    padding: 12px 14px;
+    border-radius: 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.dropdown-link {
+    color: #14532d;
+    background: #f0fdf4;
+    margin-bottom: 10px;
+}
+
+.dropdown-link:hover {
+    background: #dcfce7;
+}
+
+.dropdown-logout {
+    border: none;
+    background: #fee2e2;
+    color: #dc2626;
+    cursor: pointer;
+}
+
+.dropdown-logout:hover {
+    background: #fecaca;
+}
+
+.nav-register-btn {
+    background: #22c55e !important;
+    color: white !important;
+    font-weight: 700;
+}

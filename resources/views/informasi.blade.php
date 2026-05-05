@@ -25,25 +25,30 @@
             <div class="info-premium-card">
                 <div class="info-premium-icon">📍</div>
                 <h3>Lokasi Pantai</h3>
-                <p>Pantai Pelawan terletak di Desa Pangke Barat, Kabupaten Karimun, Provinsi Kepulauan Riau.</p>
+                <p>Pantai Pelawan terletak di Desa Pangke Barat, Kabupaten Karimun, Provinsi Kepulauan Riau. Lokasinya strategis dan mudah dijangkau oleh wisatawan lokal maupun luar daerah, dengan akses jalan yang cukup baik menuju kawasan wisata.</p>
             </div>
 
             <div class="info-premium-card">
                 <div class="info-premium-icon">🕒</div>
                 <h3>Jam Operasional</h3>
-                <p>Pantai buka setiap hari mulai pukul 08.00 hingga 18.00 WIB.</p>
+                <p>Senin – Jumat: 06.00 – 18.00 WIB<br></p>
+                <p>Sabtu – Minggu: 06.00 – 19.00 WIB</p><br>
+
+               <p> Waktu terbaik untuk berkunjung adalah pada pagi dan sore hari untuk menikmati suasana pantai yang lebih nyaman.</p>
             </div>
 
             <div class="info-premium-card">
                 <div class="info-premium-icon">🎫</div>
                 <h3>Tiket Masuk</h3>
-                <p>Harga tiket masuk terjangkau dan dapat berubah sesuai kebijakan pengelola.</p>
+                <p>Harga tiket masuk terjangkau dan dapat berubah sesuai kebijakan pengelola.</p><br>
+                <p>Dewasa = RP. 5000.00.</p>
+                <p>Dibawah umur 10th = RP. 2000.00.</p>
             </div>
 
             <div class="info-premium-card">
                 <div class="info-premium-icon">🚗</div>
                 <h3>Akses Transportasi</h3>
-                <p>Lokasi pantai dapat dijangkau menggunakan kendaraan pribadi maupun transportasi umum.</p>
+                <p>Lokasi pantai dapat dijangkau menggunakan kendaraan pribadi maupun transportasi umum. Area parkir tersedia untuk kendaraan roda dua, roda empat, serta kendaraan wisata rombongan.</p>
             </div>
         </div>
 
@@ -230,82 +235,122 @@
             </p>
         </div>
 
-        <div class="review-layout">
+        @auth
+            <div class="review-layout">
 
-            <!-- FORM ULASAN -->
-            <div class="review-form-box">
-                <div class="review-form-header">
-                    <span>✍️ Form Ulasan</span>
-                    <h3>Tulis Ulasan Anda</h3>
-                    <p>Isi pengalaman berkunjung Anda agar dapat menjadi referensi bagi wisatawan lain.</p>
+                <!-- FORM ULASAN -->
+                <div class="review-form-box">
+                    <div class="review-form-header">
+                        <span>✍️ Form Ulasan</span>
+                        <h3>Tulis Ulasan Anda</h3>
+                        <p>
+                            Isi pengalaman berkunjung Anda agar dapat menjadi referensi bagi wisatawan lain.
+                        </p>
+                    </div>
+
+                    <form action="#" method="POST">
+                        @csrf
+
+                        <div class="review-form-grid">
+                            <div class="form-group">
+                                <label>Nama</label>
+                                <input 
+                                    type="text" 
+                                    name="nama" 
+                                    value="{{ Auth::user()->name }}" 
+                                    readonly
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label>Status Pengunjung</label>
+                                <select name="status" required>
+                                    <option value="">Pilih status</option>
+                                    <option>Wisatawan Lokal</option>
+                                    <option>Wisatawan Luar Daerah</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Rating</label>
+                            <div class="rating-input">
+                                <input type="radio" name="rating" id="star5" value="5">
+                                <label for="star5">★</label>
+
+                                <input type="radio" name="rating" id="star4" value="4">
+                                <label for="star4">★</label>
+
+                                <input type="radio" name="rating" id="star3" value="3">
+                                <label for="star3">★</label>
+
+                                <input type="radio" name="rating" id="star2" value="2">
+                                <label for="star2">★</label>
+
+                                <input type="radio" name="rating" id="star1" value="1">
+                                <label for="star1">★</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kesan & Pesan</label>
+                            <textarea 
+                                name="pesan" 
+                                rows="5" 
+                                placeholder="Tulis pengalaman Anda setelah berkunjung ke Pantai Pelawan..." 
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary review-submit">
+                            Kirim Ulasan
+                        </button>
+                    </form>
                 </div>
 
-                <form action="#" method="POST">
-                    @csrf
+                <!-- INFO SAMPING -->
+                <div class="review-side-card">
+                    <div class="review-side-icon">⭐</div>
+                    <h3>Ulasan Pengunjung</h3>
+                    <p>
+                        Ulasan membantu pengelola mengetahui pengalaman wisatawan dan membantu pengunjung lain
+                        memperoleh gambaran mengenai Pantai Pelawan.
+                    </p>
 
-                    <div class="review-form-grid">
-                        <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" name="nama" placeholder="Masukkan nama Anda" required>
-                        </div>
+                    <div class="review-point">✅ Berikan penilaian sesuai pengalaman</div>
+                    <div class="review-point">✅ Tulis kesan dan saran dengan sopan</div>
+                    <div class="review-point">✅ Bantu wisatawan lain mengenal Pantai Pelawan</div>
+                </div>
 
-                        <div class="form-group">
-                            <label>Status Pengunjung</label>
-                            <select name="status" required>
-                                <option value="">Pilih status</option>
-                                <option>Wisatawan Lokal</option>
-                                <option>Wisatawan Luar Daerah</option>
-                                
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Rating</label>
-                        <div class="rating-input">
-                            <input type="radio" name="rating" id="star5" value="5">
-                            <label for="star5">★</label>
-
-                            <input type="radio" name="rating" id="star4" value="4">
-                            <label for="star4">★</label>
-
-                            <input type="radio" name="rating" id="star3" value="3">
-                            <label for="star3">★</label>
-
-                            <input type="radio" name="rating" id="star2" value="2">
-                            <label for="star2">★</label>
-
-                            <input type="radio" name="rating" id="star1" value="1">
-                            <label for="star1">★</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Kesan & Pesan</label>
-                        <textarea name="pesan" rows="5" placeholder="Tulis pengalaman Anda..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary review-submit">
-                        Kirim Ulasan
-                    </button>
-                </form>
             </div>
+        @else
+            <div class="review-locked-box">
 
-            <!-- INFO SAMPING -->
-            <div class="review-side-card">
-                <div class="review-side-icon">⭐</div>
-                <h3>Ulasan Pengunjung</h3>
-                <p>
-                    Ulasan membantu pengelola mengetahui pengalaman wisatawan dan membantu pengunjung lain
-                    memperoleh gambaran mengenai Pantai Pelawan.
-                </p>
+                <div class="review-locked-icon">
+                    🔐
+                </div>
 
-                <div class="review-point">✅ Berikan penilaian sesuai pengalaman</div>
-                <div class="review-point">✅ Tulis kesan dan saran dengan sopan</div>
-                <div class="review-point">✅ Bantu wisatawan lain mengenal Pantai Pelawan</div>
+                <div class="review-locked-content">
+                    <span>Khusus Wisatawan</span>
+                    <h3>Login untuk Menulis Ulasan</h3>
+                    <p>
+                        Pengunjung tetap dapat melihat ulasan dari wisatawan lain. Namun, untuk menulis ulasan
+                        dan memberikan rating, silakan login atau daftar akun terlebih dahulu.
+                    </p>
+
+                    <div class="review-locked-actions">
+                        <a href="{{ route('login') }}" class="btn-login-review">
+                            Login Sekarang
+                        </a>
+
+                        <a href="{{ route('register') }}" class="btn-register-review">
+                            Daftar Akun
+                        </a>
+                    </div>
+                </div>
+
             </div>
-
-        </div>
+        @endauth
 
         <div class="section-heading review-list-heading">
             <span class="section-label">Pengalaman Wisatawan</span>

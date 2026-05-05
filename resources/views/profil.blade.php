@@ -2,63 +2,74 @@
 
 @section('content')
 
-<section class="page-hero page-hero-profil">
+@php
+    $judul = $profil->judul ?? 'Profil Pantai Pelawan';
+
+    $subjudul = $profil->subjudul ?? 'Mengenal lebih dekat Pantai Pelawan sebagai destinasi wisata alam di Kabupaten Karimun.';
+
+    $deskripsiUtama = $profil->deskripsi_utama ?? 'Pantai Pelawan merupakan salah satu objek wisata alam yang berada di Desa Pangke Barat, Kabupaten Karimun, Provinsi Kepulauan Riau. Pantai ini dikenal sebagai kawasan wisata yang memiliki suasana tenang, pemandangan laut yang indah, serta lingkungan yang cocok untuk kegiatan rekreasi dan wisata keluarga.';
+
+    $deskripsiTambahan = $profil->deskripsi_tambahan ?? 'Sebagai destinasi wisata alam, Pantai Pelawan memiliki daya tarik utama berupa panorama pantai, suasana pesisir, dan keindahan alam yang dapat dinikmati oleh wisatawan. Keberadaan Pantai Pelawan juga menjadi bagian dari potensi pariwisata daerah yang dapat terus dikembangkan melalui promosi dan penyajian informasi yang lebih terstruktur.';
+
+    $lokasi = $profil->lokasi ?? 'Desa Pangke Barat, Kabupaten Karimun, Kepulauan Riau';
+
+    $jamOperasional = $profil->jam_operasional ?? '08.00 - 18.00 WIB';
+
+    $hargaTiket = $profil->harga_tiket ?? 'Dewasa Rp5.000, Anak-anak Rp2.000';
+
+    $gambarProfil = $profil && $profil->gambar
+        ? asset($profil->gambar)
+        : asset('images/profil_pantai.jpg');
+@endphp
+
+<section class="page-hero page-hero-fasilitas">
     <div class="page-hero-overlay">
         <div class="container">
             <div class="page-hero-content">
                 <h1>Profil Pantai Pelawan</h1>
                 <p>
-                    Mengenal lebih dekat Pantai Pelawan sebagai destinasi wisata alam di Kabupaten Karimun.
+                    Destinasi wisata alam di Kabupaten Karimun
                 </p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section">
-    <div class="container">
-        <div class="profil-grid profil-hero-box">
-            <div class="profil-image">
-                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Profil Pantai Pelawan">
+<div class="profil-about-box profil-about-premium">
 
-                <div class="profil-floating-card">
-                    <strong>📍 Desa Pangke Barat</strong>
-                    <span>Kabupaten Karimun, Kepulauan Riau</span>
-                </div>
-            </div>
+    <div class="profil-about-decor"></div>
 
-            <div class="profil-text">
-                <div class="mini-title">Tentang Pantai</div>
-                <h2><strong>Pantai Pelawan sebagai Destinasi Wisata Alam</strong></h2>
-
-                <p>
-                    Pantai Pelawan merupakan salah satu objek wisata alam yang berada di Desa Pangke Barat,
-                    Kabupaten Karimun, Provinsi Kepulauan Riau. Pantai ini dikenal sebagai kawasan wisata
-                    yang memiliki suasana tenang, pemandangan laut yang indah, serta lingkungan yang cocok
-                    untuk kegiatan rekreasi dan wisata keluarga.
-                </p>
-
-                <p>
-                    Sebagai destinasi wisata alam, Pantai Pelawan memiliki daya tarik utama berupa panorama
-                    pantai, suasana pesisir, dan keindahan alam yang dapat dinikmati oleh wisatawan. Keberadaan
-                    Pantai Pelawan juga menjadi bagian dari potensi pariwisata daerah yang dapat terus
-                    dikembangkan melalui promosi dan penyajian informasi yang lebih terstruktur.
-                </p>
-
-                <div class="profil-info-mini">
-                    <div>
-                        <strong>🌊 Karakter Wisata Alam</strong>
-                        <span>Pantai, laut, dan suasana pesisir</span>
-                    </div>
-                    <div>
-                        <strong>📍 Identitas Lokasi</strong>
-                        <span>Desa Pangke Barat, Karimun</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="profil-about-side">
+        <div class="profil-about-icon">🏝️</div>
+        <span>Profil Wisata</span>
     </div>
-</section>
+
+    <div class="profil-about-content">
+        <div class="profil-about-label">Tentang Pantai Pelawan</div>
+
+        <h3>Pantai Pelawan sebagai Destinasi Wisata Alam</h3>
+
+        <p>
+            Pantai Pelawan merupakan salah satu wisata pantai yang berada di Kabupaten Karimun,
+            Kepulauan Riau. Pantai ini dikenal sebagai destinasi wisata alam dengan pemandangan
+            laut, hamparan pasir, serta suasana pesisir yang nyaman untuk dikunjungi.
+        </p>
+
+        <p>
+            Keindahan Pantai Pelawan menjadi daya tarik bagi wisatawan yang ingin menikmati
+            suasana alam, bersantai bersama keluarga, maupun sekadar menikmati panorama pantai.
+            Karakter alam yang bernuansa pesisir menjadikan Pantai Pelawan memiliki nilai wisata
+            yang menarik untuk diperkenalkan kepada masyarakat luas.
+        </p>
+
+        <p>
+            Selain sebagai tempat rekreasi, Pantai Pelawan juga menjadi bagian dari potensi
+            pariwisata daerah yang dapat terus dikembangkan melalui penyajian informasi yang
+            lebih lengkap, rapi, dan mudah diakses oleh wisatawan.
+        </p>
+    </div>
+
+</div>
 
 <section class="section section-soft">
     <div class="container">
@@ -76,8 +87,7 @@
                 <div class="overview-icon">📍</div>
                 <h3><strong>Lokasi Pantai</strong></h3>
                 <p>
-                    Pantai Pelawan berada di Desa Pangke Barat, Kabupaten Karimun, Kepulauan Riau.
-                    Lokasi ini menjadi salah satu kawasan wisata alam yang dikenal masyarakat sekitar
+                    {{ $lokasi }}. Lokasi ini menjadi salah satu kawasan wisata alam yang dikenal masyarakat sekitar
                     sebagai tempat rekreasi dan menikmati suasana pantai.
                 </p>
             </div>
@@ -110,7 +120,7 @@
         <div class="profil-grid profil-hero-box profil-story-new">
 
             <div class="profil-image">
-                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Perkembangan Pantai Pelawan">
+                <img src="{{ $gambarProfil }}" alt="Perkembangan Pantai Pelawan">
             </div>
 
             <div class="profil-text">

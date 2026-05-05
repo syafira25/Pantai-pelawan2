@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\ProfilPantai;
 
 class ProfilController extends Controller
 {
     public function index()
     {
-        return view('profil');
+        $profil = ProfilPantai::first();
+
+        return view('profil', compact('profil'));
     }
 }

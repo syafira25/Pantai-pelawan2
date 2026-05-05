@@ -8,12 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminMiddleware
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, \Closure $next)
     {
-        if (!auth()->check() || auth()->user()->role !== 'admin') {
-            abort(403, 'Akses ditolak');
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return $next($request);
         }
 
-        return $next($request);
+        abort(403, 'Akses hanya untuk admin.');
     }
 }

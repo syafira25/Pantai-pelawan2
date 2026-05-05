@@ -245,7 +245,7 @@
         <div class="home-cta">
             <div>
                 <span class="section-label label-light">Ayo Berkunjung</span>
-                <h2>Rencanakan Kunjunganmu ke Pantai Pelawan</h2>
+                <h2><strong>Rencanakan Kunjunganmu ke Pantai Pelawan</strong></h2>
                 <p>
                     Dapatkan informasi lengkap dan lakukan pemesanan tiket secara online
                     melalui website Sistem Informasi Pariwisata Pantai Pelawan.

@@ -2,12 +2,12 @@
     <div class="container nav-wrapper">
 
         <div class="logo">
-            <a href="{{ route('dashboard') }}">Pantai Pelawan</a>
+            <a href="{{ route('home') }}">Pantai Pelawan</a>
         </div>
 
         <ul class="nav-menu">
             <li>
-                <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">
                     Beranda
                 </a>
             </li>

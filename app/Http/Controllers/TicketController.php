@@ -299,20 +299,26 @@ class TicketController extends Controller
         return $pdf->download('e-ticket-' . $pemesanan->kode_booking . '.pdf');
     }
 
-    public function scanQr($qr_code)
+        public function scanQr($qr_code)
     {
-        $pemesanan = Pemesanan::where('qr_code', $qr_code)->firstOrFail();
+        $pemesanan = Pemesanan::where('qr_code', $qr_code)->first();
 
-        if ($pemesanan->qr_used_at !== null) {
+        if (!$pemesanan) {
+            abort(404, 'QR tidak ditemukan');
+        }
+
+        // ❌ SUDAH DIGUNAKAN
+        if ($pemesanan->qr_used_at) {
             return view('tiket.scan-result', [
                 'status' => 'used',
                 'pemesanan' => $pemesanan
             ]);
         }
 
+        // ✅ PERTAMA KALI SCAN
         $pemesanan->update([
             'qr_used_at' => now(),
-            'status_tiket' => 'digunakan',
+            'status_tiket' => 'nonaktif' // 🔥 TAMBAH INI
         ]);
 
         return view('tiket.scan-result', [

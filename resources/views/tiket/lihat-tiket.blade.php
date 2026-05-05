@@ -12,16 +12,35 @@
 
                 <!-- KIRI (QR) -->
                 <div class="ticket-left">
-                    <img 
-                        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ urlencode(route('tiket.scan', $pemesanan->qr_code)) }}"
-                    >
 
-                    <p class="qr-text">Scan saat masuk lokasi</p>
+                    @if($pemesanan->qr_code)
+                        <img         
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ urlencode('http://192.168.1.30:8000/tiket/scan/'.$pemesanan->qr_code) }}"
+                            alt="QR Code Tiket"
+                        >
+                    @else
+                        <div class="qr-error">
+                            QR Code belum tersedia
+                        </div>
+                    @endif
+
+                    <p class="qr-text">
+                        QR hanya boleh discan oleh petugas di lokasi.
+                    </p>
 
                     @if($pemesanan->qr_used_at)
                         <span class="qr-used">SUDAH DIGUNAKAN</span>
+                        <small class="qr-used-time">
+                            Pada {{ \Carbon\Carbon::parse($pemesanan->qr_used_at)->format('d M Y, H:i') }} WIB
+                        </small>
                     @else
                         <span class="qr-active">BELUM DIGUNAKAN</span>
+                    @endif
+
+                    @if($pemesanan->status_tiket == 'digunakan')
+                        <strong class="status-used">DIGUNAKAN</strong>
+                    @else
+                        <strong class="status-aktif">AKTIF</strong>
                     @endif
                 </div>
 
@@ -69,7 +88,7 @@
                         </div>
 
                     </div>
-                    
+
                                     <div class="ticket-breakdown">
                         <h4>Detail Tiket</h4>
 

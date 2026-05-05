@@ -7672,3 +7672,39 @@ input[type="date"] {
     text-decoration:none;
 }
 
+.qr-time {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #ffffff;
+    opacity: 0.85;
+}
+
+.qr-error {
+    width: 200px;
+    height: 200px;
+    background: #fee2e2;
+    color: #991b1b;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    font-weight: 800;
+}
+
+.qr-used-time {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #ffffff;
+    line-height: 1.5;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.qr-used {
+    background: #ef4444;
+    color: #ffffff;
+}

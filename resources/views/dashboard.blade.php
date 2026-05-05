@@ -3,125 +3,103 @@
 @section('content')
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero hero-home">
     <div class="hero-overlay">
-        <div class="container hero-content">
-            <span class="hero-badge">Sistem Informasi Pariwisata</span>
-            <h1>Selamat Datang di Pantai Pelawan</h1>
-            <p>
-                Pantai Pelawan merupakan salah satu destinasi wisata yang memiliki keindahan alam,
-                suasana nyaman, serta beragam informasi wisata yang dapat diakses secara digital
-                melalui website ini.
-            </p>
+        <div class="container">
+            <div class="hero-content hero-content-wide">
+                <div class="hero-badge">
+                    🌴 Sistem Informasi Pariwisata Pantai Pelawan
+                </div>
 
-            <div class="hero-buttons">
-                <a href="{{ route('profil.pantai') }}" class="btn btn-primary">Lihat Profil Pantai</a>
-                <a href="{{ route('informasi.pantai') }}" class="btn btn-secondary">Informasi Wisata</a>
+                <h1>Jelajahi Keindahan Pantai Pelawan dengan Mudah</h1>
+
+                <p>
+                    Temukan informasi wisata, fasilitas, daya tarik, galeri, rekomendasi kuliner,
+                    kontak pengelola, hingga layanan pemesanan tiket online dalam satu website
+                    yang praktis dan mudah diakses.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="{{ route('tiket') }}" class="btn btn-primary">
+                        Pesan Tiket Sekarang
+                    </a>
+
+                    <a href="{{ route('informasi.pantai') }}" class="btn btn-secondary">
+                        Lihat Informasi Pantai
+                    </a>
+                </div>
+
+                
             </div>
         </div>
     </div>
 </section>
 
-<!-- TENTANG -->
+<!-- INFORMASI UTAMA -->
 <section class="section">
     <div class="container">
         <div class="section-heading">
-            <h2>Tentang Pantai Pelawan</h2>
+            <span class="section-label">Layanan Website</span>
+            <h2>Layanan Wisata Digital</h2>
             <p>
-                Pantai Pelawan hadir sebagai destinasi wisata alam yang menawarkan keindahan panorama,
-                suasana rekreasi keluarga, serta potensi wisata yang menarik untuk dikunjungi.
+                Website ini membantu wisatawan memperoleh informasi Pantai Pelawan secara lebih
+                praktis, terstruktur, dan mudah digunakan sebelum melakukan kunjungan.
             </p>
         </div>
 
         <div class="info-grid">
             <div class="info-card">
-                <div class="icon-box">🌊</div>
-                <h3>Panorama Alam</h3>
+                <div class="icon-box">🎫</div>
+                <h3>Pemesanan Tiket</h3>
                 <p>
-                    Pantai Pelawan memiliki pemandangan laut yang indah dengan suasana pantai yang
-                    tenang dan menyegarkan.
+                    Wisatawan dapat melakukan pemesanan tiket secara online sebelum datang ke lokasi.
                 </p>
             </div>
 
             <div class="info-card">
-                <div class="icon-box">🌅</div>
-                <h3>Sunset Menarik</h3>
+                <div class="icon-box">📍</div>
+                <h3>Informasi Pantai</h3>
                 <p>
-                    Waktu sore hari menjadi momen yang sangat disukai pengunjung karena dapat menikmati
-                    keindahan matahari terbenam.
+                    Menampilkan lokasi, harga tiket, kondisi pantai, aturan pengunjung, dan kontak pengelola.
                 </p>
             </div>
 
             <div class="info-card">
-                <div class="icon-box">👨‍👩‍👧‍👦</div>
-                <h3>Wisata Keluarga</h3>
+                <div class="icon-box">🍽️</div>
+                <h3>Rekomendasi Kuliner</h3>
                 <p>
-                    Pantai ini sangat cocok dijadikan tempat rekreasi bersama keluarga karena suasananya
-                    nyaman dan mendukung aktivitas santai.
+                    Menyediakan informasi kuliner sekitar Pantai Pelawan sebagai referensi wisatawan.
                 </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FITUR INFORMASI -->
+<!-- TENTANG SINGKAT -->
 <section class="section section-soft">
     <div class="container">
-        <div class="section-heading">
-            <h2>Informasi yang Tersedia</h2>
-            <p>
-                Website ini dirancang untuk membantu pengunjung mendapatkan informasi wisata secara
-                lebih lengkap, terstruktur, dan mudah diakses.
-            </p>
-        </div>
-
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>Profil Pantai</h3>
-                <p>
-                    Menyajikan deskripsi umum, sejarah singkat, visi, misi, dan gambaran mengenai
-                    Pantai Pelawan.
-                </p>
+        <div class="home-about-grid">
+            <div class="home-about-image">
+                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Pantai Pelawan">
             </div>
 
-            <div class="feature-card">
-                <h3>Daya Tarik Wisata</h3>
+            <div class="home-about-text">
+                <span class="section-label">Tentang Destinasi</span>
+                <h2>Pantai Pelawan sebagai Destinasi Wisata Alam</h2>
                 <p>
-                    Menampilkan berbagai keunggulan wisata seperti panorama alam, aktivitas rekreasi,
-                    dan keunikan yang dimiliki.
+                    Pantai Pelawan merupakan salah satu destinasi wisata alam yang berada di
+                    Kabupaten Karimun, Kepulauan Riau. Pantai ini memiliki suasana yang nyaman,
+                    pemandangan laut yang indah, serta lingkungan yang cocok untuk rekreasi keluarga.
                 </p>
-            </div>
+                <p>
+                    Melalui website ini, informasi wisata Pantai Pelawan disajikan secara lebih
+                    lengkap dan terpusat, sehingga wisatawan dapat mengetahui daya tarik, fasilitas,
+                    kondisi pantai, lokasi, kuliner sekitar, hingga melakukan pemesanan tiket secara online.
+                </p>
 
-            <div class="feature-card">
-                <h3>Fasilitas</h3>
-                <p>
-                    Pengunjung dapat melihat fasilitas yang tersedia seperti area parkir, gazebo,
-                    toilet, warung kuliner, dan fasilitas pendukung lainnya.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <h3>Galeri</h3>
-                <p>
-                    Menyediakan dokumentasi visual Pantai Pelawan sehingga pengguna dapat melihat
-                    suasana wisata secara langsung melalui foto.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <h3>Informasi Pantai</h3>
-                <p>
-                    Berisi informasi umum, tips berkunjung, keamanan, jam operasional, serta lokasi
-                    wisata melalui Google Maps.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <h3>Kuliner</h3>
-                <p>
-                    Menampilkan rekomendasi warung di sekitar Pantai Pelawan beserta detail menu,
-                    foto makanan, dan harga.
-                </p>
+                <a href="{{ route('profil.pantai') }}" class="btn btn-primary">
+                    Lihat Profil Pantai
+                </a>
             </div>
         </div>
     </div>
@@ -131,27 +109,132 @@
 <section class="section">
     <div class="container">
         <div class="section-heading">
-            <h2>Keunggulan Website</h2>
+            <span class="section-label">Daya Tarik</span>
+            <h2>Kenapa Memilih Pantai Pelawan?</h2>
             <p>
-                Website ini tidak hanya berfungsi sebagai media informasi, tetapi juga sebagai media
-                promosi digital untuk mendukung pengembangan wisata Pantai Pelawan.
+                Pantai Pelawan memiliki daya tarik alam dan potensi wisata yang dapat dinikmati
+                oleh berbagai kalangan pengunjung.
             </p>
         </div>
 
-        <div class="content-box">
-            <p>
-                Melalui website ini, informasi mengenai Pantai Pelawan dapat disajikan dalam satu
-                platform yang terintegrasi. Pengunjung tidak perlu lagi mencari informasi secara
-                terpisah melalui berbagai media yang berbeda, karena seluruh informasi penting telah
-                dirangkum secara sistematis dalam website.
-            </p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🌊 Panorama Indah</h3>
+                <p>
+                    Menawarkan suasana pantai yang nyaman, udara segar, dan pemandangan laut yang menarik.
+                </p>
+            </div>
 
+            <div class="feature-card">
+                <h3>👨‍👩‍👧 Wisata Keluarga</h3>
+                <p>
+                    Cocok untuk rekreasi bersama keluarga, teman, maupun kegiatan santai di akhir pekan.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>📸 Spot Foto</h3>
+                <p>
+                    Memiliki berbagai sudut menarik yang dapat digunakan untuk dokumentasi dan promosi wisata.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>💻 Layanan Digital</h3>
+                <p>
+                    Informasi dan layanan wisata disajikan melalui website agar lebih mudah diakses.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-label">Informasi Website</span>
+            <h2>Informasi yang Tersedia di Website</h2>
             <p>
-                Selain itu, website ini juga mendukung promosi wisata secara digital dengan tampilan
-                yang lebih menarik, modern, dan mudah dipahami. Hal ini diharapkan dapat meningkatkan
-                minat wisatawan untuk berkunjung serta memperluas jangkauan promosi objek wisata
-                Pantai Pelawan.
+                Website ini menyajikan berbagai informasi penting agar wisatawan lebih mudah merencanakan kunjungan.
             </p>
+        </div>
+
+        <div class="profil-card-grid profil-card-grid-six">
+            <div class="profil-card-item">
+                <div class="profil-card-icon">📌</div>
+                <h3>Profil Pantai</h3>
+                <p>Menampilkan gambaran umum mengenai Pantai Pelawan sebagai objek wisata alam.</p>
+            </div>
+
+            <div class="profil-card-item">
+                <div class="profil-card-icon">🌊</div>
+                <h3>Daya Tarik</h3>
+                <p>Berisi informasi mengenai keindahan, suasana, dan potensi wisata Pantai Pelawan.</p>
+            </div>
+
+            <div class="profil-card-item">
+                <div class="profil-card-icon">🛖</div>
+                <h3>Fasilitas</h3>
+                <p>Menjelaskan fasilitas pendukung yang tersedia untuk kenyamanan pengunjung.</p>
+            </div>
+
+            <div class="profil-card-item">
+                <div class="profil-card-icon">🗺️</div>
+                <h3>Lokasi</h3>
+                <p>Membantu wisatawan mengetahui letak Pantai Pelawan dengan lebih mudah.</p>
+            </div>
+
+            <div class="profil-card-item">
+                <div class="profil-card-icon">🎫</div>
+                <h3>Pemesanan Tiket</h3>
+                <p>Mendukung proses pemesanan tiket secara online melalui website.</p>
+            </div>
+
+            <div class="profil-card-item">
+                <div class="profil-card-icon">☎️</div>
+                <h3>Kontak Pengelola</h3>
+                <p>Memudahkan wisatawan menghubungi pengelola untuk informasi tambahan.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ALUR PEMESANAN -->
+<section class="section section-soft">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-label">Cara Pesan</span>
+            <h2>Alur Pemesanan Tiket Online</h2>
+            <p>
+                Pemesanan tiket dibuat sederhana agar wisatawan dapat melakukan proses pemesanan
+                dengan lebih cepat dan mudah.
+            </p>
+        </div>
+
+        <div class="step-grid">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <h3><strong>Pilih Tanggal</strong></h3>
+                <p>Wisatawan memilih tanggal kunjungan dan jumlah tiket yang ingin dipesan.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <h3><strong>Isi Data Pemesan</strong></h3>
+                <p>Lengkapi data pemesan agar tiket dapat tercatat di dalam sistem.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <h3><strong>Lakukan Pembayaran</strong></h3>
+                <p>Pembayaran dapat dilakukan menggunakan metode digital seperti QRIS.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">04</div>
+                <h3><strong>Dapatkan E-Ticket</strong></h3>
+                <p>Setelah pembayaran berhasil, wisatawan dapat melihat dan menyimpan e-ticket.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -159,17 +242,25 @@
 <!-- CTA -->
 <section class="section">
     <div class="container">
-        <div class="highlight-box">
-            <div class="highlight-text">
-                <h2>Jelajahi Pantai Pelawan Sekarang</h2>
+        <div class="home-cta">
+            <div>
+                <span class="section-label label-light">Ayo Berkunjung</span>
+                <h2>Rencanakan Kunjunganmu ke Pantai Pelawan</h2>
                 <p>
-                    Temukan informasi wisata, fasilitas, galeri, lokasi, dan rekomendasi kuliner
-                    hanya dalam satu website.
+                    Dapatkan informasi lengkap dan lakukan pemesanan tiket secara online
+                    melalui website Sistem Informasi Pariwisata Pantai Pelawan.
                 </p>
             </div>
 
-            <div class="highlight-action">
-                <a href="{{ route('galeri') }}" class="btn btn-primary">Lihat Galeri</a>
+            <div class="home-cta-action">
+                <a href="{{ route('tiket') }}" class="btn btn-primary">
+                    Mulai Pesan Tiket
+                </a>
+
+                <a href="https://wa.me/6281268005708" target="_blank" class="btn btn-secondary">
+                    Hubungi Pengelola
+                </a>
+                </a>
             </div>
         </div>
     </div>

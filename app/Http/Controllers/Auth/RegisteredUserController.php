@@ -15,11 +15,19 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    /**
+     * Display the registration view.
+     */
     public function create(): View
     {
         return view('auth.register');
     }
 
+    /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -32,9 +40,6 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-
-            // 🔥 TAMBAHKAN INI
-            'role' => 'user',
         ]);
 
         event(new Registered($user));

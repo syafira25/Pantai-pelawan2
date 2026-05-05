@@ -18,44 +18,33 @@
 
         <div class="section-heading">
             <h2>Informasi Umum</h2>
-            <p>Berikut adalah informasi dasar mengenai Pantai Pelawan.</p>
+            <p>Informasi dasar yang perlu diketahui wisatawan sebelum berkunjung ke Pantai Pelawan.</p>
         </div>
 
-        <div class="info-grid">
-
-            <div class="info-card">
-                <div class="icon-box">📍</div>
-                <h3>Lokasi</h3>
-                <p>
-                    Pantai Pelawan terletak di Desa Pangke Barat, Kabupaten Karimun,
-                    Provinsi Kepulauan Riau.
-                </p>
+        <div class="info-premium-grid">
+            <div class="info-premium-card">
+                <div class="info-premium-icon">📍</div>
+                <h3>Lokasi Pantai</h3>
+                <p>Pantai Pelawan terletak di Desa Pangke Barat, Kabupaten Karimun, Provinsi Kepulauan Riau.</p>
             </div>
 
-            <div class="info-card">
-                <div class="icon-box">🕒</div>
+            <div class="info-premium-card">
+                <div class="info-premium-icon">🕒</div>
                 <h3>Jam Operasional</h3>
-                <p>
-                    Pantai buka setiap hari mulai pukul 08.00 hingga 18.00 WIB.
-                </p>
+                <p>Pantai buka setiap hari mulai pukul 08.00 hingga 18.00 WIB.</p>
             </div>
 
-            <div class="info-card">
-                <div class="icon-box">💰</div>
+            <div class="info-premium-card">
+                <div class="info-premium-icon">🎫</div>
                 <h3>Tiket Masuk</h3>
-                <p>
-                    Harga tiket masuk terjangkau dan dapat berubah sesuai kebijakan pengelola.
-                </p>
+                <p>Harga tiket masuk terjangkau dan dapat berubah sesuai kebijakan pengelola.</p>
             </div>
 
-            <div class="info-card">
-                <div class="icon-box">🚗</div>
+            <div class="info-premium-card">
+                <div class="info-premium-icon">🚗</div>
                 <h3>Akses Transportasi</h3>
-                <p>
-                    Pantai mudah diakses menggunakan kendaraan pribadi maupun transportasi umum.
-                </p>
+                <p>Lokasi pantai dapat dijangkau menggunakan kendaraan pribadi maupun transportasi umum.</p>
             </div>
-
         </div>
 
     </div>
@@ -67,42 +56,41 @@
 
         <div class="section-heading">
             <h2>Keamanan & Keselamatan</h2>
-            <p>Hal-hal yang perlu diperhatikan demi keselamatan selama berwisata.</p>
+            <p>Hal-hal penting yang perlu diperhatikan agar wisata tetap aman dan nyaman.</p>
         </div>
 
-        <div class="feature-grid">
-
-            <div class="feature-card">
-                <h3>🌊 Kondisi Ombak</h3>
-                <p>
-                    Pantai memiliki ombak yang relatif tenang, namun tetap disarankan
-                    berhati-hati saat bermain air.
-                </p>
+        <div class="safety-grid">
+            <div class="safety-card">
+                <span>🌊</span>
+                <div>
+                    <h3>Kondisi Ombak</h3>
+                    <p>Ombak relatif tenang, namun pengunjung tetap disarankan berhati-hati saat bermain air.</p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <h3>⚠️ Cuaca Ekstrem</h3>
-                <p>
-                    Saat terjadi cuaca buruk seperti angin kencang atau gelombang tinggi,
-                    pengunjung dihimbau untuk tidak berenang.
-                </p>
+            <div class="safety-card">
+                <span>⚠️</span>
+                <div>
+                    <h3>Cuaca Ekstrem</h3>
+                    <p>Jika terjadi angin kencang atau gelombang tinggi, pengunjung sebaiknya tidak berenang.</p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <h3>👮 Petugas Pantai</h3>
-                <p>
-                    Tersedia petugas yang siap memberikan informasi dan menjaga keamanan pengunjung.
-                </p>
+            <div class="safety-card">
+                <span>👮</span>
+                <div>
+                    <h3>Petugas Pantai</h3>
+                    <p>Petugas dapat memberikan informasi dan arahan kepada pengunjung saat berada di area wisata.</p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <h3>🚫 Aturan Pengunjung</h3>
-                <p>
-                    Pengunjung wajib menjaga kebersihan, tidak merusak fasilitas,
-                    dan mengikuti aturan yang berlaku.
-                </p>
+            <div class="safety-card">
+                <span>🚫</span>
+                <div>
+                    <h3>Aturan Pengunjung</h3>
+                    <p>Pengunjung wajib menjaga kebersihan, ketertiban, dan tidak merusak fasilitas yang tersedia.</p>
+                </div>
             </div>
-
         </div>
 
     </div>
@@ -114,32 +102,272 @@
 
         <div class="section-heading">
             <h2>Tips Berkunjung</h2>
-            <p>Beberapa tips agar pengalaman wisata kamu lebih maksimal.</p>
+            <p>Beberapa tips agar pengalaman wisata di Pantai Pelawan lebih maksimal.</p>
+        </div>
+<div class="tips-premium-grid">
+
+    <div class="tips-premium-card">
+        <div class="tips-premium-number">01</div>
+        <div class="tips-premium-icon">🌅</div>
+        <h3>Waktu Terbaik Berkunjung</h3>
+        <p>Datang di sore hari untuk menikmati suasana pantai dan pemandangan sunset.</p>
+    </div>
+
+    <div class="tips-premium-card">
+        <div class="tips-premium-number">02</div>
+        <div class="tips-premium-icon">👕</div>
+        <h3>Pakaian Nyaman</h3>
+        <p>Gunakan pakaian yang nyaman agar aktivitas di area pantai lebih menyenangkan.</p>
+    </div>
+
+    <div class="tips-premium-card">
+        <div class="tips-premium-number">03</div>
+        <div class="tips-premium-icon">🧴</div>
+        <h3>Perlengkapan Pribadi</h3>
+        <p>Bawa sunscreen, air minum, dan perlengkapan lain untuk kenyamanan.</p>
+    </div>
+
+    <div class="tips-premium-card">
+        <div class="tips-premium-number">04</div>
+        <div class="tips-premium-icon">🗑️</div>
+        <h3>Jaga Kebersihan</h3>
+        <p>Tidak membuang sampah sembarangan agar lingkungan pantai tetap bersih.</p>
+    </div>
+
+    <div class="tips-premium-card">
+        <div class="tips-premium-number">05</div>
+        <div class="tips-premium-icon">⚠️</div>
+        <h3>Perhatikan Cuaca</h3>
+        <p>Perhatikan kondisi cuaca sebelum bermain air untuk keselamatan.</p>
+    </div>
+
+    <div class="tips-premium-card">
+        <div class="tips-premium-number">06</div>
+        <div class="tips-premium-icon">📢</div>
+        <h3>Ikuti Arahan</h3>
+        <p>Ikuti arahan petugas demi keselamatan dan kenyamanan bersama.</p>
+    </div>
+
+</div>
+
+    </div>
+</section>
+
+<!-- KONTAK PENGELOLA -->
+<section class="section kontak-pengelola-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-label">Kontak</span>
+            <h2>Kontak Pengelola</h2>
+            <p>Hubungi pengelola Pantai Pelawan melalui WhatsApp dan media sosial.</p>
         </div>
 
-        <div class="content-box">
-            <p>✔ Datang di sore hari untuk menikmati sunset terbaik.</p>
-            <p>✔ Gunakan pakaian yang nyaman dan sesuai untuk aktivitas pantai.</p>
-            <p>✔ Bawa perlengkapan pribadi seperti sunscreen dan air minum.</p>
-            <p>✔ Jaga kebersihan dengan tidak membuang sampah sembarangan.</p>
-            <p>✔ Ikuti arahan petugas demi keselamatan bersama.</p>
+        <div class="contact-premium-grid">
+
+            <a href="https://wa.me/6285282770935?text=Halo%20saya%20ingin%20bertanya%20tentang%20Pantai%20Pelawan"
+               target="_blank"
+               class="contact-premium-card whatsapp-card">
+
+                <div class="contact-premium-icon">
+                    <img src="{{ asset('images/whatsapp.png') }}" alt="WhatsApp">
+                </div>
+
+                <div class="contact-premium-text">
+                    <span>Layanan Informasi</span>
+                    <h3>WhatsApp</h3>
+                    <p>Hubungi pengelola untuk informasi tiket, fasilitas, kondisi pantai, dan layanan wisata.</p>
+                    <strong>Chat Sekarang</strong>
+                </div>
+            </a>
+
+            <a href="https://www.instagram.com/r.syfira_?igsh=MXJ5ejBvbnFvNjBobg=="
+               target="_blank"
+               class="contact-premium-card instagram-card">
+
+                <div class="contact-premium-icon">
+                    <img src="{{ asset('images/instagram.png') }}" alt="Instagram">
+                </div>
+
+                <div class="contact-premium-text">
+                    <span>Media Promosi</span>
+                    <h3>Instagram</h3>
+                    <p>Lihat dokumentasi, informasi terbaru, dan aktivitas wisata Pantai Pelawan.</p>
+                    <strong>Kunjungi Instagram</strong>
+                </div>
+            </a>
+
+            <a href="https://www.tiktok.com/@raaaaajz?_r=1&_t=ZS-95o7KMxW2J0"
+               target="_blank"
+               class="contact-premium-card tiktok-card">
+
+                <div class="contact-premium-icon">
+                    <img src="{{ asset('images/tiktok.png') }}" alt="TikTok">
+                </div>
+
+                <div class="contact-premium-text">
+                    <span>Video Wisata</span>
+                    <h3>TikTok</h3>
+                    <p>Tonton video singkat tentang suasana, daya tarik, dan pengalaman wisata.</p>
+                    <strong>Kunjungi TikTok</strong>
+                </div>
+            </a>
+
         </div>
 
     </div>
 </section>
 
-<!-- PENUTUP -->
-<section class="section">
+<!-- ULASAN PENGUNJUNG -->
+<section class="section section-soft review-section">
     <div class="container">
-        <div class="highlight-box">
-            <div class="highlight-text">
-                <h2>Siap Liburan ke Pantai Pelawan?</h2>
+
+        <div class="section-heading">
+            <span class="section-label">Ulasan Pengunjung</span>
+            <h2>Bagikan Pengalaman Anda</h2>
+            <p>
+                Wisatawan dapat memberikan penilaian, kesan, dan pesan setelah berkunjung ke Pantai Pelawan.
+            </p>
+        </div>
+
+        <div class="review-layout">
+
+            <!-- FORM ULASAN -->
+            <div class="review-form-box">
+                <div class="review-form-header">
+                    <span>✍️ Form Ulasan</span>
+                    <h3>Tulis Ulasan Anda</h3>
+                    <p>Isi pengalaman berkunjung Anda agar dapat menjadi referensi bagi wisatawan lain.</p>
+                </div>
+
+                <form action="#" method="POST">
+                    @csrf
+
+                    <div class="review-form-grid">
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" name="nama" placeholder="Masukkan nama Anda" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status Pengunjung</label>
+                            <select name="status" required>
+                                <option value="">Pilih status</option>
+                                <option>Wisatawan Lokal</option>
+                                <option>Wisatawan Luar Daerah</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="rating-input">
+                            <input type="radio" name="rating" id="star5" value="5">
+                            <label for="star5">★</label>
+
+                            <input type="radio" name="rating" id="star4" value="4">
+                            <label for="star4">★</label>
+
+                            <input type="radio" name="rating" id="star3" value="3">
+                            <label for="star3">★</label>
+
+                            <input type="radio" name="rating" id="star2" value="2">
+                            <label for="star2">★</label>
+
+                            <input type="radio" name="rating" id="star1" value="1">
+                            <label for="star1">★</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kesan & Pesan</label>
+                        <textarea name="pesan" rows="5" placeholder="Tulis pengalaman Anda..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary review-submit">
+                        Kirim Ulasan
+                    </button>
+                </form>
+            </div>
+
+            <!-- INFO SAMPING -->
+            <div class="review-side-card">
+                <div class="review-side-icon">⭐</div>
+                <h3>Ulasan Pengunjung</h3>
                 <p>
-                    Pastikan kamu sudah mengetahui informasi penting agar perjalanan wisata
-                    menjadi lebih aman, nyaman, dan menyenangkan.
+                    Ulasan membantu pengelola mengetahui pengalaman wisatawan dan membantu pengunjung lain
+                    memperoleh gambaran mengenai Pantai Pelawan.
+                </p>
+
+                <div class="review-point">✅ Berikan penilaian sesuai pengalaman</div>
+                <div class="review-point">✅ Tulis kesan dan saran dengan sopan</div>
+                <div class="review-point">✅ Bantu wisatawan lain mengenal Pantai Pelawan</div>
+            </div>
+
+        </div>
+
+        <div class="section-heading review-list-heading">
+            <span class="section-label">Pengalaman Wisatawan</span>
+            <h2>Ulasan dari Pengunjung</h2>
+            <p>Beberapa pendapat pengunjung mengenai pengalaman mereka saat berwisata ke Pantai Pelawan.</p>
+        </div>
+
+        <div class="review-grid">
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar">A</div>
+                    <div>
+                        <h3>Andi Saputra</h3>
+                        <span>Wisatawan Lokal</span>
+                    </div>
+                </div>
+
+                <div class="review-stars">★★★★★</div>
+
+                <p>
+                    Pantainya nyaman untuk bersantai bersama keluarga. Suasananya tenang dan cocok
+                    untuk menikmati waktu libur di sore hari.
                 </p>
             </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar">S</div>
+                    <div>
+                        <h3>Siti Rahma</h3>
+                        <span>Pengunjung</span>
+                    </div>
+                </div>
+
+                <div class="review-stars">★★★★★</div>
+
+                <p>
+                    Pemandangan pantainya bagus dan banyak spot yang cocok untuk foto.
+                    Informasi melalui website juga membantu sebelum datang ke lokasi.
+                </p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <div class="review-avatar">R</div>
+                    <div>
+                        <h3>Rizky Pratama</h3>
+                        <span>Wisatawan</span>
+                    </div>
+                </div>
+
+                <div class="review-stars">★★★★☆</div>
+
+                <p>
+                    Tempatnya cocok untuk rekreasi keluarga. Akan lebih baik jika informasi tiket,
+                    lokasi, dan kontak pengelola terus diperbarui melalui website.
+                </p>
+            </div>
+
         </div>
+
     </div>
 </section>
 
@@ -148,23 +376,23 @@
     <div class="container">
 
         <div class="section-heading">
+            <span class="section-label">Lokasi</span>
             <h2>Lokasi Pantai Pelawan</h2>
             <p>Temukan lokasi Pantai Pelawan secara langsung melalui Google Maps.</p>
         </div>
 
-        <div class="map-container">
+        <div class="map-card">
             <iframe 
                 src="https://www.google.com/maps?q=Pantai+Pelawan&output=embed"
                 width="100%" 
-                height="420" 
-                style="border:0; border-radius: 20px;"
+                height="420"
+                style="border:0;"
                 allowfullscreen="" 
                 loading="lazy">
             </iframe>
         </div>
 
-        <!-- Tombol buka maps -->
-        <div style="text-align:center; margin-top:20px;">
+        <div style="text-align:center; margin-top:24px;">
             <a href="https://maps.app.goo.gl/2tJ9cM3Yuk1bNfTr7" 
                target="_blank" 
                class="btn btn-primary">
@@ -175,91 +403,23 @@
     </div>
 </section>
 
-<!-- KONTAK PENGELOLA -->
-<section class="section kontak-pengelola-section">
+<!-- PENUTUP -->
+<section class="section">
     <div class="container">
+        <div class="info-highlight">
+            <div>
+                <span>🌴 Informasi Kunjungan</span>
+                <h2>Siap Liburan ke Pantai Pelawan?</h2>
+                <p>
+                    Pastikan kamu sudah mengetahui informasi penting agar perjalanan wisata
+                    menjadi lebih aman, nyaman, dan menyenangkan.
+                </p>
+            </div>
 
-        <div class="section-heading">
-            <h2>Kontak Pengelola</h2>
-            <p>Hubungi pengelola Pantai Pelawan melalui WhatsApp dan media sosial.</p>
-        </div>
-
-        <div class="contact-channel-grid contact-center-one">
-
-            <a href="https://wa.me/6285282770935?text=Halo%20saya%20ingin%20bertanya%20tentang%20Pantai%20Pelawan"
-               target="_blank"
-               class="contact-channel-card whatsapp-card">
-
-                <div class="contact-channel-icon">
-                    <img src="{{ asset('images/whatsapp.png') }}" alt="WhatsApp">
-                </div>
-
-                <div class="contact-channel-text">
-                    <span>Layanan Informasi</span>
-                    <h3>WhatsApp</h3>
-                    <p>Hubungi pengelola untuk informasi tiket, fasilitas, kondisi pantai, dan layanan wisata.</p>
-                </div>
-
-                <div class="contact-channel-action">
-                    Chat Sekarang
-                </div>
+            <a href="{{ route('tiket') }}" class="btn btn-primary">
+                Pesan Tiket
             </a>
-
         </div>
-
-    </div>
-</section>
-
-<section class="section kontak-pengelola-section">
-    <div class="container">
-
-        <div class="section-heading">
-            <h2>Media Sosial</h2>
-            <p>Ikuti media sosial Pantai Pelawan untuk melihat informasi dan dokumentasi terbaru.</p>
-        </div>
-
-        <div class="contact-channel-grid contact-center-two">
-
-            <a href="https://www.instagram.com/r.syfira_?igsh=MXJ5ejBvbnFvNjBobg=="
-               target="_blank"
-               class="contact-channel-card instagram-card">
-
-                <div class="contact-channel-icon">
-                    <img src="{{ asset('images/instagram.png') }}" alt="Instagram">
-                </div>
-
-                <div class="contact-channel-text">
-                    <span>Media Promosi</span>
-                    <h3>Instagram</h3>
-                    <p>Lihat dokumentasi, informasi terbaru, dan aktivitas wisata Pantai Pelawan.</p>
-                </div>
-
-                <div class="contact-channel-action">
-                    Kunjungi Instagram
-                </div>
-            </a>
-
-            <a href="https://www.tiktok.com/@raaaaajz?_r=1&_t=ZS-95o7KMxW2J0"
-               target="_blank"
-               class="contact-channel-card tiktok-card">
-
-                <div class="contact-channel-icon">
-                    <img src="{{ asset('images/tiktok.png') }}" alt="TikTok">
-                </div>
-
-                <div class="contact-channel-text">
-                    <span>Video Wisata</span>
-                    <h3>TikTok</h3>
-                    <p>Tonton video singkat tentang suasana, daya tarik, dan pengalaman wisata.</p>
-                </div>
-
-                <div class="contact-channel-action">
-                    Kunjungi TikTok
-                </div>
-            </a>
-
-        </div>
-
     </div>
 </section>
 

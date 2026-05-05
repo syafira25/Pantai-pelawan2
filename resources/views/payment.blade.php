@@ -12,58 +12,161 @@
 
 <section class="section section-soft">
     <div class="container">
-        <div class="content-box">
-            @if(session('error'))
-                <div style="background:#fee2e2;color:#991b1b;padding:12px 14px;border-radius:12px;margin-bottom:16px;">
-                    {{ session('error') }}
-                </div>
-            @endif
 
-            <h2 style="margin-bottom:16px;">Detail Pemesanan</h2>
-
-            <p><strong>Kode Booking:</strong> {{ $pemesanan->kode_booking }}</p>
-            <p><strong>Nama:</strong> {{ $pemesanan->nama }}</p>
-            <p><strong>Email:</strong> {{ $pemesanan->email }}</p>
-            <p><strong>Tanggal Kunjungan:</strong> {{ $pemesanan->tanggal_kunjungan->format('d M Y') }}</p>
-            <p><strong>Jumlah Orang:</strong> {{ $pemesanan->jumlah_orang }}</p>
-            <p><strong>Total Harga:</strong> Rp {{ number_format($pemesanan->total_harga, 0, ',', '.') }}</p>
-            <p><strong>Status Pembayaran:</strong> {{ strtoupper($pemesanan->status_pembayaran) }}</p>
-
-            <div style="margin-top:24px;">
-                <button id="pay-button" class="btn btn-primary">Bayar Sekarang</button>
-
-                @if($pemesanan->status_pembayaran === 'paid')
-                    <a href="{{ route('tiket.finish', $pemesanan->id) }}" class="btn btn-secondary" style="margin-left:10px;">
-                        Lihat E-Ticket
-                    </a>
-                @endif
+        @if(session('error'))
+            <div class="payment-alert">
+                {{ session('error') }}
             </div>
+        @endif
+
+        <div class="payment-wrapper">
+
+            <div class="payment-card payment-detail-card">
+                <div class="payment-card-header">
+                    <span class="payment-badge">Detail Pemesanan</span>
+                    <h2>Tiket Pantai Pelawan</h2>
+                    <p>Pastikan data pemesanan sudah benar sebelum melanjutkan pembayaran.</p>
+                </div>
+
+                <div class="payment-info-list">
+                    <div class="payment-info-item">
+                        <span>Kode Booking</span>
+                        <strong>{{ $pemesanan->kode_booking }}</strong>
+                    </div>
+
+                    <div class="payment-info-item">
+                        <span>Nama</span>
+                        <strong>{{ $pemesanan->nama }}</strong>
+                    </div>
+
+                    <div class="payment-info-item">
+                        <span>Email</span>
+                        <strong>{{ $pemesanan->email }}</strong>
+                    </div>
+
+                    <div class="payment-info-item">
+                        <span>Tanggal Kunjungan</span>
+                        <strong>{{ $pemesanan->tanggal_kunjungan->format('d M Y') }}</strong>
+                    </div>
+
+                    <div class="payment-info-item">
+                        <span>Jumlah Tiket</span>
+                        <strong>{{ $pemesanan->jumlah_orang }} Orang</strong>
+                    </div>
+
+                    <div class="payment-info-item">
+                        <span>Metode Pembayaran</span>
+                        <strong>{{ $pemesanan->metode_pembayaran ?? 'QRIS' }}</strong>
+                    </div>
+
+                    <div class="payment-info-item">
+                        <span>Status Pembayaran</span>
+                        <strong class="status-badge status-{{ $pemesanan->status_pembayaran }}">
+                            {{ strtoupper($pemesanan->status_pembayaran) }}
+                        </strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-card payment-summary-card">
+                <div class="summary-top">
+                    <div class="summary-icon">🎫</div>
+                    <div>
+                        <span>Total Pembayaran</span>
+                        <h2>Rp {{ number_format($pemesanan->total_harga, 0, ',', '.') }}</h2>
+                    </div>
+                </div>
+
+                <div class="payment-note">
+                    <h4>Instruksi Pembayaran</h4>
+                    <p>
+                        Klik tombol bayar, lalu pilih metode pembayaran yang tersedia.
+                        Setelah pembayaran berhasil, tiket online akan aktif secara otomatis.
+                    </p>
+                </div>
+
+                <div class="payment-step-list">
+                    <div class="payment-step">
+                        <span>1</span>
+                        <p>Klik tombol bayar sekarang</p>
+                    </div>
+
+                    <div class="payment-step">
+                        <span>2</span>
+                        <p>Selesaikan pembayaran melalui Snap Midtrans</p>
+                    </div>
+
+                    <div class="payment-step">
+                        <span>3</span>
+                        <p>E-ticket akan muncul setelah pembayaran berhasil</p>
+                    </div>
+                </div>
+
+                <div class="payment-action">
+
+                   <button id="pay-button" class="btn-pay primary">
+                        Bayar Sekarang
+                    </button>
+
+                    <a href="{{ route('tiket.manual.payment', $pemesanan->id) }}" class="btn-pay secondary">
+                        Bayar Manual
+                    </a>
+
+                    @if($pemesanan->status_pembayaran === 'paid')
+                        <a href="{{ route('tiket.finish', $pemesanan->id) }}" class="btn btn-secondary payment-ticket-btn">
+                            Lihat E-Ticket
+                        </a>
+                    @endif
+
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
 
 <script
-    type="text/javascript"
     src="{{ config('midtrans.is_production') ? 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}"
     data-client-key="{{ config('midtrans.client_key') }}">
 </script>
 
-<script type="text/javascript">
-    document.getElementById('pay-button').onclick = function () {
-        window.snap.pay('{{ $pemesanan->snap_token }}', {
-            onSuccess: function(result) {
-                window.location.href = "{{ route('tiket.finish', $pemesanan->id) }}";
-            },
-            onPending: function(result) {
-                alert('Pembayaran belum selesai. Silakan lanjutkan pembayaran.');
-            },
-            onError: function(result) {
-                alert('Pembayaran gagal diproses.');
-            },
-            onClose: function() {
-                alert('Kamu menutup popup pembayaran.');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const payButton = document.getElementById('pay-button');
+
+        if (!payButton) {
+            console.log('Tombol bayar tidak ditemukan');
+            return;
+        }
+
+        payButton.addEventListener('click', function () {
+            const snapToken = "{{ $pemesanan->snap_token }}";
+
+            if (!snapToken) {
+                alert('Snap token kosong. Transaksi belum berhasil dibuat.');
+                return;
             }
+
+            if (typeof window.snap === 'undefined') {
+                alert('Midtrans Snap belum berhasil dimuat. Cek koneksi internet atau Client Key.');
+                return;
+            }
+
+            window.snap.pay(snapToken, {
+                onSuccess: function(result) {
+                    window.location.href = "{{ route('tiket.finish', $pemesanan->id) }}";
+                },
+                onPending: function(result) {
+                    alert('Pembayaran belum selesai. Silakan lanjutkan pembayaran.');
+                },
+                onError: function(result) {
+                    alert('Pembayaran gagal diproses.');
+                },
+                onClose: function() {
+                    alert('Kamu menutup popup pembayaran.');
+                }
+            });
         });
-    };
+    });
 </script>
 @endsection

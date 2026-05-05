@@ -2,37 +2,187 @@
 
 @section('content')
 
-<section class="page-header">
-    <div class="container">
-        <h1>Profil Pantai Pelawan</h1>
-        <p class="page-subtitle">
-            Mengenal lebih dekat Pantai Pelawan sebagai destinasi wisata alam yang indah,
-            nyaman, dan memiliki potensi besar dalam pengembangan pariwisata daerah.
-        </p>
+<section class="page-hero page-hero-profil">
+    <div class="page-hero-overlay">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Profil Pantai Pelawan</h1>
+                <p>
+                    Mengenal lebih dekat Pantai Pelawan sebagai destinasi wisata alam di Kabupaten Karimun.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 
 <section class="section">
     <div class="container">
-        <div class="profil-grid">
+        <div class="profil-grid profil-hero-box">
             <div class="profil-image">
                 <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Profil Pantai Pelawan">
+
+                <div class="profil-floating-card">
+                    <strong>📍 Desa Pangke Barat</strong>
+                    <span>Kabupaten Karimun, Kepulauan Riau</span>
+                </div>
             </div>
 
             <div class="profil-text">
                 <div class="mini-title">Tentang Pantai</div>
-                <h2>Deskripsi Pantai Pelawan</h2>
+                <h2><strong>Pantai Pelawan sebagai Destinasi Wisata Alam</strong></h2>
+
                 <p>
-                    Pantai Pelawan merupakan salah satu destinasi wisata yang berada di Desa Pangke Barat,
-                    Kabupaten Karimun, Provinsi Kepulauan Riau. Pantai ini dikenal memiliki suasana yang
-                    nyaman, pemandangan laut yang indah, serta lingkungan yang cocok untuk kegiatan rekreasi
-                    bersama keluarga maupun teman.
+                    Pantai Pelawan merupakan salah satu objek wisata alam yang berada di Desa Pangke Barat,
+                    Kabupaten Karimun, Provinsi Kepulauan Riau. Pantai ini dikenal sebagai kawasan wisata
+                    yang memiliki suasana tenang, pemandangan laut yang indah, serta lingkungan yang cocok
+                    untuk kegiatan rekreasi dan wisata keluarga.
                 </p>
+
                 <p>
-                    Keindahan Pantai Pelawan terletak pada hamparan pantainya yang menarik, udara yang segar,
-                    dan suasana alam yang mampu memberikan rasa tenang bagi para pengunjung. Selain menjadi
-                    tempat wisata, pantai ini juga memiliki potensi besar sebagai media promosi wisata daerah
-                    melalui pemanfaatan teknologi informasi berbasis web.
+                    Sebagai destinasi wisata alam, Pantai Pelawan memiliki daya tarik utama berupa panorama
+                    pantai, suasana pesisir, dan keindahan alam yang dapat dinikmati oleh wisatawan. Keberadaan
+                    Pantai Pelawan juga menjadi bagian dari potensi pariwisata daerah yang dapat terus
+                    dikembangkan melalui promosi dan penyajian informasi yang lebih terstruktur.
+                </p>
+
+                <div class="profil-info-mini">
+                    <div>
+                        <strong>🌊 Karakter Wisata Alam</strong>
+                        <span>Pantai, laut, dan suasana pesisir</span>
+                    </div>
+                    <div>
+                        <strong>📍 Identitas Lokasi</strong>
+                        <span>Desa Pangke Barat, Karimun</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-soft">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-label">Identitas Pantai</span>
+            <h2><strong>Gambaran Umum Pantai Pelawan</strong></h2>
+            <p>
+                Profil Pantai Pelawan disajikan untuk memberikan gambaran mengenai lokasi,
+                karakter wisata, dan nilai destinasi yang dimiliki.
+            </p>
+        </div>
+
+        <div class="profil-overview-grid">
+            <div class="overview-card">
+                <div class="overview-icon">📍</div>
+                <h3><strong>Lokasi Pantai</strong></h3>
+                <p>
+                    Pantai Pelawan berada di Desa Pangke Barat, Kabupaten Karimun, Kepulauan Riau.
+                    Lokasi ini menjadi salah satu kawasan wisata alam yang dikenal masyarakat sekitar
+                    sebagai tempat rekreasi dan menikmati suasana pantai.
+                </p>
+            </div>
+
+            <div class="overview-card">
+                <div class="overview-icon">🏖️</div>
+                <h3><strong>Karakter Destinasi</strong></h3>
+                <p>
+                    Pantai ini memiliki karakter wisata alam berupa pemandangan laut, suasana pesisir,
+                    dan lingkungan yang nyaman. Karakter tersebut menjadikan Pantai Pelawan memiliki
+                    daya tarik sebagai tempat wisata santai.
+                </p>
+            </div>
+
+            <div class="overview-card">
+                <div class="overview-icon">🌿</div>
+                <h3><strong>Nilai Alam</strong></h3>
+                <p>
+                    Keindahan alam Pantai Pelawan menjadi nilai utama yang dapat dikenalkan kepada wisatawan.
+                    Suasana pantai yang terbuka dan alami membuat destinasi ini memiliki potensi untuk
+                    terus dikembangkan.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="profil-grid profil-hero-box profil-story-new">
+
+            <div class="profil-image">
+                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Perkembangan Pantai Pelawan">
+            </div>
+
+            <div class="profil-text">
+                <div class="mini-title">Perkembangan</div>
+
+                <h2><strong>Perkembangan Pantai Pelawan</strong></h2>
+
+                <p>
+                    Pantai Pelawan mulai dikenal sebagai salah satu tujuan wisata masyarakat karena
+                    memiliki suasana alam yang menarik dan cocok untuk kegiatan rekreasi.
+                </p>
+
+                <p>
+                    Seiring meningkatnya minat masyarakat terhadap wisata lokal, Pantai Pelawan menjadi
+                    salah satu destinasi yang memiliki peluang untuk dipromosikan secara lebih luas.
+                </p>
+
+                <p>
+                    Oleh karena itu, penyajian profil Pantai Pelawan melalui website menjadi salah satu
+                    cara untuk memperkenalkan identitas destinasi secara lebih rapi, modern, dan mudah
+                    diakses oleh masyarakat.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section section-soft">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-label">Karakteristik</span>
+            <h2><strong>Karakteristik Pantai Pelawan</strong></h2>
+            <p>
+                Karakteristik ini menggambarkan ciri khas Pantai Pelawan sebagai destinasi wisata alam.
+            </p>
+        </div>
+
+        <div class="profil-card-grid">
+            <div class="profil-card-item">
+                <div class="profil-card-icon">🌊</div>
+                <h3><strong>Pemandangan Laut</strong></h3>
+                <p>
+                    Pantai Pelawan memiliki pemandangan laut yang menjadi daya tarik utama bagi wisatawan
+                    yang ingin menikmati suasana alam pesisir.
+                </p>
+            </div>
+
+            <div class="profil-card-item">
+                <div class="profil-card-icon">🌤️</div>
+                <h3><strong>Suasana Tenang</strong></h3>
+                <p>
+                    Suasana pantai yang nyaman membuat Pantai Pelawan cocok untuk melepas penat dan menikmati
+                    waktu santai.
+                </p>
+            </div>
+
+            <div class="profil-card-item">
+                <div class="profil-card-icon">🏝️</div>
+                <h3><strong>Nuansa Pesisir</strong></h3>
+                <p>
+                    Lingkungan pesisir memberikan pengalaman wisata alam yang berbeda dan menjadi identitas
+                    khas Pantai Pelawan.
+                </p>
+            </div>
+
+            <div class="profil-card-item">
+                <div class="profil-card-icon">📸</div>
+                <h3><strong>Daya Tarik Visual</strong></h3>
+                <p>
+                    Keindahan alam pantai dapat menjadi daya tarik visual yang mendukung dokumentasi dan
+                    promosi wisata.
                 </p>
             </div>
         </div>
@@ -42,91 +192,55 @@
 <section class="section section-soft">
     <div class="container">
         <div class="section-heading">
-            <h2>Sejarah Singkat Pantai Pelawan</h2>
+            <span class="section-label">Arah Pengembangan</span>
+            <h2><strong>Visi dan Misi Pantai Pelawan</strong></h2>
             <p>
-                Pantai Pelawan berkembang sebagai salah satu tujuan wisata yang dikenal masyarakat karena
-                keindahan alamnya dan menjadi tempat rekreasi yang sering dikunjungi pada hari libur.
+                Visi dan misi disusun untuk menggambarkan arah pengembangan Pantai Pelawan sebagai destinasi
+                wisata yang informatif, menarik, dan mudah dijangkau melalui media digital.
             </p>
         </div>
 
-        <div class="content-box profil-box">
-            <p>
-                Seiring berjalannya waktu, Pantai Pelawan mulai dikenal lebih luas oleh masyarakat sekitar
-                maupun pengunjung dari luar daerah. Keberadaannya sebagai kawasan wisata memberikan manfaat
-                bagi masyarakat setempat, baik dari sisi sosial maupun ekonomi. Aktivitas wisata yang terus
-                berkembang menjadikan Pantai Pelawan sebagai salah satu aset wisata yang layak untuk
-                dipromosikan secara lebih luas melalui media digital.
-            </p>
-            <p>
-                Dalam perkembangannya, penyampaian informasi mengenai Pantai Pelawan masih banyak dilakukan
-                secara sederhana, sehingga diperlukan sebuah sistem informasi pariwisata berbasis web yang
-                dapat membantu memberikan informasi yang lebih lengkap, menarik, dan mudah diakses oleh
-                masyarakat.
-            </p>
-        </div>
-    </div>
-</section>
-
-<section class="section">
-    <div class="container">
         <div class="vm-grid">
             <div class="vm-card">
                 <div class="vm-badge">Visi</div>
-                <h3>Menjadi Destinasi Wisata Unggulan</h3>
+                <h3><strong>Menjadi Destinasi Wisata Unggulan</strong></h3>
                 <p>
-                    Menjadikan Pantai Pelawan sebagai destinasi wisata unggulan yang informatif, menarik,
-                    dan mudah diakses melalui sistem informasi berbasis web.
+                    Menjadikan Pantai Pelawan sebagai destinasi wisata alam yang unggul, informatif,
+                    ramah pengunjung, serta mudah dikenal oleh masyarakat melalui penyajian profil dan
+                    informasi wisata berbasis web.
                 </p>
             </div>
 
             <div class="vm-card">
                 <div class="vm-badge">Misi</div>
-                <h3>Mendukung Informasi dan Promosi Digital</h3>
+                <h3><strong>Mendukung Pengenalan Profil Wisata</strong></h3>
                 <p>
-                    Menyediakan informasi wisata yang lengkap, mendukung promosi destinasi secara digital,
-                    dan membantu pengunjung memperoleh informasi yang cepat serta mudah dipahami.
+                    Menyajikan profil Pantai Pelawan secara lengkap, memperkenalkan potensi wisata daerah,
+                    membantu wisatawan memahami karakter destinasi, dan mendukung promosi wisata secara digital.
                 </p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section section-soft">
+<section class="section">
     <div class="container">
-        <div class="section-heading">
-            <h2>Keunggulan Pantai Pelawan</h2>
+        <div class="profil-cta">
+            <h2><strong>Kenali Pantai Pelawan Lebih Dekat</strong></h2>
             <p>
-                Beberapa hal yang membuat Pantai Pelawan layak diperkenalkan lebih luas kepada wisatawan.
+                Pantai Pelawan memiliki potensi wisata alam yang menarik untuk diperkenalkan lebih luas.
+                Melalui profil digital ini, wisatawan dapat memahami gambaran umum, karakteristik,
+                dan nilai destinasi Pantai Pelawan.
             </p>
-        </div>
 
-        <div class="profil-feature-grid">
-            <div class="profil-feature-card">
-                <h3>Panorama Alam</h3>
-                <p>
-                    Menawarkan pemandangan pantai yang indah dan suasana alam yang menenangkan.
-                </p>
-            </div>
+            <div class="profil-cta-actions">
+                <a href="{{ route('informasi.pantai') }}" class="btn btn-secondary">
+                    Lihat Informasi Pantai
+                </a>
 
-            <div class="profil-feature-card">
-                <h3>Lokasi Rekreasi</h3>
-                <p>
-                    Cocok dijadikan tempat wisata keluarga untuk bersantai dan menikmati waktu libur.
-                </p>
-            </div>
-
-            <div class="profil-feature-card">
-                <h3>Potensi Wisata Daerah</h3>
-                <p>
-                    Memiliki peluang besar untuk dikembangkan sebagai salah satu ikon wisata di Kabupaten Karimun.
-                </p>
-            </div>
-
-            <div class="profil-feature-card">
-                <h3>Dukungan Promosi Digital</h3>
-                <p>
-                    Dapat dipromosikan lebih luas melalui website agar informasi wisata lebih mudah dijangkau.
-                </p>
+                <a href="{{ route('tiket') }}" class="btn btn-primary">
+                    Pesan Tiket Sekarang
+                </a>
             </div>
         </div>
     </div>

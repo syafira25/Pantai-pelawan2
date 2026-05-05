@@ -2,163 +2,262 @@
 
 @section('content')
 
-<!-- PAGE HEADER -->
-<section class="page-header">
-    <div class="container">
-        <h1>Daya Tarik Pantai Pelawan</h1>
-        <p class="page-subtitle">
-            Beragam keindahan dan aktivitas menarik yang dapat dinikmati di Pantai Pelawan,
-            menjadikannya destinasi wisata unggulan di Kabupaten Karimun.
-        </p>
+<section class="page-hero page-hero-daya-tarik">
+    <div class="page-hero-overlay">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Daya Tarik Pantai Pelawan</h1>
+                <p>
+                    Beragam keindahan alam, suasana pantai, dan aktivitas menarik yang dapat
+                    dinikmati wisatawan di Pantai Pelawan.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- SECTION UTAMA -->
 <section class="section section-soft">
     <div class="container">
 
-        <div class="section-heading">
-            <h2>Keunggulan Wisata</h2>
-            <p>Pantai Pelawan memiliki berbagai daya tarik yang mampu memberikan pengalaman wisata yang menyenangkan dan berkesan.</p>
-        </div>
+        <div class="daya-highlight daya-highlight-upgrade">
+            <div class="daya-highlight-img">
+                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Pantai Pelawan">
 
-        <div class="feature-grid">
-
-            <div class="feature-card">
-                <h3>🌊 Pantai Pasir Putih</h3>
-                <p>
-                    Hamparan pasir putih yang luas dan bersih menjadi daya tarik utama Pantai Pelawan. 
-                    Area ini sangat cocok untuk berjalan santai, bermain pasir, maupun bersantai menikmati suasana pantai.
-                </p>
+                <div class="daya-img-badge">
+                    <strong>🌴 Pantai Pelawan</strong>
+                    <span>Destinasi wisata alam Kabupaten Karimun</span>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <h3>🌅 Pemandangan Sunset</h3>
-                <p>
-                    Pantai Pelawan dikenal sebagai salah satu spot terbaik untuk menikmati matahari terbenam.
-                    Perpaduan warna langit dan laut menciptakan panorama yang sangat indah dan instagramable.
-                </p>
-            </div>
+            <div class="daya-highlight-text">
+                <span class="section-label">Keunggulan Wisata</span>
 
-            <div class="feature-card">
-                <h3>🚤 Wahana Banana Boat</h3>
-                <p>
-                    Pengunjung dapat menikmati wahana air seperti banana boat yang memberikan pengalaman seru dan menantang.
-                    Aktivitas ini cocok untuk wisata keluarga maupun kelompok.
-                </p>
-            </div>
+                <h2>Pesona Alam Pantai Pelawan</h2>
 
-            <div class="feature-card">
-                <h3>📸 Spot Foto Menarik</h3>
                 <p>
-                    Banyak tersedia spot foto menarik dengan latar belakang laut, gazebo, dan dekorasi wisata
-                    yang cocok untuk mengabadikan momen liburan.
+                    Pantai Pelawan memiliki panorama alam yang indah dengan suasana pesisir
+                    yang nyaman. Keindahan pantai, udara segar, dan pemandangan laut menjadi
+                    daya tarik utama bagi wisatawan yang ingin menikmati suasana santai.
                 </p>
-            </div>
 
+                <div class="daya-stats">
+                    <div>
+                        <strong>🌊</strong>
+                        <span>Panorama Laut</span>
+                    </div>
+                    <div>
+                        <strong>🌅</strong>
+                        <span>Suasana Sunset</span>
+                    </div>
+                    <div>
+                        <strong>🏖️</strong>
+                        <span>Wisata Alam</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 </section>
 
-<!-- SECTION AKTIVITAS -->
+<!-- NILAI DESTINASI -->
 <section class="section">
     <div class="container">
-
         <div class="section-heading">
-            <h2>Aktivitas Wisata</h2>
-            <p>Pengunjung dapat melakukan berbagai aktivitas menarik yang membuat liburan semakin menyenangkan.</p>
+            <span class="section-label">Nilai Destinasi</span>
+            <h2>Nilai dan Potensi Pantai Pelawan</h2>
+            <p>
+                Pantai Pelawan memiliki nilai destinasi yang dapat mendukung pengembangan pariwisata daerah.
+            </p>
         </div>
 
-        <div class="info-grid">
-
-            <div class="info-card">
-                <div class="icon-box">🏖️</div>
-                <h3>Bersantai di Pantai</h3>
-                <p>
-                    Pengunjung dapat menikmati suasana pantai yang tenang dengan duduk di gazebo atau tikar sambil menikmati angin laut.
-                </p>
+        <div class="potensi-grid">
+            <div class="potensi-card">
+                <div>🌿</div>
+                <h3>Potensi Wisata Alam</h3>
+                <p>Keindahan alam pantai menjadi potensi utama yang dapat dikembangkan sebagai daya tarik wisata daerah.</p>
             </div>
 
-            <div class="info-card">
-                <div class="icon-box">🏊</div>
-                <h3>Bermain Air</h3>
-                <p>
-                    Ombak yang relatif tenang memungkinkan pengunjung bermain air dengan aman, terutama untuk anak-anak.
-                </p>
+            <div class="potensi-card">
+                <div>🏖️</div>
+                <h3>Identitas Lokal</h3>
+                <p>Pantai Pelawan dapat menjadi bagian dari identitas wisata lokal Kabupaten Karimun.</p>
             </div>
 
-            <div class="info-card">
-                <div class="icon-box">🍽️</div>
-                <h3>Wisata Kuliner</h3>
-                <p>
-                    Tersedia berbagai makanan dan minuman khas yang dapat dinikmati sambil melihat pemandangan laut.
-                </p>
+            <div class="potensi-card">
+                <div>🧭</div>
+                <h3>Tujuan Kunjungan</h3>
+                <p>Destinasi ini dapat menjadi pilihan wisata bagi masyarakat lokal maupun wisatawan luar daerah.</p>
             </div>
 
-            <div class="info-card">
-                <div class="icon-box">👨‍👩‍👧‍👦</div>
-                <h3>Wisata Keluarga</h3>
-                <p>
-                    Pantai ini sangat cocok untuk liburan keluarga karena suasana yang aman, nyaman, dan fasilitas yang memadai.
-                </p>
+            <div class="potensi-card">
+                <div>📢</div>
+                <h3>Peluang Promosi</h3>
+                <p>Pantai Pelawan dapat dipromosikan melalui media digital agar lebih mudah ditemukan wisatawan.</p>
             </div>
-
         </div>
-
     </div>
 </section>
 
-<!-- SECTION KEUNIKAN -->
+<!-- KEUNIKAN -->
 <section class="section section-soft">
     <div class="container">
 
         <div class="section-heading">
+            <span class="section-label">Keunikan Pantai</span>
             <h2>Keunikan Pantai Pelawan</h2>
-            <p>Beberapa hal yang menjadikan Pantai Pelawan berbeda dari pantai lainnya.</p>
+            <p>
+                Keunikan Pantai Pelawan terletak pada karakter pantai, suasana alam, dan nilai wisata
+                sebagai destinasi pesisir.
+            </p>
         </div>
 
-        <div class="content-box">
-            <p>
-                Pantai Pelawan memiliki karakteristik pantai yang landai dengan ombak yang relatif tenang,
-                sehingga sangat aman untuk berbagai kalangan pengunjung. Selain itu, lokasi pantai yang strategis
-                menjadikannya mudah diakses oleh wisatawan lokal maupun luar daerah.
-            </p>
+        <div class="unique-premium-wrapper">
 
-            <p>
-                Keunikan lainnya adalah adanya kombinasi antara wisata alam dan fasilitas buatan yang saling melengkapi.
-                Pengunjung tidak hanya menikmati keindahan alam, tetapi juga mendapatkan kenyamanan melalui fasilitas yang tersedia.
-            </p>
+            <div class="unique-big-card">
+                <h3>🌊 Karakter Pantai yang Landai</h3>
+                <p>
+                    Pantai Pelawan memiliki karakter pantai yang nyaman untuk dinikmati oleh berbagai kalangan
+                    pengunjung. Suasana pantai yang terbuka membuat wisatawan dapat menikmati area pesisir
+                    dengan lebih leluasa.
+                </p>
+            </div>
 
-            <p>
-                Pantai ini juga sering digunakan sebagai tempat kegiatan sosial dan rekreasi masyarakat,
-                sehingga memiliki nilai sebagai ruang publik yang aktif dan bermanfaat bagi masyarakat sekitar.
-            </p>
+            <div class="unique-small-grid">
+                <div class="unique-small-card">
+                    <span>🌤️</span>
+                    <h3>Suasana Tenang</h3>
+                    <p>Lingkungan pantai memberikan kesan santai dan menenangkan bagi wisatawan.</p>
+                </div>
+
+                <div class="unique-small-card">
+                    <span>🏝️</span>
+                    <h3>Nuansa Pesisir</h3>
+                    <p>Suasana pesisir menjadi identitas yang membedakan Pantai Pelawan.</p>
+                </div>
+
+                <div class="unique-small-card">
+                    <span>📍</span>
+                    <h3>Identitas Wisata Karimun</h3>
+                    <p>Pantai Pelawan memiliki potensi sebagai ikon wisata alam Kabupaten Karimun.</p>
+                </div>
+
+                <div class="unique-small-card">
+                    <span>📸</span>
+                    <h3>Daya Tarik Visual</h3>
+                    <p>Pemandangan pantai mendukung dokumentasi dan promosi wisata daerah.</p>
+                </div>
+            </div>
+
         </div>
 
     </div>
 </section>
 
-<!-- SECTION AJAKAN -->
+
+<!-- AKTIVITAS WISATA -->
 <section class="section">
     <div class="container">
 
-        <div class="highlight-box">
-            <div class="highlight-text">
+        <div class="section-heading">
+            <span class="section-label">Aktivitas Wisata</span>
+            <h2>Aktivitas yang Dapat Dinikmati</h2>
+            <p>
+                Berbagai aktivitas ringan dapat dilakukan wisatawan untuk menikmati keindahan dan suasana
+                Pantai Pelawan.
+            </p>
+        </div>
+
+        <div class="activity-premium-grid">
+
+            <div class="activity-premium-card">
+                <div class="activity-top">
+                    <span>01</span>
+                    <div class="activity-icon">🏖️</div>
+                </div>
+                <h3>Bersantai Menikmati Suasana Pantai</h3>
+                <p>
+                    Pengunjung dapat menikmati udara pantai, suara ombak, dan suasana pesisir yang tenang.
+                </p>
+            </div>
+
+            <div class="activity-premium-card">
+                <div class="activity-top">
+                    <span>02</span>
+                    <div class="activity-icon">🚶</div>
+                </div>
+                <h3>Berjalan Santai di Tepi Pantai</h3>
+                <p>
+                    Area pantai dapat digunakan untuk berjalan santai sambil menikmati pemandangan laut.
+                </p>
+            </div>
+
+            <div class="activity-premium-card">
+                <div class="activity-top">
+                    <span>03</span>
+                    <div class="activity-icon">🌅</div>
+                </div>
+                <h3>Menikmati Pemandangan Sunset</h3>
+                <p>
+                    Suasana sore hari menjadi daya tarik bagi pengunjung yang ingin menikmati matahari terbenam.
+                </p>
+            </div>
+
+            <div class="activity-premium-card">
+                <div class="activity-top">
+                    <span>04</span>
+                    <div class="activity-icon">📸</div>
+                </div>
+                <h3>Berfoto dengan Latar Pantai</h3>
+                <p>
+                    Keindahan pantai dapat dimanfaatkan sebagai latar dokumentasi dan foto liburan.
+                </p>
+            </div>
+
+            <div class="activity-premium-card">
+                <div class="activity-top">
+                    <span>05</span>
+                    <div class="activity-icon">👨‍👩‍👧</div>
+                </div>
+                <h3>Rekreasi Bersama Keluarga</h3>
+                <p>
+                    Pantai Pelawan cocok untuk kegiatan rekreasi ringan bersama keluarga maupun teman.
+                </p>
+            </div>
+
+            <div class="activity-premium-card">
+                <div class="activity-top">
+                    <span>06</span>
+                    <div class="activity-icon">🌿</div>
+                </div>
+                <h3>Menikmati Suasana Alam Pesisir</h3>
+                <p>
+                    Pengunjung dapat merasakan nuansa alam pesisir yang menjadi ciri khas Pantai Pelawan.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+    <div class="container">
+        <div class="daya-cta">
+            <div>
+                <span>🌴 Ayo Berkunjung</span>
                 <h2>Yuk Kunjungi Pantai Pelawan!</h2>
                 <p>
-                    Nikmati keindahan alam, berbagai aktivitas menarik, serta suasana pantai yang menenangkan
-                    bersama keluarga dan teman-teman.
+                    Nikmati keindahan alam, aktivitas menarik, dan suasana pantai yang menenangkan
+                    bersama keluarga maupun teman-teman.
                 </p>
             </div>
 
-            <div class="highlight-action">
-                <a href="{{ route('kontak') }}" class="btn btn-primary">
-                    Hubungi Kami
-                </a>
-            </div>
+            <a href="{{ route('kontak') }}" class="btn btn-primary">
+                Hubungi Kami
+            </a>
         </div>
-
     </div>
 </section>
 

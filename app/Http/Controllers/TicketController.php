@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Midtrans\Config;
@@ -34,11 +33,37 @@ class TicketController extends Controller
             'nama' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:100'],
             'tanggal_kunjungan' => ['required', 'date', 'after_or_equal:today'],
-            'jumlah_orang' => ['required', 'integer', 'min:1', 'max:20'],
+
+            // field lama tetap dipertahankan
+            'jumlah_orang' => ['nullable', 'integer', 'min:1', 'max:20'],
+
+            // field baru
+            'jumlah_dewasa' => ['nullable', 'integer', 'min:0', 'max:20'],
+            'jumlah_anak' => ['nullable', 'integer', 'min:0', 'max:20'],
+            'total_harga' => ['nullable', 'integer', 'min:0'],
         ]);
 
-        $harga = (int) env('TIKET_HARGA', 10000);
-        $total = $harga * (int) $validated['jumlah_orang'];
+        $hargaDewasa = 5000;
+        $hargaAnak = 2000;
+
+        $dewasa = (int) ($request->jumlah_dewasa ?? 0);
+        $anak = (int) ($request->jumlah_anak ?? 0);
+
+        if ($dewasa > 0 || $anak > 0) {
+            $jumlahOrang = $dewasa + $anak;
+            $total = ($dewasa * $hargaDewasa) + ($anak * $hargaAnak);
+            $harga = 0;
+        } else {
+            $harga = (int) env('TIKET_HARGA', 10000);
+            $jumlahOrang = (int) ($validated['jumlah_orang'] ?? 0);
+            $total = $harga * $jumlahOrang;
+        }
+
+        if ($jumlahOrang <= 0 || $total <= 0) {
+            return back()
+                ->withInput()
+                ->with('error', 'Silakan pilih minimal 1 tiket terlebih dahulu.');
+        }
 
         $kodeBooking = 'TKT-' . strtoupper(Str::random(8));
         $midtransOrderId = 'ORDER-' . now()->format('YmdHis') . '-' . strtoupper(Str::random(6));
@@ -51,33 +76,57 @@ class TicketController extends Controller
                 'nama' => $validated['nama'],
                 'email' => $validated['email'],
                 'tanggal_kunjungan' => $validated['tanggal_kunjungan'],
-                'jumlah_orang' => $validated['jumlah_orang'],
+
+                // tetap pakai kolom lama
+                'jumlah_orang' => $jumlahOrang,
                 'harga_per_tiket' => $harga,
                 'total_harga' => $total,
+
                 'metode_pembayaran' => 'QRIS',
                 'midtrans_order_id' => $midtransOrderId,
                 'status_pembayaran' => 'pending',
                 'status_tiket' => 'nonaktif',
             ]);
 
+            $itemDetails = [];
+
+            if ($dewasa > 0) {
+                $itemDetails[] = [
+                    'id' => 'TIKET-DEWASA',
+                    'price' => $hargaDewasa,
+                    'quantity' => $dewasa,
+                    'name' => 'Tiket Dewasa Pantai Pelawan',
+                ];
+            }
+
+            if ($anak > 0) {
+                $itemDetails[] = [
+                    'id' => 'TIKET-ANAK',
+                    'price' => $hargaAnak,
+                    'quantity' => $anak,
+                    'name' => 'Tiket Anak-anak Pantai Pelawan',
+                ];
+            }
+
+            if (empty($itemDetails)) {
+                $itemDetails[] = [
+                    'id' => 'TIKET-PELAWAN',
+                    'price' => (int) $harga,
+                    'quantity' => (int) $jumlahOrang,
+                    'name' => 'Tiket Masuk Pantai Pelawan',
+                ];
+            }
+
             $params = [
                 'transaction_details' => [
                     'order_id' => $midtransOrderId,
-                    'gross_amount' => $total,
+                    'gross_amount' => (int) $total,
                 ],
                 'customer_details' => [
                     'first_name' => $validated['nama'],
                     'email' => $validated['email'],
                 ],
-                'item_details' => [
-                    [
-                        'id' => 'TIKET-PELAWAN',
-                        'price' => $harga,
-                        'quantity' => (int) $validated['jumlah_orang'],
-                        'name' => 'Tiket Masuk Pantai Pelawan',
-                    ]
-                ],
-                'enabled_payments' => ['qris'],
+                'item_details' => $itemDetails,
                 'custom_field1' => $kodeBooking,
                 'custom_field2' => $validated['tanggal_kunjungan'],
             ];
@@ -91,6 +140,7 @@ class TicketController extends Controller
             DB::commit();
 
             return redirect()->route('tiket.payment', $pemesanan->id);
+
         } catch (\Throwable $e) {
             DB::rollBack();
 
@@ -184,8 +234,35 @@ class TicketController extends Controller
             }
 
             return response()->json(['message' => 'Notification handled'], 200);
+
         } catch (\Throwable $e) {
             return response()->json(['message' => 'Webhook error: ' . $e->getMessage()], 500);
         }
+    }
+
+    public function manualPayment($id)
+    {
+        $pemesanan = Pemesanan::findOrFail($id);
+
+    return view('tiket.manual-payment', compact('pemesanan'));
+    }
+
+    public function uploadBukti(Request $request, $id)
+    {
+        $request->validate([
+            'bukti_pembayaran' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+      $pemesanan = Pemesanan::findOrFail($id);
+
+        $path = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
+
+        $pemesanan->update([
+            'bukti_pembayaran' => $path,
+            'status_pembayaran' => 'paid',
+        ]);
+
+        return redirect()->route('tiket.finish', $pemesanan->id)
+            ->with('success', 'Bukti pembayaran berhasil diupload. E-ticket sudah aktif.');
     }
 }

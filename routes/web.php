@@ -28,7 +28,9 @@ Route::middleware('auth')->group(function () {
 |
 */
 
-Route::get('/', [WisataController::class, 'dashboard'])->name('home');
+Route::get('/', function () {
+    return view('dashboard');
+})->name('home');
 
 Route::get('/dashboard', function () {
     return redirect('/');
@@ -261,29 +263,73 @@ Route::post('/kirim-pesan', function (Request $request) {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/tiket', [TicketController::class, 'create'])->name('tiket');
-Route::post('/tiket', [TicketController::class, 'store'])->name('tiket.store');
-Route::get('/tiket/{pemesanan}/payment', [TicketController::class, 'payment'])->name('tiket.payment');
-Route::get('/tiket/{pemesanan}/finish', [TicketController::class, 'finish'])->name('tiket.finish');
-Route::post('/midtrans/notification', [TicketController::class, 'notification'])->name('midtrans.notification');
+   /*
+|--------------------------------------------------------------------------
+| Pemesanan Tiket + Midtrans
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/tiket', function () {
+    if (!auth()->check()) {
+        return view('uth-wisatawan');
+    }
+
+    return app(TicketController::class)->create();
+})->name('tiket');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/tiket', [TicketController::class, 'store'])->name('tiket.store');
+
+    Route::get('/tiket/{pemesanan}/payment', [TicketController::class, 'payment'])->name('tiket.payment');
+
+    Route::get('/tiket/{id}/finish', [TicketController::class, 'finish'])->name('tiket.finish');
+
+    Route::get('/tiket/{id}/lihat', [TicketController::class, 'lihatTiket'])->name('tiket.lihat');
+
+    Route::get('/tiket/{id}/nota', [TicketController::class, 'downloadNota'])->name('tiket.nota');
+
+    Route::get('/tiket/{id}/download', [TicketController::class, 'downloadNota'])->name('tiket.download.nota');
+
+    Route::get('/tiket/{id}/download-tiket', [TicketController::class, 'downloadTiket'])->name('tiket.download.tiket');
+
+    Route::get('/tiket/{id}/pembayaran-manual', [TicketController::class, 'manualPayment'])->name('tiket.manual.payment');
+
+    Route::post('/tiket/{id}/upload-bukti', [TicketController::class, 'uploadBukti'])->name('tiket.upload.bukti');
+
+    Route::get('/akun-saya', function () {
+        $pemesanans = Pemesanan::where('email', Auth::user()->email)
+            ->latest()
+            ->get();
+
+        return view('akun-saya', compact('pemesanans'));
+    })->name('akun.saya');
+
+    Route::get('/profile-saya', function () {
+        return view('profile-saya');
+    })->name('profile.saya');
+
+    Route::get('/edit-profile-saya', function () {
+        return view('edit-profile-saya');
+    })->name('profile.edit.saya');
+
+    Route::get('/ganti-password', function () {
+        return view('ganti-password');
+    })->name('password.ganti');
 });
 
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
-});
+Route::get('/tiket/scan/{qr_code}', [TicketController::class, 'scanQr'])
+    ->name('tiket.scan');
+
+Route::post('/midtrans/notification', [TicketController::class, 'notification'])
+    ->name('midtrans.notification');
 
 require __DIR__ . '/auth.php';
 
 // HALAMAN TIKET UNTUK GUEST
 Route::get('/tiket', function () {
     if (!auth()->check()) {
-        return view('auth-wisatawan');
+        return view('uth-wisatawan');
     }
 
     return app(TicketController::class)->create();
@@ -346,5 +392,19 @@ Route::get('/tiket/{id}/nota', [TicketController::class, 'downloadNota'])
 
 Route::get('/tiket/scan/{qr_code}', [TicketController::class, 'scanQr'])
     ->name('tiket.scan');
-    
+
+ Route::get('/tiket/{id}/download', [TicketController::class, 'downloadNota'])->name('tiket.download.nota');
+
+Route::get('/tiket/{id}/download-tiket', [TicketController::class, 'downloadTiket'])->name('tiket.download.tiket');   
+
+Route::get('/tiket/{id}/download-tiket', [TicketController::class, 'downloadTiket'])
+    ->name('tiket.download.tiket');
+
+Route::get('/tiket/scan/{qr_code}', [TicketController::class, 'scanQr'])
+    ->name('tiket.scan');
+
+Route::get('/', function () {
+    return view('dashboard');
+})->name('home');
+
 });

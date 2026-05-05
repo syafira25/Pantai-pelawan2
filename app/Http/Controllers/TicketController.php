@@ -30,125 +30,125 @@ class TicketController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nama' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'email', 'max:100'],
-            'tanggal_kunjungan' => ['required', 'date', 'after_or_equal:today'],
+{
+    $validated = $request->validate([
+        'nama' => ['required', 'string', 'max:100'],
+        'email' => ['required', 'email', 'max:100'],
+        'tanggal_kunjungan' => ['required', 'date', 'after_or_equal:today'],
 
-            // field lama tetap dipertahankan
-            'jumlah_orang' => ['nullable', 'integer', 'min:1', 'max:20'],
+        'jumlah_orang' => ['nullable', 'integer', 'min:1', 'max:20'],
+        'jumlah_dewasa' => ['nullable', 'integer', 'min:0', 'max:20'],
+        'jumlah_anak' => ['nullable', 'integer', 'min:0', 'max:20'],
+        'total_harga' => ['nullable', 'integer', 'min:0'],
+    ]);
 
-            // field baru
-            'jumlah_dewasa' => ['nullable', 'integer', 'min:0', 'max:20'],
-            'jumlah_anak' => ['nullable', 'integer', 'min:0', 'max:20'],
-            'total_harga' => ['nullable', 'integer', 'min:0'],
+    $hargaDewasa = 5000;
+    $hargaAnak = 2000;
+
+    $dewasa = (int) ($request->jumlah_dewasa ?? 0);
+    $anak = (int) ($request->jumlah_anak ?? 0);
+
+    if ($dewasa > 0 || $anak > 0) {
+        $jumlahOrang = $dewasa + $anak;
+        $total = ($dewasa * $hargaDewasa) + ($anak * $hargaAnak);
+        $harga = 0;
+    } else {
+        $harga = (int) env('TIKET_HARGA', 10000);
+        $jumlahOrang = (int) ($validated['jumlah_orang'] ?? 0);
+        $total = $harga * $jumlahOrang;
+    }
+
+    if ($jumlahOrang <= 0 || $total <= 0) {
+        return back()
+            ->withInput()
+            ->with('error', 'Silakan pilih minimal 1 tiket terlebih dahulu.');
+    }
+
+    $kodeBooking = 'TKT-' . strtoupper(Str::random(8));
+    $midtransOrderId = 'ORDER-' . now()->format('YmdHis') . '-' . strtoupper(Str::random(6));
+
+    DB::beginTransaction();
+
+    try {
+        $pemesanan = Pemesanan::create([
+            'user_id' => auth()->id(), // 🔥 FIX DI SINI
+
+            'kode_booking' => $kodeBooking,
+            'nama' => $validated['nama'],
+            'email' => $validated['email'],
+            'tanggal_kunjungan' => $validated['tanggal_kunjungan'],
+
+            'jumlah_orang' => $jumlahOrang,
+            'jumlah_dewasa' => $dewasa,
+            'jumlah_anak' => $anak,
+            'harga_per_tiket' => $harga,
+            'total_harga' => $total,
+
+            'metode_pembayaran' => 'QRIS',
+            'midtrans_order_id' => $midtransOrderId,
+            'status_pembayaran' => 'pending',
+            'status_tiket' => 'nonaktif',
         ]);
 
-        $hargaDewasa = 5000;
-        $hargaAnak = 2000;
+        $itemDetails = [];
 
-        $dewasa = (int) ($request->jumlah_dewasa ?? 0);
-        $anak = (int) ($request->jumlah_anak ?? 0);
-
-        if ($dewasa > 0 || $anak > 0) {
-            $jumlahOrang = $dewasa + $anak;
-            $total = ($dewasa * $hargaDewasa) + ($anak * $hargaAnak);
-            $harga = 0;
-        } else {
-            $harga = (int) env('TIKET_HARGA', 10000);
-            $jumlahOrang = (int) ($validated['jumlah_orang'] ?? 0);
-            $total = $harga * $jumlahOrang;
-        }
-
-        if ($jumlahOrang <= 0 || $total <= 0) {
-            return back()
-                ->withInput()
-                ->with('error', 'Silakan pilih minimal 1 tiket terlebih dahulu.');
-        }
-
-        $kodeBooking = 'TKT-' . strtoupper(Str::random(8));
-        $midtransOrderId = 'ORDER-' . now()->format('YmdHis') . '-' . strtoupper(Str::random(6));
-
-        DB::beginTransaction();
-
-        try {
-            $pemesanan = Pemesanan::create([
-                'kode_booking' => $kodeBooking,
-                'nama' => $validated['nama'],
-                'email' => $validated['email'],
-                'tanggal_kunjungan' => $validated['tanggal_kunjungan'],
-
-                // tetap pakai kolom lama
-                'jumlah_orang' => $jumlahOrang,
-                'harga_per_tiket' => $harga,
-                'total_harga' => $total,
-
-                'metode_pembayaran' => 'QRIS',
-                'midtrans_order_id' => $midtransOrderId,
-                'status_pembayaran' => 'pending',
-                'status_tiket' => 'nonaktif',
-            ]);
-
-            $itemDetails = [];
-
-            if ($dewasa > 0) {
-                $itemDetails[] = [
-                    'id' => 'TIKET-DEWASA',
-                    'price' => $hargaDewasa,
-                    'quantity' => $dewasa,
-                    'name' => 'Tiket Dewasa Pantai Pelawan',
-                ];
-            }
-
-            if ($anak > 0) {
-                $itemDetails[] = [
-                    'id' => 'TIKET-ANAK',
-                    'price' => $hargaAnak,
-                    'quantity' => $anak,
-                    'name' => 'Tiket Anak-anak Pantai Pelawan',
-                ];
-            }
-
-            if (empty($itemDetails)) {
-                $itemDetails[] = [
-                    'id' => 'TIKET-PELAWAN',
-                    'price' => (int) $harga,
-                    'quantity' => (int) $jumlahOrang,
-                    'name' => 'Tiket Masuk Pantai Pelawan',
-                ];
-            }
-
-            $params = [
-                'transaction_details' => [
-                    'order_id' => $midtransOrderId,
-                    'gross_amount' => (int) $total,
-                ],
-                'customer_details' => [
-                    'first_name' => $validated['nama'],
-                    'email' => $validated['email'],
-                ],
-                'item_details' => $itemDetails,
-                'custom_field1' => $kodeBooking,
-                'custom_field2' => $validated['tanggal_kunjungan'],
+        if ($dewasa > 0) {
+            $itemDetails[] = [
+                'id' => 'TIKET-DEWASA',
+                'price' => $hargaDewasa,
+                'quantity' => $dewasa,
+                'name' => 'Tiket Dewasa Pantai Pelawan',
             ];
-
-            $snapToken = Snap::getSnapToken($params);
-
-            $pemesanan->update([
-                'snap_token' => $snapToken,
-            ]);
-
-            DB::commit();
-
-            return redirect()->route('tiket.payment', $pemesanan->id);
-
-        } catch (\Throwable $e) {
-            DB::rollBack();
-
-            return back()->withInput()->with('error', 'Gagal membuat transaksi: ' . $e->getMessage());
         }
+
+        if ($anak > 0) {
+            $itemDetails[] = [
+                'id' => 'TIKET-ANAK',
+                'price' => $hargaAnak,
+                'quantity' => $anak,
+                'name' => 'Tiket Anak-anak Pantai Pelawan',
+            ];
+        }
+
+        if (empty($itemDetails)) {
+            $itemDetails[] = [
+                'id' => 'TIKET-PELAWAN',
+                'price' => (int) $harga,
+                'quantity' => (int) $jumlahOrang,
+                'name' => 'Tiket Masuk Pantai Pelawan',
+            ];
+        }
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => $midtransOrderId,
+                'gross_amount' => (int) $total,
+            ],
+            'customer_details' => [
+                'first_name' => $validated['nama'],
+                'email' => $validated['email'],
+            ],
+            'item_details' => $itemDetails,
+            'custom_field1' => $kodeBooking,
+            'custom_field2' => $validated['tanggal_kunjungan'],
+        ];
+
+        $snapToken = Snap::getSnapToken($params);
+
+        $pemesanan->update([
+            'snap_token' => $snapToken,
+        ]);
+
+        DB::commit();
+
+        return redirect()->route('tiket.payment', $pemesanan->id);
+
+    } catch (\Throwable $e) {
+        DB::rollBack();
+
+        return back()->withInput()->with('error', 'Gagal membuat transaksi: ' . $e->getMessage());
     }
+}
 
     public function payment(Pemesanan $pemesanan)
     {
@@ -271,15 +271,14 @@ class TicketController extends Controller
     {
         $pemesanan = Pemesanan::findOrFail($id);
 
+        // 🔥 pastikan qr_code tidak kosong
         if (!$pemesanan->qr_code) {
-            $pemesanan->update([
-                'qr_code' => 'QR-' . strtoupper(Str::random(12)) . '-' . $pemesanan->id,
-            ]);
+            $pemesanan->qr_code = 'QR-' . strtoupper(Str::random(12)) . '-' . $pemesanan->id;
+            $pemesanan->save();
         }
 
         return view('tiket.lihat-tiket', compact('pemesanan'));
     }
-
     public function downloadNota($id)
     {
         $pemesanan = Pemesanan::findOrFail($id);
@@ -288,6 +287,16 @@ class TicketController extends Controller
             ->setPaper('a4', 'portrait');
 
         return $pdf->download('nota-transaksi-' . $pemesanan->kode_booking . '.pdf');
+    }
+
+    public function downloadTiket($id)
+    {
+        $pemesanan = Pemesanan::findOrFail($id);
+
+        $pdf = Pdf::loadView('tiket.tiket-pdf', compact('pemesanan'))
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download('e-ticket-' . $pemesanan->kode_booking . '.pdf');
     }
 
     public function scanQr($qr_code)
@@ -302,7 +311,8 @@ class TicketController extends Controller
         }
 
         $pemesanan->update([
-            'qr_used_at' => now()
+            'qr_used_at' => now(),
+            'status_tiket' => 'digunakan',
         ]);
 
         return view('tiket.scan-result', [
@@ -310,4 +320,7 @@ class TicketController extends Controller
             'pemesanan' => $pemesanan
         ]);
     }
+
+    
 }
+

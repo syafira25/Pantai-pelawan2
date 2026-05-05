@@ -6,27 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::table('pemesanans', function (Blueprint $table) {
-            $table->foreignId('user_id')->after('id')->constrained()->onDelete('cascade');
+            if (!Schema::hasColumn('pemesanans', 'user_id')) {
+                $table->unsignedBigInteger('user_id')->nullable()->after('id');
+            }
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::table('pemesanans', function (Blueprint $table) {
-            //
+            if (Schema::hasColumn('pemesanans', 'user_id')) {
+                $table->dropColumn('user_id');
+            }
         });
     }
 };

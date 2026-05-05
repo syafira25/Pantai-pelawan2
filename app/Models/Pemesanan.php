@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Pemesanan extends Model
 {
     protected $fillable = [
+        'user_id',
         'kode_booking',
         'nama',
         'email',
         'tanggal_kunjungan',
         'jumlah_orang',
+        'jumlah_dewasa',
+        'jumlah_anak',
         'harga_per_tiket',
         'total_harga',
         'metode_pembayaran',

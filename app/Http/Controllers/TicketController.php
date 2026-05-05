@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use Midtrans\Config;
 use Midtrans\Notification;
 use Midtrans\Snap;
+use Barryvdh\DomPDF\Facade\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class TicketController extends Controller
 {
@@ -153,18 +155,6 @@ class TicketController extends Controller
         return view('payment', compact('pemesanan'));
     }
 
-    public function finish(Pemesanan $pemesanan)
-    {
-        $pemesanan->refresh();
-
-        if ($pemesanan->status_pembayaran !== 'paid') {
-            return redirect()->route('tiket.payment', $pemesanan->id)
-                ->with('error', 'Pembayaran belum terkonfirmasi.');
-        }
-
-        return view('e-ticket', compact('pemesanan'));
-    }
-
     public function notification(Request $request)
     {
         try {
@@ -247,22 +237,77 @@ class TicketController extends Controller
     return view('tiket.manual-payment', compact('pemesanan'));
     }
 
-    public function uploadBukti(Request $request, $id)
+        public function uploadBukti(Request $request, $id)
     {
         $request->validate([
             'bukti_pembayaran' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-      $pemesanan = Pemesanan::findOrFail($id);
+        $pemesanan = Pemesanan::findOrFail($id);
 
         $path = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
+
+        $qrCode = 'QR-' . strtoupper(Str::random(12)) . '-' . $pemesanan->id;
 
         $pemesanan->update([
             'bukti_pembayaran' => $path,
             'status_pembayaran' => 'paid',
+            'qr_code' => $qrCode,
+            'qr_used_at' => null,
         ]);
 
         return redirect()->route('tiket.finish', $pemesanan->id)
             ->with('success', 'Bukti pembayaran berhasil diupload. E-ticket sudah aktif.');
+    }
+
+    public function finish($id)
+    {
+        $pemesanan = Pemesanan::findOrFail($id);
+
+        return view('tiket.finish', compact('pemesanan'));
+    }
+
+    public function lihatTiket($id)
+    {
+        $pemesanan = Pemesanan::findOrFail($id);
+
+        if (!$pemesanan->qr_code) {
+            $pemesanan->update([
+                'qr_code' => 'QR-' . strtoupper(Str::random(12)) . '-' . $pemesanan->id,
+            ]);
+        }
+
+        return view('tiket.lihat-tiket', compact('pemesanan'));
+    }
+
+    public function downloadNota($id)
+    {
+        $pemesanan = Pemesanan::findOrFail($id);
+
+        $pdf = Pdf::loadView('tiket.nota-pdf', compact('pemesanan'))
+            ->setPaper('a4', 'portrait');
+
+        return $pdf->download('nota-transaksi-' . $pemesanan->kode_booking . '.pdf');
+    }
+
+    public function scanQr($qr_code)
+    {
+        $pemesanan = Pemesanan::where('qr_code', $qr_code)->firstOrFail();
+
+        if ($pemesanan->qr_used_at !== null) {
+            return view('tiket.scan-result', [
+                'status' => 'used',
+                'pemesanan' => $pemesanan
+            ]);
+        }
+
+        $pemesanan->update([
+            'qr_used_at' => now()
+        ]);
+
+        return view('tiket.scan-result', [
+            'status' => 'valid',
+            'pemesanan' => $pemesanan
+        ]);
     }
 }

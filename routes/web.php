@@ -334,4 +334,17 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/tiket/{id}/upload-bukti', [TicketController::class, 'uploadBukti'])
         ->name('tiket.upload.bukti');
+
+Route::get('/tiket/{id}/finish', [TicketController::class, 'finish'])
+    ->name('tiket.finish');
+
+Route::get('/tiket/{id}/lihat', [TicketController::class, 'lihatTiket'])
+    ->name('tiket.lihat');
+
+Route::get('/tiket/{id}/nota', [TicketController::class, 'downloadNota'])
+    ->name('tiket.nota');
+
+Route::get('/tiket/scan/{qr_code}', [TicketController::class, 'scanQr'])
+    ->name('tiket.scan');
+    
 });

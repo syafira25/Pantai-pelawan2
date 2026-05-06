@@ -32,16 +32,25 @@
                 <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
                     User
                 </a>
+                <a href="{{ route('admin.ulasan.index') }}" class="{{ request()->routeIs('admin.ulasan.*') ? 'active' : '' }}">
+                    Kelola Ulasan
+                </a>
 
                 <div class="admin-nav-divider"></div>
-
+                <a href="#">Beranda</a>
                 <a href="{{ route('admin.profil.edit') }}" class="{{ request()->routeIs('admin.profil.*') ? 'active' : '' }}">
                     Profil
                 </a>
-                <a href="#">Daya Tarik</a>
-                <a href="#">Fasilitas</a>
+               <a href="{{ route('admin.daya-tarik.edit') }}" class="{{ request()->routeIs('admin.daya-tarik.*') ? 'active' : '' }}">
+                    Daya Tarik </a>
+                <a href="{{ route('admin.informasi.edit') }}" class="{{ request()->routeIs('admin.informasi.*') ? 'active' : '' }}">
+                    Informasi
+                </a>
+               <a href="{{ route('admin.kuliner.index') }}" class="{{ request()->routeIs('admin.kuliner.*') ? 'active' : '' }}">
+    Kuliner
+</a>
                 <a href="#">Galeri</a>
-                <a href="#">Kuliner</a>
+                <a href="#">Fasilitas</a>
             </nav>
 
             <div class="admin-sidebar-footer">

@@ -12,6 +12,16 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Models\Pemesanan;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DayaTarikController;
+use App\Http\Controllers\Admin\AdminDayaTarikController;
+use App\Http\Controllers\InformasiPantaiController;
+use App\Http\Controllers\Admin\AdminInformasiPantaiController;
+use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\Admin\AdminUlasanController;
+use App\Http\Controllers\KulinerController;
+use App\Http\Controllers\Admin\AdminKulinerController;
+use App\Http\Controllers\Admin\GaleriAdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +45,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/profil', [ProfilController::class, 'index'])->name('profil.pantai');
 
-Route::get('/daya-tarik', function () {
-    return view('daya_tarik');
-})->name('daya.tarik');
+Route::get('/daya-tarik', [DayaTarikController::class, 'index'])->name('daya.tarik');
 
 Route::get('/fasilitas', function () {
     return view('fasilitas');
@@ -47,14 +55,15 @@ Route::get('/galeri', function () {
     return view('galeri');
 })->name('galeri');
 
-Route::get('/informasi', function () {
-    return view('informasi');
-})->name('informasi.pantai');
+Route::get('/informasi-pantai', [InformasiPantaiController::class, 'index'])->name('informasi.pantai');
 
 Route::get('/kontak', function () {
     return view('kontak');
 })->name('kontak');
 
+Route::post('/ulasan', [UlasanController::class, 'store'])
+    ->middleware('auth')
+    ->name('ulasan.store');
 /*
 |--------------------------------------------------------------------------
 | KULINER
@@ -160,6 +169,8 @@ Route::get('/kuliner/{slug}', function ($slug) {
 
     return view('detail_kuliner', compact('warung'));
 })->name('kuliner.detail');
+Route::get('/kuliner', [KulinerController::class, 'index'])->name('kuliner');
+Route::get('/kuliner/{slug}', [KulinerController::class, 'detail'])->name('kuliner.detail');
 
 /*
 |--------------------------------------------------------------------------
@@ -278,6 +289,37 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::get('/profil', [AdminProfilController::class, 'edit'])->name('profil.edit');
     Route::put('/profil', [AdminProfilController::class, 'update'])->name('profil.update');
+
+    Route::get('/daya-tarik', [DayaTarikController::class, 'index'])->name('daya.tarik');
+    Route::get('/daya-tarik', [AdminDayaTarikController::class, 'edit'])->name('daya-tarik.edit');
+    Route::put('/daya-tarik', [AdminDayaTarikController::class, 'update'])->name('daya-tarik.update');
+    Route::get('/informasi', [AdminInformasiPantaiController::class, 'edit'])->name('informasi.edit');
+    Route::put('/informasi', [AdminInformasiPantaiController::class, 'update'])->name('informasi.update');
+
+    Route::get('/ulasan', [AdminUlasanController::class, 'index'])->name('ulasan.index');
+Route::patch('/ulasan/{id}/setujui', [AdminUlasanController::class, 'setujui'])->name('ulasan.setujui');
+Route::patch('/ulasan/{id}/sembunyikan', [AdminUlasanController::class, 'sembunyikan'])->name('ulasan.sembunyikan');
+Route::delete('/ulasan/{id}', [AdminUlasanController::class, 'destroy'])->name('ulasan.destroy');
+
+Route::get('/kuliner', [AdminKulinerController::class, 'index'])->name('kuliner.index');
+Route::put('/kuliner/page', [AdminKulinerController::class, 'updatePage'])->name('kuliner.page.update');
+Route::post('/kuliner', [AdminKulinerController::class, 'store'])->name('kuliner.store');
+Route::put('/kuliner/{id}', [AdminKulinerController::class, 'update'])->name('kuliner.update');
+Route::delete('/kuliner/{id}', [AdminKulinerController::class, 'destroy'])->name('kuliner.destroy');
+
+Route::post('/kuliner/{warungId}/menu', [AdminKulinerController::class, 'storeMenu'])->name('kuliner.menu.store');
+Route::delete('/kuliner/menu/{id}', [AdminKulinerController::class, 'destroyMenu'])->name('kuliner.menu.destroy');
+
+Route::get('/galeri', [GaleriAdminController::class, 'index'])->name('galeri.index');
+
+    Route::post('/galeri/hero', [GaleriAdminController::class, 'updateHero'])->name('galeri.hero.update');
+    Route::post('/galeri/heading', [GaleriAdminController::class, 'updateHeading'])->name('galeri.heading.update');
+    Route::post('/galeri/cta', [GaleriAdminController::class, 'updateCta'])->name('galeri.cta.update');
+
+    Route::post('/galeri/item', [GaleriAdminController::class, 'storeItem'])->name('galeri.item.store');
+    Route::put('/galeri/item/{item}', [GaleriAdminController::class, 'updateItem'])->name('galeri.item.update');
+    Route::delete('/galeri/item/{item}', [GaleriAdminController::class, 'destroyItem'])->name('galeri.item.destroy');
+    
 });
 
 /*

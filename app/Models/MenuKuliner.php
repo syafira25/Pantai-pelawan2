@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class MenuKuliner extends Model
 {
-    use HasFactory;
+    protected $table = 'menu_kuliners';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'warung_kuliner_id',
+        'nama_menu',
+        'harga',
+        'deskripsi',
+        'kategori',
+        'status',
+        'gambar',
+    ];
 
     public function warung()
     {

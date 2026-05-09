@@ -43,9 +43,7 @@
                 <div class="container">
                     <div class="page-hero-content">
                         <h1>{{ $heroJudul }}</h1>
-                        <p>
-                            {{ $heroSubjudul }}
-                        </p>
+                        <p>{{ $heroSubjudul }}</p>
                     </div>
                 </div>
             </div>
@@ -70,9 +68,7 @@
                 <div class="section-heading">
                     <span class="section-label">{{ $sectionLabel }}</span>
                     <h2>{{ $sectionJudul }}</h2>
-                    <p>
-                        {{ $sectionDeskripsi }}
-                    </p>
+                    <p>{{ $sectionDeskripsi }}</p>
                 </div>
 
                 <div class="warung-grid">
@@ -87,20 +83,43 @@
 
                         <div class="admin-warung-preview-wrap">
 
-                            <button type="button" class="admin-card-edit-btn" onclick="openAdminModal('modalEditWarung{{ $warung->id }}')">
-                                ✏️ Edit Warung
-                            </button>
+                            <div class="admin-card-actions">
+                                <button type="button"
+                                        class="admin-card-edit-btn"
+                                        onclick="openAdminModal('modalEditWarung{{ $warung->id }}')">
+                                    ✏️ Edit
+                                </button>
 
-                            <button type="button" class="admin-card-menu-btn" onclick="openAdminModal('modalMenuWarung{{ $warung->id }}')">
-                                🍽️ Menu
-                            </button>
+                                <button type="button"
+                                        class="admin-card-menu-btn"
+                                        onclick="openAdminModal('modalMenuWarung{{ $warung->id }}')">
+                                    🍽️ Menu
+                                </button>
+
+                                <a href="{{ route('kuliner.detail', $warung->slug) }}"
+                                   target="_blank"
+                                   class="admin-card-preview-btn">
+                                    👁️ Detail
+                                </a>
+
+                                <form action="{{ route('admin.kuliner.destroy', $warung->id) }}"
+      method="POST"
+      onsubmit="return confirm('Yakin ingin menghapus warung ini?')">
+    @csrf
+    @method('DELETE')
+
+    <button type="submit" class="admin-card-delete-btn">
+        🗑️ Hapus
+    </button>
+</form>
+                            </div>
 
                             <div class="warung-card admin-warung-card-same">
 
                                 <div class="warung-img-box">
                                     <img
-                                        class="warung-main-img"
-                                        src="{{ asset($gambarUtama) }}"
+                                         class="warung-main-img"
+                                        src="{{ str_starts_with($gambarUtama, 'images/') ? asset($gambarUtama) : asset('storage/' . $gambarUtama) }}"
                                         alt="{{ $warung->nama }}"
                                         onerror="this.src='{{ asset('images/hero-pantai.jpg') }}'"
                                     >
@@ -112,13 +131,13 @@
                                     </span>
 
                                     <div class="warung-mini-gallery">
-                                        <img src="{{ asset($gambarUtama) }}" alt="{{ $warung->nama }}"
+                                        <img src="{{ str_starts_with($gambarUtama, 'images/') ? asset($gambarUtama) : asset('storage/' . $gambarUtama) }}" alt="{{ $warung->nama }}"
                                              onerror="this.src='{{ asset('images/hero-pantai.jpg') }}'">
 
-                                        <img src="{{ asset($gambarProfil) }}" alt="{{ $warung->nama }}"
+                                        <img src="{{ str_starts_with($gambarProfil, 'images/') ? asset($gambarProfil) : asset('storage/' . $gambarProfil) }}" alt="{{ $warung->nama }}"
                                              onerror="this.src='{{ asset('images/hero-pantai.jpg') }}'">
 
-                                        <img src="{{ asset($gambarFallback) }}" alt="{{ $warung->nama }}"
+                                        <img src="{{ str_starts_with($gambarFallback, 'images/') ? asset($gambarFallback) : asset('storage/' . $gambarFallback) }}" alt="{{ $warung->nama }}"
                                              onerror="this.src='{{ asset('images/hero-pantai.jpg') }}'">
                                     </div>
                                 </div>
@@ -153,8 +172,7 @@
                                 <h2>Edit Warung Kuliner</h2>
 
                                 <form action="{{ route('admin.kuliner.update', $warung->id) }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
+    @csrf
 
                                     <div class="admin-form-grid">
                                         <div class="admin-form-group">
@@ -210,90 +228,241 @@
                                         Simpan Perubahan Warung
                                     </button>
                                 </form>
-
-                                <form action="{{ route('admin.kuliner.destroy', $warung->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus warung ini?')" style="margin-top:14px;">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn-admin-delete">
-                                        Hapus Warung
-                                    </button>
-                                </form>
                             </div>
                         </div>
 
-                        {{-- MODAL MENU WARUNG --}}
-                        <div class="admin-modal" id="modalMenuWarung{{ $warung->id }}">
-                            <div class="admin-modal-box modal-large">
-                                <button type="button" class="admin-modal-close" onclick="closeAdminModal('modalMenuWarung{{ $warung->id }}')">×</button>
+                    {{-- MODAL MENU WARUNG --}}
+<div class="admin-modal" id="modalMenuWarung{{ $warung->id }}">
+    <div class="admin-modal-box modal-large">
+        <button type="button" class="admin-modal-close" onclick="closeAdminModal('modalMenuWarung{{ $warung->id }}')">×</button>
 
-                                <h2>Kelola Menu - {{ $warung->nama }}</h2>
+        <h2>Kelola Menu - {{ $warung->nama }}</h2>
 
-                                <form action="{{ route('admin.kuliner.menu.store', $warung->id) }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
+        <form action="{{ route('admin.kuliner.menu.store', $warung->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
 
-                                    <div class="admin-form-grid">
-                                        <div class="admin-form-group">
-                                            <label>Nama Menu</label>
-                                            <input type="text" name="nama_menu" required>
-                                        </div>
+            <div class="admin-form-grid">
+                <div class="admin-form-group">
+                    <label>Nama Menu</label>
+                    <input type="text" name="nama_menu" required>
+                </div>
 
-                                        <div class="admin-form-group">
-                                            <label>Harga</label>
-                                            <input type="number" name="harga" placeholder="Contoh: 15000">
-                                        </div>
+                <div class="admin-form-group">
+                    <label>Harga</label>
+                    <input type="number" name="harga" placeholder="Contoh: 15000">
+                </div>
 
-                                        <div class="admin-form-group full">
-                                            <label>Deskripsi Menu</label>
-                                            <textarea name="deskripsi" rows="3"></textarea>
-                                        </div>
+                <div class="admin-form-group">
+                    <label>Kategori Menu</label>
+                    <select name="kategori" required>
+                        <option value="makanan">Makanan</option>
+                        <option value="minuman">Minuman</option>
+                    </select>
+                </div>
 
-                                        <div class="admin-form-group">
-                                            <label>Gambar Menu</label>
-                                            <input type="file" name="gambar" accept="image/*">
-                                        </div>
+                <div class="admin-form-group">
+                    <label>Status</label>
+                    <select name="status">
+                        <option value="aktif">Aktif</option>
+                        <option value="nonaktif">Nonaktif</option>
+                    </select>
+                </div>
 
-                                        <div class="admin-form-group">
-                                            <label>Status</label>
-                                            <select name="status">
-                                                <option value="aktif">Aktif</option>
-                                                <option value="nonaktif">Nonaktif</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                <div class="admin-form-group full">
+                    <label>Deskripsi Menu</label>
+                    <textarea name="deskripsi" rows="3"></textarea>
+                </div>
 
-                                    <button type="submit" class="btn-admin-save">
-                                        Tambah Menu
-                                    </button>
-                                </form>
+                <div class="admin-form-group">
+                    <label>Gambar Menu</label>
+                    <input type="file" name="gambar" accept="image/*">
+                </div>
+            </div>
 
-                                <div class="admin-menu-list">
-                                    @forelse($warung->menus as $menu)
-                                        <div class="admin-menu-item">
-                                            <div>
-                                                <h4>{{ $menu->nama_menu }}</h4>
-                                                <p>{{ $menu->deskripsi }}</p>
-                                                <strong>Rp {{ number_format($menu->harga ?? 0, 0, ',', '.') }}</strong>
-                                            </div>
+            <button type="submit" class="btn-admin-save">
+                Tambah Menu
+            </button>
+        </form>
 
-                                            <form action="{{ route('admin.kuliner.menu.destroy', $menu->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus menu ini?')">
-                                                @csrf
-                                                @method('DELETE')
+        <h3 style="margin-top:25px;">Menu Makanan</h3>
 
-                                                <button type="submit" class="btn-ulasan delete">
-                                                    Hapus
-                                                </button>
-                                            </form>
-                                        </div>
-                                    @empty
-                                        <div class="admin-empty-small">
-                                            Belum ada menu untuk warung ini.
-                                        </div>
-                                    @endforelse
-                                </div>
+        <div class="admin-menu-list">
+            @forelse($warung->menus->where('kategori', 'makanan') as $menu)
+                <div class="admin-menu-item">
+                    <div>
+                        <h4>{{ $menu->nama_menu }}</h4>
+                        <p>{{ $menu->deskripsi }}</p>
+                        <strong>Rp {{ number_format($menu->harga ?? 0, 0, ',', '.') }}</strong>
+                    </div>
 
+                    <button type="button"
+                            class="btn-ulasan edit"
+                            onclick="openAdminModal('modalEditMenu{{ $menu->id }}')">
+                        Edit
+                    </button>
+
+                    <form action="{{ route('admin.kuliner.menu.destroy', $menu->id) }}"
+                          method="POST"
+                          onsubmit="return confirm('Yakin ingin menghapus menu ini?')">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn-ulasan delete">
+                            Hapus
+                        </button>
+                    </form>
+                </div>
+
+                {{-- MODAL EDIT MENU MAKANAN --}}
+                <div class="admin-modal" id="modalEditMenu{{ $menu->id }}">
+                    <div class="admin-modal-box">
+                        <button type="button" class="admin-modal-close" onclick="closeAdminModal('modalEditMenu{{ $menu->id }}')">×</button>
+
+                        <h2>Edit Menu</h2>
+
+                        <form action="{{ route('admin.kuliner.menu.update', $menu->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                            <div class="admin-form-group">
+                                <label>Nama Menu</label>
+                                <input type="text" name="nama_menu" value="{{ $menu->nama_menu }}" required>
                             </div>
-                        </div>
+
+                            <div class="admin-form-group">
+                                <label>Harga</label>
+                                <input type="number" name="harga" value="{{ $menu->harga }}">
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label>Kategori</label>
+                                <select name="kategori" required>
+                                    <option value="makanan" {{ $menu->kategori == 'makanan' ? 'selected' : '' }}>Makanan</option>
+                                    <option value="minuman" {{ $menu->kategori == 'minuman' ? 'selected' : '' }}>Minuman</option>
+                                </select>
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label>Status</label>
+                                <select name="status" required>
+                                    <option value="aktif" {{ $menu->status == 'aktif' ? 'selected' : '' }}>Aktif</option>
+                                    <option value="nonaktif" {{ $menu->status == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
+                                </select>
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label>Deskripsi</label>
+                                <textarea name="deskripsi" rows="3">{{ $menu->deskripsi }}</textarea>
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label>Ganti Gambar</label>
+                                <input type="file" name="gambar" accept="image/*">
+                            </div>
+
+                            <button type="submit" class="btn-admin-save">
+                                Simpan Perubahan Menu
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @empty
+                <div class="admin-empty-small">
+                    Belum ada menu makanan.
+                </div>
+            @endforelse
+        </div>
+
+        <h3 style="margin-top:25px;">Menu Minuman</h3>
+
+        <div class="admin-menu-list">
+            @forelse($warung->menus->where('kategori', 'minuman') as $menu)
+                <div class="admin-menu-item">
+                    <div>
+                        <h4>{{ $menu->nama_menu }}</h4>
+                        <p>{{ $menu->deskripsi }}</p>
+                        <strong>Rp {{ number_format($menu->harga ?? 0, 0, ',', '.') }}</strong>
+                    </div>
+
+                    <button type="button"
+                            class="btn-ulasan edit"
+                            onclick="openAdminModal('modalEditMenu{{ $menu->id }}')">
+                        Edit
+                    </button>
+
+                    <form action="{{ route('admin.kuliner.menu.destroy', $menu->id) }}"
+                          method="POST"
+                          onsubmit="return confirm('Yakin ingin menghapus menu ini?')">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn-ulasan delete">
+                            Hapus
+                        </button>
+                    </form>
+                </div>
+
+                {{-- MODAL EDIT MENU MINUMAN --}}
+                <div class="admin-modal" id="modalEditMenu{{ $menu->id }}">
+                    <div class="admin-modal-box">
+                        <button type="button" class="admin-modal-close" onclick="closeAdminModal('modalEditMenu{{ $menu->id }}')">×</button>
+
+                        <h2>Edit Menu</h2>
+
+                        <form action="{{ route('admin.kuliner.menu.update', $menu->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+
+                            <div class="admin-form-group">
+                                <label>Nama Menu</label>
+                                <input type="text" name="nama_menu" value="{{ $menu->nama_menu }}" required>
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label>Harga</label>
+                                <input type="number" name="harga" value="{{ $menu->harga }}">
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label>Kategori</label>
+                                <select name="kategori" required>
+                                    <option value="makanan" {{ $menu->kategori == 'makanan' ? 'selected' : '' }}>Makanan</option>
+                                    <option value="minuman" {{ $menu->kategori == 'minuman' ? 'selected' : '' }}>Minuman</option>
+                                </select>
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label>Status</label>
+                                <select name="status" required>
+                                    <option value="aktif" {{ $menu->status == 'aktif' ? 'selected' : '' }}>Aktif</option>
+                                    <option value="nonaktif" {{ $menu->status == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
+                                </select>
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label>Deskripsi</label>
+                                <textarea name="deskripsi" rows="3">{{ $menu->deskripsi }}</textarea>
+                            </div>
+
+                            <div class="admin-form-group">
+                                <label>Ganti Gambar</label>
+                                <input type="file" name="gambar" accept="image/*">
+                            </div>
+
+                            <button type="submit" class="btn-admin-save">
+                                Simpan Perubahan Menu
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @empty
+                <div class="admin-empty-small">
+                    Belum ada menu minuman.
+                </div>
+            @endforelse
+        </div>
+
+    </div>
+</div>
 
                     @empty
                         <div class="empty-kuliner-box">
@@ -458,5 +627,13 @@
         }
     });
 </script>
+
+@if(session('open_menu_modal'))
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        openAdminModal('modalMenuWarung{{ session('open_menu_modal') }}');
+    });
+</script>
+@endif
 
 @endsection

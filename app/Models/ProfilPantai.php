@@ -10,15 +10,6 @@ class ProfilPantai extends Model
     use HasFactory;
 
     protected $fillable = [
-        'judul',
-        'subjudul',
-        'deskripsi_utama',
-        'deskripsi_tambahan',
-        'lokasi',
-        'jam_operasional',
-        'harga_tiket',
-        'gambar',
-
         'hero_judul',
         'hero_subjudul',
 
@@ -28,6 +19,7 @@ class ProfilPantai extends Model
         'tentang_paragraf_2',
         'tentang_paragraf_3',
 
+        'gambaran_label',
         'gambaran_judul',
         'gambaran_deskripsi',
 
@@ -40,22 +32,33 @@ class ProfilPantai extends Model
         'nilai_alam_judul',
         'nilai_alam_deskripsi',
 
+        'gambar',
+        'perkembangan_label',
         'perkembangan_judul',
         'perkembangan_paragraf_1',
         'perkembangan_paragraf_2',
         'perkembangan_paragraf_3',
 
+        'karakteristik_label',
         'karakteristik_judul',
         'karakteristik_deskripsi',
 
+        'karakter_1_icon',
         'karakter_1_judul',
         'karakter_1_deskripsi',
+        'karakter_2_icon',
         'karakter_2_judul',
         'karakter_2_deskripsi',
+        'karakter_3_icon',
         'karakter_3_judul',
         'karakter_3_deskripsi',
+        'karakter_4_icon',
         'karakter_4_judul',
         'karakter_4_deskripsi',
+
+        'visi_misi_label',
+        'visi_misi_judul',
+        'visi_misi_deskripsi',
 
         'visi_judul',
         'visi_deskripsi',
@@ -65,5 +68,7 @@ class ProfilPantai extends Model
 
         'cta_judul',
         'cta_deskripsi',
+        'cta_tombol_1',
+        'cta_tombol_2',
     ];
 }

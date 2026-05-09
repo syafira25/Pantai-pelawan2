@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KulinerPage extends Model
+class FasilitasItem extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'hero_judul',
-        'hero_subjudul',
-        'section_label',
-        'section_judul',
-        'section_deskripsi',
+        'kategori',
+        'icon',
+        'judul',
+        'deskripsi',
+        'urutan',
+        'status',
     ];
 }

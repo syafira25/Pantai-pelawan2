@@ -37,20 +37,27 @@
                 </a>
 
                 <div class="admin-nav-divider"></div>
-                <a href="#">Beranda</a>
-                <a href="{{ route('admin.profil.edit') }}" class="{{ request()->routeIs('admin.profil.*') ? 'active' : '' }}">
-                    Profil
-                </a>
-               <a href="{{ route('admin.daya-tarik.edit') }}" class="{{ request()->routeIs('admin.daya-tarik.*') ? 'active' : '' }}">
-                    Daya Tarik </a>
+                <a href="{{ route('admin.beranda.index') }}" class="{{ request()->routeIs('admin.beranda.*') ? 'active' : '' }}">
+    Beranda
+</a>
+                <a href="{{ route('admin.profil.index') }}" class="{{ request()->routeIs('admin.profil.*') ? 'active' : '' }}">
+    Profil
+</a>
+               <a href="{{ route('admin.daya-tarik.index') }}" class="{{ request()->routeIs('admin.daya-tarik.*') ? 'active' : '' }}">
+    Daya Tarik
+</a>
                 <a href="{{ route('admin.informasi.edit') }}" class="{{ request()->routeIs('admin.informasi.*') ? 'active' : '' }}">
                     Informasi
                 </a>
                <a href="{{ route('admin.kuliner.index') }}" class="{{ request()->routeIs('admin.kuliner.*') ? 'active' : '' }}">
     Kuliner
 </a>
-                <a href="#">Galeri</a>
-                <a href="#">Fasilitas</a>
+                <a href="{{ route('admin.galeri.index') }}" class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
+    Galeri
+</a>
+                <a href="{{ route('admin.fasilitas.index') }}" class="{{ request()->routeIs('admin.fasilitas.*') ? 'active' : '' }}">
+    Fasilitas
+</a>
             </nav>
 
             <div class="admin-sidebar-footer">

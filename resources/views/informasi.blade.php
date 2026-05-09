@@ -34,7 +34,7 @@
                 <p>Senin – Jumat: 06.00 – 18.00 WIB<br></p>
                 <p>Sabtu – Minggu: 06.00 – 19.00 WIB</p><br>
 
-               <p> Waktu terbaik untuk berkunjung adalah pada pagi dan sore hari untuk menikmati suasana pantai yang lebih nyaman.</p>
+                <p> Waktu terbaik untuk berkunjung adalah pada pagi dan sore hari untuk menikmati suasana pantai yang lebih nyaman.</p>
             </div>
 
             <div class="info-premium-card">
@@ -109,51 +109,52 @@
             <h2>Tips Berkunjung</h2>
             <p>Beberapa tips agar pengalaman wisata di Pantai Pelawan lebih maksimal.</p>
         </div>
-<div class="tips-premium-grid">
 
-    <div class="tips-premium-card">
-        <div class="tips-premium-number">01</div>
-        <div class="tips-premium-icon">🌅</div>
-        <h3>Waktu Terbaik Berkunjung</h3>
-        <p>Datang di sore hari untuk menikmati suasana pantai dan pemandangan sunset.</p>
-    </div>
+        <div class="tips-premium-grid">
 
-    <div class="tips-premium-card">
-        <div class="tips-premium-number">02</div>
-        <div class="tips-premium-icon">👕</div>
-        <h3>Pakaian Nyaman</h3>
-        <p>Gunakan pakaian yang nyaman agar aktivitas di area pantai lebih menyenangkan.</p>
-    </div>
+            <div class="tips-premium-card">
+                <div class="tips-premium-number">01</div>
+                <div class="tips-premium-icon">🌅</div>
+                <h3>Waktu Terbaik Berkunjung</h3>
+                <p>Datang di sore hari untuk menikmati suasana pantai dan pemandangan sunset.</p>
+            </div>
 
-    <div class="tips-premium-card">
-        <div class="tips-premium-number">03</div>
-        <div class="tips-premium-icon">🧴</div>
-        <h3>Perlengkapan Pribadi</h3>
-        <p>Bawa sunscreen, air minum, dan perlengkapan lain untuk kenyamanan.</p>
-    </div>
+            <div class="tips-premium-card">
+                <div class="tips-premium-number">02</div>
+                <div class="tips-premium-icon">👕</div>
+                <h3>Pakaian Nyaman</h3>
+                <p>Gunakan pakaian yang nyaman agar aktivitas di area pantai lebih menyenangkan.</p>
+            </div>
 
-    <div class="tips-premium-card">
-        <div class="tips-premium-number">04</div>
-        <div class="tips-premium-icon">🗑️</div>
-        <h3>Jaga Kebersihan</h3>
-        <p>Tidak membuang sampah sembarangan agar lingkungan pantai tetap bersih.</p>
-    </div>
+            <div class="tips-premium-card">
+                <div class="tips-premium-number">03</div>
+                <div class="tips-premium-icon">🧴</div>
+                <h3>Perlengkapan Pribadi</h3>
+                <p>Bawa sunscreen, air minum, dan perlengkapan lain untuk kenyamanan.</p>
+            </div>
 
-    <div class="tips-premium-card">
-        <div class="tips-premium-number">05</div>
-        <div class="tips-premium-icon">⚠️</div>
-        <h3>Perhatikan Cuaca</h3>
-        <p>Perhatikan kondisi cuaca sebelum bermain air untuk keselamatan.</p>
-    </div>
+            <div class="tips-premium-card">
+                <div class="tips-premium-number">04</div>
+                <div class="tips-premium-icon">🗑️</div>
+                <h3>Jaga Kebersihan</h3>
+                <p>Tidak membuang sampah sembarangan agar lingkungan pantai tetap bersih.</p>
+            </div>
 
-    <div class="tips-premium-card">
-        <div class="tips-premium-number">06</div>
-        <div class="tips-premium-icon">📢</div>
-        <h3>Ikuti Arahan</h3>
-        <p>Ikuti arahan petugas demi keselamatan dan kenyamanan bersama.</p>
-    </div>
+            <div class="tips-premium-card">
+                <div class="tips-premium-number">05</div>
+                <div class="tips-premium-icon">⚠️</div>
+                <h3>Perhatikan Cuaca</h3>
+                <p>Perhatikan kondisi cuaca sebelum bermain air untuk keselamatan.</p>
+            </div>
 
-</div>
+            <div class="tips-premium-card">
+                <div class="tips-premium-number">06</div>
+                <div class="tips-premium-icon">📢</div>
+                <h3>Ikuti Arahan</h3>
+                <p>Ikuti arahan petugas demi keselamatan dan kenyamanan bersama.</p>
+            </div>
+
+        </div>
 
     </div>
 </section>
@@ -224,7 +225,7 @@
 </section>
 
 <!-- ULASAN PENGUNJUNG -->
-<section class="section section-soft review-section">
+<section id="ulasan" class="section section-soft review-section">
     <div class="container">
 
         <div class="section-heading">
@@ -236,6 +237,20 @@
         </div>
 
         @auth
+
+            @if(session('success'))
+                <div style="
+                    background:#d4edda;
+                    color:#155724;
+                    padding:15px;
+                    border-radius:12px;
+                    margin-bottom:20px;
+                    font-weight:600;
+                ">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <div class="review-layout">
 
                 <!-- FORM ULASAN -->
@@ -248,7 +263,7 @@
                         </p>
                     </div>
 
-                    <form action="#" method="POST">
+                    <form action="{{ route('ulasan.store') }}" method="POST">
                         @csrf
 
                         <div class="review-form-grid">
@@ -264,7 +279,7 @@
 
                             <div class="form-group">
                                 <label>Status Pengunjung</label>
-                                <select name="status" required>
+                                <select name="status_pengunjung" required>
                                     <option value="">Pilih status</option>
                                     <option>Wisatawan Lokal</option>
                                     <option>Wisatawan Luar Daerah</option>
@@ -275,7 +290,7 @@
                         <div class="form-group">
                             <label>Rating</label>
                             <div class="rating-input">
-                                <input type="radio" name="rating" id="star5" value="5">
+                                <input type="radio" name="rating" id="star5" value="5" required>
                                 <label for="star5">★</label>
 
                                 <input type="radio" name="rating" id="star4" value="4">
@@ -360,56 +375,40 @@
 
         <div class="review-grid">
 
-            <div class="review-card">
-                <div class="review-top">
-                    <div class="review-avatar">A</div>
-                    <div>
-                        <h3>Andi Saputra</h3>
-                        <span>Wisatawan Lokal</span>
+            @forelse($ulasans as $ulasan)
+
+                <div class="review-card">
+
+                    <div class="review-top">
+                        <div class="review-avatar">
+                            {{ strtoupper(substr($ulasan->nama, 0, 1)) }}
+                        </div>
+
+                        <div>
+                            <h3>{{ $ulasan->nama }}</h3>
+                            <span>{{ $ulasan->status_pengunjung }}</span>
+                        </div>
                     </div>
+
+                    <div class="review-stars">
+                        @for($i = 1; $i <= 5; $i++)
+                            {{ $i <= $ulasan->rating ? '★' : '☆' }}
+                        @endfor
+                    </div>
+
+                    <p>
+                        {{ $ulasan->pesan }}
+                    </p>
+
                 </div>
 
-                <div class="review-stars">★★★★★</div>
+            @empty
 
-                <p>
-                    Pantainya nyaman untuk bersantai bersama keluarga. Suasananya tenang dan cocok
-                    untuk menikmati waktu libur di sore hari.
-                </p>
-            </div>
-
-            <div class="review-card">
-                <div class="review-top">
-                    <div class="review-avatar">S</div>
-                    <div>
-                        <h3>Siti Rahma</h3>
-                        <span>Pengunjung</span>
-                    </div>
+                <div class="review-empty">
+                    <p>Belum ada ulasan dari pengunjung.</p>
                 </div>
 
-                <div class="review-stars">★★★★★</div>
-
-                <p>
-                    Pemandangan pantainya bagus dan banyak spot yang cocok untuk foto.
-                    Informasi melalui website juga membantu sebelum datang ke lokasi.
-                </p>
-            </div>
-
-            <div class="review-card">
-                <div class="review-top">
-                    <div class="review-avatar">R</div>
-                    <div>
-                        <h3>Rizky Pratama</h3>
-                        <span>Wisatawan</span>
-                    </div>
-                </div>
-
-                <div class="review-stars">★★★★☆</div>
-
-                <p>
-                    Tempatnya cocok untuk rekreasi keluarga. Akan lebih baik jika informasi tiket,
-                    lokasi, dan kontak pengelola terus diperbarui melalui website.
-                </p>
-            </div>
+            @endforelse
 
         </div>
 

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\GalleryItem;
-use App\Models\GallerySection;
+use App\Models\Galeri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,136 +11,76 @@ class GaleriAdminController extends Controller
 {
     public function index()
     {
-        $section = GallerySection::first();
+        $galeris = Galeri::orderBy('urutan', 'asc')->get();
 
-        if (!$section) {
-            $section = GallerySection::create([
-                'hero_title' => 'Galeri Pantai Pelawan',
-                'hero_description' => 'Dokumentasi keindahan Pantai Pelawan dari berbagai sudut, suasana, dan momen wisata.',
-                'hero_image' => 'images/hero-pantai.jpg',
-                'section_label' => 'Dokumentasi Wisata',
-                'section_title' => 'Foto Wisata Pantai Pelawan',
-                'section_description' => 'Beberapa dokumentasi pemandangan dan suasana wisata Pantai Pelawan.',
-                'cta_badge' => '📸 Dokumentasi Wisata',
-                'cta_title' => 'Keindahan yang Tak Terlupakan',
-                'cta_description' => 'Pantai Pelawan menawarkan pemandangan alam yang memukau dan cocok untuk diabadikan dalam berbagai momen wisata.',
-            ]);
-        }
-
-        $items = GalleryItem::orderBy('sort_order', 'asc')
-            ->orderBy('id', 'desc')
-            ->get();
-
-        return view('admin.galeri.index', compact('section', 'items'));
+        return view('admin.galeri.index', compact('galeris'));
     }
 
-    public function updateHero(Request $request)
+    public function store(Request $request)
     {
-        $section = GallerySection::firstOrCreate([]);
-
-        $data = $request->validate([
-            'hero_title' => 'required|string|max:255',
-            'hero_description' => 'nullable|string',
-            'hero_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+            'gambar' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'tipe_card' => 'required|in:normal,large,wide',
+            'urutan' => 'nullable|integer',
+            'status' => 'required|in:aktif,nonaktif',
         ]);
 
-        if ($request->hasFile('hero_image')) {
-            if (
-                $section->hero_image &&
-                !str_starts_with($section->hero_image, 'images/') &&
-                Storage::disk('public')->exists($section->hero_image)
-            ) {
-                Storage::disk('public')->delete($section->hero_image);
-            }
+        $gambarPath = $request->file('gambar')->store('galeri', 'public');
 
-            $data['hero_image'] = $request->file('hero_image')->store('galeri', 'public');
-        }
-
-        $section->update($data);
-
-        return back()->with('success', 'Hero galeri berhasil diperbarui.');
-    }
-
-    public function updateHeading(Request $request)
-    {
-        $section = GallerySection::firstOrCreate([]);
-
-        $data = $request->validate([
-            'section_label' => 'required|string|max:255',
-            'section_title' => 'required|string|max:255',
-            'section_description' => 'nullable|string',
+        Galeri::create([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'gambar' => $gambarPath,
+            'tipe_card' => $request->tipe_card,
+            'urutan' => $request->urutan ?? 0,
+            'status' => $request->status,
         ]);
-
-        $section->update($data);
-
-        return back()->with('success', 'Judul section galeri berhasil diperbarui.');
-    }
-
-    public function updateCta(Request $request)
-    {
-        $section = GallerySection::firstOrCreate([]);
-
-        $data = $request->validate([
-            'cta_badge' => 'required|string|max:255',
-            'cta_title' => 'required|string|max:255',
-            'cta_description' => 'nullable|string',
-        ]);
-
-        $section->update($data);
-
-        return back()->with('success', 'CTA galeri berhasil diperbarui.');
-    }
-
-    public function storeItem(Request $request)
-    {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:4096',
-            'type' => 'required|in:normal,large,wide',
-            'sort_order' => 'nullable|integer',
-        ]);
-
-        $data['image'] = $request->file('image')->store('galeri', 'public');
-        $data['sort_order'] = $data['sort_order'] ?? 0;
-
-        GalleryItem::create($data);
 
         return back()->with('success', 'Foto galeri berhasil ditambahkan.');
     }
 
-    public function updateItem(Request $request, GalleryItem $item)
+    public function update(Request $request, Galeri $galeri)
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
-            'type' => 'required|in:normal,large,wide',
-            'sort_order' => 'nullable|integer',
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'tipe_card' => 'required|in:normal,large,wide',
+            'urutan' => 'nullable|integer',
+            'status' => 'required|in:aktif,nonaktif',
         ]);
 
-        if ($request->hasFile('image')) {
-            if ($item->image && Storage::disk('public')->exists($item->image)) {
-                Storage::disk('public')->delete($item->image);
+        $gambarPath = $galeri->gambar;
+
+        if ($request->hasFile('gambar')) {
+            if ($galeri->gambar && Storage::disk('public')->exists($galeri->gambar)) {
+                Storage::disk('public')->delete($galeri->gambar);
             }
 
-            $data['image'] = $request->file('image')->store('galeri', 'public');
+            $gambarPath = $request->file('gambar')->store('galeri', 'public');
         }
 
-        $data['sort_order'] = $data['sort_order'] ?? 0;
-
-        $item->update($data);
+        $galeri->update([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'gambar' => $gambarPath,
+            'tipe_card' => $request->tipe_card,
+            'urutan' => $request->urutan ?? 0,
+            'status' => $request->status,
+        ]);
 
         return back()->with('success', 'Foto galeri berhasil diperbarui.');
     }
 
-    public function destroyItem(GalleryItem $item)
+    public function destroy(Galeri $galeri)
     {
-        if ($item->image && Storage::disk('public')->exists($item->image)) {
-            Storage::disk('public')->delete($item->image);
+        if ($galeri->gambar && Storage::disk('public')->exists($galeri->gambar)) {
+            Storage::disk('public')->delete($galeri->gambar);
         }
 
-        $item->delete();
+        $galeri->delete();
 
         return back()->with('success', 'Foto galeri berhasil dihapus.');
     }

@@ -7,15 +7,11 @@ use App\Models\Ulasan;
 
 class InformasiPantaiController extends Controller
 {
-    public function index()
-    {
-        $informasi = InformasiPantai::first();
+public function index()
+{
+    $informasi = \App\Models\InformasiPantai::first();
+    $ulasans = Ulasan::latest()->get();
 
-        $ulasans = Ulasan::where('status', 'disetujui')
-            ->latest()
-            ->take(6)
-            ->get();
-
-        return view('informasi_pantai', compact('informasi', 'ulasans'));
-    }
+    return view('informasi', compact('informasi', 'ulasans'));
+}
 }

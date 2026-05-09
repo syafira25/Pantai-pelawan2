@@ -11,21 +11,22 @@ class UlasanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'status_pengunjung' => 'required|string|max:100',
-            'rating' => 'required|integer|min:1|max:5',
-            'pesan' => 'required|string|min:5',
+            'nama' => 'required',
+            'status_pengunjung' => 'required',
+            'rating' => 'required',
+            'pesan' => 'required',
         ]);
 
         Ulasan::create([
             'user_id' => Auth::id(),
-            'nama' => Auth::user()->name,
-            'email' => Auth::user()->email,
+            'nama' => $request->nama,
             'status_pengunjung' => $request->status_pengunjung,
             'rating' => $request->rating,
             'pesan' => $request->pesan,
-            'status' => 'pending',
         ]);
 
-        return back()->with('success', 'Ulasan berhasil dikirim dan menunggu persetujuan admin.');
+     return redirect('/informasi-pantai#ulasan')
+    ->with('success', 'Ulasan berhasil dikirim.');
     }
 }
+

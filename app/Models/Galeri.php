@@ -5,15 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KulinerPage extends Model
+class Galeri extends Model
 {
     use HasFactory;
 
+    protected $table = 'galeris';
+
     protected $fillable = [
-        'hero_judul',
-        'hero_subjudul',
-        'section_label',
-        'section_judul',
-        'section_deskripsi',
+        'judul',
+        'deskripsi',
+        'gambar',
+        'tipe_card',
+        'urutan',
+        'status',
     ];
 }

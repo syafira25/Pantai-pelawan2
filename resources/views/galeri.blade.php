@@ -28,109 +28,24 @@
 
         <div class="galeri-masonry">
 
-            <div class="galeri-card galeri-large">
-                <img src="{{ asset('images/hero-pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Panorama Pantai</h3>
-                    <p>Keindahan suasana Pantai Pelawan.</p>
-                </div>
-            </div>
+            @forelse($galeris as $galeri)
+                <div class="galeri-card
+                    {{ $galeri->tipe_card == 'large' ? 'galeri-large' : '' }}
+                    {{ $galeri->tipe_card == 'wide' ? 'galeri-wide' : '' }}
+                ">
 
-            <div class="galeri-card">
-                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Suasana Pesisir</h3>
-                    <p>Nuansa alam yang nyaman.</p>
-                </div>
-            </div>
+                    <img src="{{ str_starts_with($galeri->gambar, 'images/') ? asset($galeri->gambar) : asset('storage/' . $galeri->gambar) }}"
+                         alt="{{ $galeri->judul }}">
 
-            <div class="galeri-card">
-                <img src="{{ asset('images/hero-pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Pemandangan Laut</h3>
-                    <p>View pantai yang menarik.</p>
-                </div>
-            </div>
+                    <div class="galeri-overlay">
+                        <h3>{{ $galeri->judul }}</h3>
+                        <p>{{ $galeri->deskripsi }}</p>
+                    </div>
 
-                        <div class="galeri-card">
-                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Suasana Pesisir</h3>
-                    <p>Nuansa alam yang nyaman.</p>
                 </div>
-            </div>
-
-            <div class="galeri-card">
-                <img src="{{ asset('images/hero-pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Pemandangan Laut</h3>
-                    <p>View pantai yang menarik.</p>
-                </div>
-            </div>
-
-            <div class="galeri-card galeri-wide">
-                <img src="{{ asset('images/hero-pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Suasana Sore</h3>
-                    <p>Keindahan pantai saat sore hari.</p>
-                </div>
-            </div>
-
-                       <div class="galeri-card">
-                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Suasana Pesisir</h3>
-                    <p>Nuansa alam yang nyaman.</p>
-                </div>
-            </div>
-
-            <div class="galeri-card">
-                <img src="{{ asset('images/hero-pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Pemandangan Laut</h3>
-                    <p>View pantai yang menarik.</p>
-                </div>
-            </div>
-
-            <div class="galeri-card galeri-large">
-                <img src="{{ asset('images/hero-pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Panorama Pantai</h3>
-                    <p>Keindahan suasana Pantai Pelawan.</p>
-                </div>
-            </div>
-
-            <div class="galeri-card">
-                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Suasana Pesisir</h3>
-                    <p>Nuansa alam yang nyaman.</p>
-                </div>
-            </div>
-
-            <div class="galeri-card">
-                <img src="{{ asset('images/hero-pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Pemandangan Laut</h3>
-                    <p>View pantai yang menarik.</p>
-                </div>
-            </div>
-
-            <div class="galeri-card">
-                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Suasana Pesisir</h3>
-                    <p>Nuansa alam yang nyaman.</p>
-                </div>
-            </div>
-
-            <div class="galeri-card">
-                <img src="{{ asset('images/hero-pantai.jpg') }}" alt="Pantai Pelawan">
-                <div class="galeri-overlay">
-                    <h3>Pemandangan Laut</h3>
-                    <p>View pantai yang menarik.</p>
-                </div>
-            </div>
+            @empty
+                <p class="text-center">Belum ada foto galeri.</p>
+            @endforelse
 
         </div>
 

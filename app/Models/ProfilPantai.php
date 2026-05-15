@@ -22,6 +22,8 @@ class ProfilPantai extends Model
         'gambaran_label',
         'gambaran_judul',
         'gambaran_deskripsi',
+        'gambaran_big_judul',
+        'gambaran_big_deskripsi',
 
         'lokasi_judul',
         'lokasi_deskripsi',
@@ -32,7 +34,11 @@ class ProfilPantai extends Model
         'nilai_alam_judul',
         'nilai_alam_deskripsi',
 
+        'semua_kalangan_judul',
+        'semua_kalangan_deskripsi',
+
         'gambar',
+
         'perkembangan_label',
         'perkembangan_judul',
         'perkembangan_paragraf_1',
@@ -46,12 +52,15 @@ class ProfilPantai extends Model
         'karakter_1_icon',
         'karakter_1_judul',
         'karakter_1_deskripsi',
+
         'karakter_2_icon',
         'karakter_2_judul',
         'karakter_2_deskripsi',
+
         'karakter_3_icon',
         'karakter_3_judul',
         'karakter_3_deskripsi',
+
         'karakter_4_icon',
         'karakter_4_judul',
         'karakter_4_deskripsi',

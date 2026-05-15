@@ -67,12 +67,21 @@
                         @foreach($pemesanans as $pemesanan)
                             <div class="riwayat-item">
                                 <div>
-                                    <h3>{{ $pemesanan->kode_booking }}</h3>
+                                    <h3><strong>{{ $pemesanan->kode_booking }}</strong></h3>
                                     <p>
                                         Tanggal Kunjungan:
                                         {{ \Carbon\Carbon::parse($pemesanan->tanggal_kunjungan)->format('d M Y') }}
                                     </p>
                                     <p>Jumlah Tiket: {{ $pemesanan->jumlah_orang }} orang</p>
+                                    @if($pemesanan->qr_used_at)
+                                        <span class="status-akun" style="background:#fed7aa !important; color:#9a3412 !important;">
+                                            SUDAH DIGUNAKAN
+                                        </span>
+                                    @else
+                                        <span class="status-akun" style="background:#dcfce7 !important; color:#166534 !important;">
+                                            BELUM DIGUNAKAN
+                                        </span>
+                                    @endif
                                 </div>
 
                                 <div class="riwayat-right">

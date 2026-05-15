@@ -609,13 +609,21 @@
 
 <script>
     function openAdminModal(id) {
-        document.getElementById(id).classList.add('show');
-        document.body.classList.add('modal-open');
+        const modal = document.getElementById(id);
+
+        if (modal) {
+            modal.classList.add('show');
+            document.body.classList.add('modal-open');
+        }
     }
 
     function closeAdminModal(id) {
-        document.getElementById(id).classList.remove('show');
-        document.body.classList.remove('modal-open');
+        const modal = document.getElementById(id);
+
+        if (modal) {
+            modal.classList.remove('show');
+            document.body.classList.remove('modal-open');
+        }
     }
 
     document.addEventListener('keydown', function(event) {
@@ -623,17 +631,29 @@
             document.querySelectorAll('.admin-modal.show').forEach(function(modal) {
                 modal.classList.remove('show');
             });
+
             document.body.classList.remove('modal-open');
         }
     });
-</script>
 
-@if(session('open_menu_modal'))
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        openAdminModal('modalMenuWarung{{ session('open_menu_modal') }}');
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedScroll = sessionStorage.getItem('kulinerAdminScrollY');
+
+        if (savedScroll !== null) {
+            window.scrollTo(0, parseInt(savedScroll));
+            sessionStorage.removeItem('kulinerAdminScrollY');
+        }
+
+        document.querySelectorAll('form').forEach(function(form) {
+            form.addEventListener('submit', function() {
+                sessionStorage.setItem('kulinerAdminScrollY', window.scrollY);
+            });
+        });
+
+        @if(session('open_menu_modal'))
+            openAdminModal('modalMenuWarung{{ session('open_menu_modal') }}');
+        @endif
     });
 </script>
-@endif
 
 @endsection

@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class DayaTarik extends Model
 {
-    use HasFactory;
+    protected $table = 'daya_tariks';
 
     protected $fillable = [
         'hero_judul',

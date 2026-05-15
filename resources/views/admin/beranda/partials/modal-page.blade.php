@@ -4,7 +4,7 @@
 
         <h2>Edit Konten Halaman Beranda</h2>
 
-        <form action="{{ route('admin.beranda.page.update') }}" method="POST">
+        <form action="{{ route('admin.beranda.page.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -48,8 +48,17 @@
             <label>Deskripsi Tentang 2</label>
             <textarea name="about_deskripsi_2" rows="4">{{ $page->about_deskripsi_2 }}</textarea>
 
-            <label>Path Gambar Tentang</label>
-            <input type="text" name="about_gambar" value="{{ $page->about_gambar }}" placeholder="images/profil_pantai.jpg">
+            <label>Gambar Tentang Sekarang</label>
+
+            @if($page->about_gambar)
+                <img src="{{ str_starts_with($page->about_gambar, 'images/') ? asset($page->about_gambar) : asset('storage/' . $page->about_gambar) }}"
+                    style="width:160px; height:100px; object-fit:cover; border-radius:14px; margin-bottom:10px;">
+            @endif
+
+            <input type="hidden" name="about_gambar_lama" value="{{ $page->about_gambar }}">
+
+            <label>Ubah Gambar Tentang</label>
+            <input type="file" name="about_gambar" accept="image/*">
 
             <label>Tombol Tentang</label>
             <input type="text" name="about_tombol" value="{{ $page->about_tombol }}">

@@ -17,13 +17,13 @@
                     Profil
                 </a>
             </li>
-
+<!--
             <li>
                 <a href="{{ route('daya.tarik') }}" class="{{ request()->routeIs('daya.tarik*') ? 'active' : '' }}">
                     Daya Tarik
                 </a>
             </li>
-
+-->
             <li>
                 <a href="{{ route('informasi.pantai') }}" class="{{ request()->routeIs('informasi.pantai*') ? 'active' : '' }}">
                     Informasi
@@ -57,10 +57,12 @@
             @auth
                 <li class="user-dropdown">
                     <button type="button" class="user-dropdown-btn">
-                        👤 {{ Auth::user()->name }} ▾
+                        <span>👤</span>
+                        <span>{{ Auth::user()->name }}</span>
+                        <span>▾</span>
                     </button>
 
-                    <div class="user-dropdown-menu">
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
                         <div class="user-info-box">
                             <div class="user-info-avatar">👤</div>
                             <div>
@@ -70,13 +72,15 @@
                         </div>
 
                         <a href="{{ route('akun.saya') }}" class="dropdown-link">
-                            👤 Akun Saya
+                            <span>👤</span>
+                            <b>Akun Saya</b>
                         </a>
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="dropdown-logout">
-                                🚪 Keluar
+                                <span>🚪</span>
+                                <b>Keluar</b>
                             </button>
                         </form>
                     </div>
@@ -87,6 +91,25 @@
                         Login
                     </a>
                 </li>
+
+                <script>
+                function toggleUserDropdown(event) {
+                    event.stopPropagation();
+                    const menu = document.getElementById('userDropdownMenu');
+                    menu.classList.toggle('show');
+                }
+
+                document.addEventListener('click', function(event) {
+                    const dropdown = document.querySelector('.user-dropdown');
+
+                    if (dropdown && !dropdown.contains(event.target)) {
+                        const menu = document.getElementById('userDropdownMenu');
+                        if (menu) {
+                            menu.classList.remove('show');
+                        }
+                    }
+                });
+            </script>
             @endauth
         </ul>
 

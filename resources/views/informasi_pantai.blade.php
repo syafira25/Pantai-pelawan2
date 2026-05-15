@@ -53,17 +53,39 @@
             <p>{{ $get('keamanan_deskripsi', 'Hal-hal penting yang perlu diperhatikan agar wisata tetap aman dan nyaman.') }}</p>
         </div>
 
-        <div class="safety-grid">
-            @for($i = 1; $i <= 4; $i++)
-                <div class="safety-card">
-                    <span>{{ $get('keamanan_'.$i.'_icon', '⚠️') }}</span>
-                    <div>
-                        <h3>{{ $get('keamanan_'.$i.'_judul', 'Keamanan Wisata') }}</h3>
-                        <p>{{ $get('keamanan_'.$i.'_deskripsi', 'Informasi keamanan belum tersedia.') }}</p>
-                    </div>
-                </div>
-            @endfor
+        <div class="safety-card">
+            <span>🩹</span>
+            <div>
+                <h3>Kesiapsiagaan Keselamatan</h3>
+                <p>Pengunjung diimbau untuk selalu memperhatikan kondisi sekitar dan mengutamakan keselamatan selama melakukan aktivitas di area wisata.</p>
+            </div>
         </div>
+
+        <div class="safety-card">
+            <span>⚠️</span>
+            <div>
+                <h3>Cuaca Ekstrem</h3>
+                <p>Jika terjadi angin kencang atau gelombang tinggi, pengunjung sebaiknya tidak melakukan aktivitas di area perairan.</p>
+            </div>
+        </div>
+
+        <div class="safety-card">
+            <span>📢</span>
+            <div>
+                <h3>Informasi & Panduan Wisata</h3>
+                <p>Pengunjung disarankan mengikuti informasi, arahan, serta ketentuan yang berlaku demi menjaga keamanan dan kenyamanan bersama.</p>
+            </div>
+        </div>
+
+        <div class="safety-card">
+            <span>🚫</span>
+            <div>
+                <h3>Aturan Pengunjung</h3>
+                <p>Pengunjung wajib menjaga kebersihan, ketertiban, dan tidak merusak fasilitas yang tersedia.</p>
+            </div>
+        </div>
+
+    </div>
 
     </div>
 </section>

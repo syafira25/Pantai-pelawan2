@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
 <section class="page-header">
     <div class="container">
         <h1>Pemesanan Tiket</h1>

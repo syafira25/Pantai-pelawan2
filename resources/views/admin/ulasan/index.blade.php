@@ -67,25 +67,48 @@
 
                     <div class="admin-ulasan-actions">
 
-                        <form action="{{ route('admin.ulasan.setujui', $ulasan->id) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <button type="submit" class="btn-ulasan approve">
-                                Setujui
-                            </button>
-                        </form>
+                        @if($ulasan->status == 'disetujui')
+                            <form action="{{ route('admin.ulasan.sembunyikan', $ulasan->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
 
-                        <form action="{{ route('admin.ulasan.sembunyikan', $ulasan->id) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <button type="submit" class="btn-ulasan hide">
-                                Sembunyikan
-                            </button>
-                        </form>
+                                <button type="submit" class="btn-ulasan hide">
+                                    Sembunyikan
+                                </button>
+                            </form>
+                        @elseif($ulasan->status == 'disembunyikan')
+                            <form action="{{ route('admin.ulasan.setujui', $ulasan->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+
+                                <button type="submit" class="btn-ulasan approve">
+                                    Tampilkan Lagi
+                                </button>
+                            </form>
+                        @else
+                            <form action="{{ route('admin.ulasan.setujui', $ulasan->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+
+                                <button type="submit" class="btn-ulasan approve">
+                                    Setujui
+                                </button>
+                            </form>
+
+                            <form action="{{ route('admin.ulasan.sembunyikan', $ulasan->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+
+                                <button type="submit" class="btn-ulasan hide">
+                                    Sembunyikan
+                                </button>
+                            </form>
+                        @endif
 
                         <form action="{{ route('admin.ulasan.destroy', $ulasan->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus ulasan ini?')">
                             @csrf
                             @method('DELETE')
+
                             <button type="submit" class="btn-ulasan delete">
                                 Hapus
                             </button>

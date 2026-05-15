@@ -15,24 +15,42 @@ class BerandaPage extends Model
         'hero_deskripsi',
         'hero_tombol_1',
         'hero_tombol_2',
+
         'layanan_label',
         'layanan_judul',
         'layanan_deskripsi',
+
         'about_label',
         'about_judul',
         'about_deskripsi_1',
         'about_deskripsi_2',
         'about_gambar',
         'about_tombol',
+
         'keunggulan_label',
         'keunggulan_judul',
         'keunggulan_deskripsi',
+
         'info_label',
         'info_judul',
         'info_deskripsi',
+
         'alur_label',
         'alur_judul',
         'alur_deskripsi',
+
+        'aktivitas_label',
+        'aktivitas_judul',
+        'aktivitas_deskripsi',
+
+        'galeri_label',
+        'galeri_judul',
+        'galeri_deskripsi',
+
+        'fitur_label',
+        'fitur_judul',
+        'fitur_deskripsi',
+
         'cta_label',
         'cta_judul',
         'cta_deskripsi',

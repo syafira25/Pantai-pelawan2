@@ -13,12 +13,16 @@
                 <!-- KIRI (QR) -->
                 <div class="ticket-left">
 
-                    @if($pemesanan->qr_code)
-                        <img         
-                        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ urlencode('http://192.168.1.30:8000/tiket/scan/'.$pemesanan->qr_code) }}"
-                            alt="QR Code Tiket"
-                        >
-                    @else
+                @if($pemesanan->qr_code)
+                    <img
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ urlencode($pemesanan->qr_code) }}"
+                        alt="QR Code Tiket"
+                    >
+
+                    <div class="qr-code-text">
+                        {{ $pemesanan->qr_code }}
+                    </div>
+                @else
                         <div class="qr-error">
                             QR Code belum tersedia
                         </div>

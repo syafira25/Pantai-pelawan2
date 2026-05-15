@@ -26,8 +26,13 @@ class AdminFasilitasController extends Controller
             'cta_tombol' => 'Pesan Tiket',
         ]);
 
-        $utama = FasilitasItem::where('kategori', 'utama')->orderBy('urutan')->get();
-        $pendukung = FasilitasItem::where('kategori', 'pendukung')->orderBy('urutan')->get();
+        $utama = FasilitasItem::where('kategori', 'utama')
+            ->orderBy('urutan', 'asc')
+            ->get();
+
+        $pendukung = FasilitasItem::where('kategori', 'pendukung')
+            ->orderBy('urutan', 'asc')
+            ->get();
 
         return view('admin.fasilitas.index', compact('page', 'utama', 'pendukung'));
     }
@@ -36,7 +41,7 @@ class AdminFasilitasController extends Controller
     {
         $page = FasilitasPage::firstOrCreate([]);
 
-        $page->update($request->only([
+        $fields = [
             'hero_judul',
             'hero_deskripsi',
             'utama_label',
@@ -49,9 +54,21 @@ class AdminFasilitasController extends Controller
             'cta_judul',
             'cta_deskripsi',
             'cta_tombol',
-        ]));
+        ];
 
-        return back()->with('success', 'Konten halaman fasilitas berhasil diperbarui.');
+        $data = [];
+
+        foreach ($fields as $field) {
+            if ($request->has($field)) {
+                $data[$field] = $request->input($field);
+            }
+        }
+
+        $page->update($data);
+
+        return redirect()
+            ->route('admin.fasilitas.index')
+            ->with('success', 'Konten halaman fasilitas berhasil diperbarui.');
     }
 
     public function store(Request $request)
@@ -65,16 +82,18 @@ class AdminFasilitasController extends Controller
             'status' => 'required|in:aktif,nonaktif',
         ]);
 
-        FasilitasItem::create($request->only([
-            'kategori',
-            'icon',
-            'judul',
-            'deskripsi',
-            'urutan',
-            'status',
-        ]));
+        FasilitasItem::create([
+            'kategori' => $request->kategori,
+            'icon' => $request->icon,
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'urutan' => $request->urutan ?? 0,
+            'status' => $request->status,
+        ]);
 
-        return back()->with('success', 'Fasilitas berhasil ditambahkan.');
+        return redirect()
+            ->route('admin.fasilitas.index')
+            ->with('success', 'Fasilitas berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)
@@ -90,16 +109,18 @@ class AdminFasilitasController extends Controller
             'status' => 'required|in:aktif,nonaktif',
         ]);
 
-        $item->update($request->only([
-            'kategori',
-            'icon',
-            'judul',
-            'deskripsi',
-            'urutan',
-            'status',
-        ]));
+        $item->update([
+            'kategori' => $request->kategori,
+            'icon' => $request->icon,
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'urutan' => $request->urutan ?? 0,
+            'status' => $request->status,
+        ]);
 
-        return back()->with('success', 'Fasilitas berhasil diperbarui.');
+        return redirect()
+            ->route('admin.fasilitas.index')
+            ->with('success', 'Fasilitas berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -107,6 +128,8 @@ class AdminFasilitasController extends Controller
         $item = FasilitasItem::findOrFail($id);
         $item->delete();
 
-        return back()->with('success', 'Fasilitas berhasil dihapus.');
+        return redirect()
+            ->route('admin.fasilitas.index')
+            ->with('success', 'Fasilitas berhasil dihapus.');
     }
 }

@@ -15,6 +15,8 @@ class BerandaItem extends Model
         'nomor',
         'judul',
         'deskripsi',
+        'gambar',
+        'link',
         'urutan',
         'status',
     ];

@@ -22,12 +22,16 @@ class Pemesanan extends Model
         'midtrans_transaction_id',
         'snap_token',
         'status_pembayaran',
+        'bukti_pembayaran',
         'status_tiket',
         'dibayar_pada',
+        'qr_code',
+        'qr_used_at',
     ];
 
     protected $casts = [
         'tanggal_kunjungan' => 'date',
         'dibayar_pada' => 'datetime',
+        'qr_used_at' => 'datetime',
     ];
 }

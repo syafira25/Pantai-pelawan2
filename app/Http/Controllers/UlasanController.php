@@ -17,12 +17,12 @@ class UlasanController extends Controller
             'pesan' => 'required',
         ]);
 
-        Ulasan::create([
-            'user_id' => Auth::id(),
+       Ulasan::create([
             'nama' => $request->nama,
             'status_pengunjung' => $request->status_pengunjung,
             'rating' => $request->rating,
             'pesan' => $request->pesan,
+            'status' => 'disetujui',
         ]);
 
      return redirect('/informasi-pantai#ulasan')

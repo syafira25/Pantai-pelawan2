@@ -21,43 +21,6 @@
     </div>
 </section>
 
-<section class="section section-soft">
-    <div class="container">
-        <div class="daya-highlight daya-highlight-upgrade">
-            <div class="daya-highlight-img">
-                <img src="{{ $gambarHighlight }}" alt="Pantai Pelawan">
-
-                <div class="daya-img-badge">
-                    <strong>{{ $dayaTarik->highlight_badge_judul ?? '🌴 Pantai Pelawan' }}</strong>
-                    <span>{{ $dayaTarik->highlight_badge_subjudul ?? 'Destinasi wisata alam Kabupaten Karimun' }}</span>
-                </div>
-            </div>
-
-            <div class="daya-highlight-text">
-                <span class="section-label">{{ $dayaTarik->highlight_label ?? 'Keunggulan Wisata' }}</span>
-                <h2>{{ $dayaTarik->highlight_judul ?? 'Pesona Alam Pantai Pelawan' }}</h2>
-                <p>{{ $dayaTarik->highlight_deskripsi ?? 'Pantai Pelawan menghadirkan panorama pesisir yang memikat dengan hamparan pasir yang nyaman, angin laut yang sejuk, serta suasana alami yang cocok untuk melepas penat.' }}</p>
-
-                <div class="daya-stats">
-                    @for($i = 1; $i <= 3; $i++)
-                        @php
-                            $icon = 'stat_'.$i.'_icon';
-                            $text = 'stat_'.$i.'_text';
-                            $desc = 'stat_'.$i.'_deskripsi';
-                        @endphp
-
-                        <div>
-                            <strong>{{ $dayaTarik->$icon }}</strong>
-                            <span>{{ $dayaTarik->$text }}</span>
-                            <small>{{ $dayaTarik->$desc }}</small>
-                        </div>
-                    @endfor
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="section">
     <div class="container">
         <div class="section-heading">
@@ -117,29 +80,59 @@
     </div>
 </section>
 
-<section class="section daya-experience-section">
+<section class="section daya-experience-photo-section">
     <div class="container">
+
         <div class="section-heading">
             <span class="section-label">{{ $dayaTarik->pengalaman_label ?? 'Pengalaman Wisata' }}</span>
             <h2>{{ $dayaTarik->pengalaman_judul ?? 'Aktivitas Menarik di Pantai Pelawan' }}</h2>
-            <p>{{ $dayaTarik->pengalaman_deskripsi ?? '' }}</p>
+            <p>{{ $dayaTarik->pengalaman_deskripsi ?? 'Nikmati berbagai aktivitas seru yang bisa dilakukan bersama keluarga, pasangan, maupun teman.' }}</p>
         </div>
 
-        <div class="daya-experience-grid">
-            @for($i = 1; $i <= 4; $i++)
-                @php
-                    $icon = 'pengalaman_'.$i.'_icon';
-                    $judul = 'pengalaman_'.$i.'_judul';
-                    $desc = 'pengalaman_'.$i.'_deskripsi';
-                @endphp
+        <div class="experience-mosaic-grid">
 
-                <div class="daya-experience-card">
-                    <div class="daya-experience-icon">{{ $dayaTarik->$icon }}</div>
-                    <h3>{{ $dayaTarik->$judul }}</h3>
-                    <p>{{ $dayaTarik->$desc }}</p>
+            <div class="experience-mosaic-big">
+                <img src="{{ asset('images/hero-pantai.jpg') }}" alt="Banana Boat">
+
+                <div class="experience-overlay">
+                    <span>🚤 Aktivitas Favorit</span>
+                    <h3>Naik Banana Boat</h3>
+                    <p>Rasakan keseruan bermain wahana air bersama teman dan keluarga.</p>
                 </div>
-            @endfor
+            </div>
+
+            <div class="experience-mosaic-small">
+                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Sampan">
+
+                <div class="experience-overlay">
+                    <span>🛶 Santai di Laut</span>
+                    <h3>Naik Sampan</h3>
+                    <p>Menikmati suasana pantai dari area perairan yang tenang.</p>
+                </div>
+            </div>
+
+            <div class="experience-mosaic-small">
+                <img src="{{ asset('images/hero-pantai.jpg') }}" alt="Spot Foto">
+
+                <div class="experience-overlay">
+                    <span>📸 Dokumentasi</span>
+                    <h3>Spot Foto</h3>
+                    <p>Abadikan momen dengan latar pantai dan pemandangan alam.</p>
+                </div>
+            </div>
+
+            <div class="experience-mosaic-wide">
+                <img src="{{ asset('images/profil_pantai.jpg') }}" alt="Piknik">
+
+                <div class="experience-overlay">
+                    <span>🔥 Bersama Keluarga</span>
+                    <h3>Bakar-bakar & Piknik</h3>
+                    <p>Menikmati waktu santai sambil makan bersama di sekitar kawasan pantai.</p>
+                </div>
+            </div>
+
         </div>
+
     </div>
 </section>
 

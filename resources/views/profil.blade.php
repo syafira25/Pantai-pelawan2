@@ -3,6 +3,8 @@
 @section('content')
 
 @php
+    $profil = $profil ?? null;
+
     $image = $profil && $profil->gambar
         ? (str_starts_with($profil->gambar, 'images/') ? asset($profil->gambar) : asset('storage/' . $profil->gambar))
         : asset('images/profil_pantai.jpg');
@@ -50,23 +52,24 @@
 
         <h3>{{ $profil->tentang_judul ?? 'Pantai Pelawan sebagai Destinasi Wisata Alam' }}</h3>
 
-        <p>{{ $profil->tentang_paragraf_1 ?? 'Pantai Pelawan merupakan salah satu wisata pantai yang berada di Kabupaten Karimun, Kepulauan Riau. Pantai ini dikenal sebagai destinasi wisata alam dengan pemandangan laut, hamparan pasir, serta suasana pesisir yang nyaman untuk dikunjungi.' }}</p>
+        <p>{{ $profil->tentang_paragraf_1 ?? 'Pantai Pelawan merupakan salah satu wisata pantai yang berada di Kabupaten Karimun, Kepulauan Riau.' }}</p>
 
-        <p>{{ $profil->tentang_paragraf_2 ?? 'Keindahan Pantai Pelawan menjadi daya tarik bagi wisatawan yang ingin menikmati suasana alam, bersantai bersama keluarga, maupun sekadar menikmati panorama pantai.' }}</p>
+        <p>{{ $profil->tentang_paragraf_2 ?? 'Keindahan Pantai Pelawan menjadi daya tarik bagi wisatawan.' }}</p>
 
-        <p>{{ $profil->tentang_paragraf_3 ?? 'Selain sebagai tempat rekreasi, Pantai Pelawan juga menjadi bagian dari potensi pariwisata daerah yang dapat terus dikembangkan melalui penyajian informasi yang lebih lengkap, rapi, dan mudah diakses oleh wisatawan.' }}</p>
+        <p>{{ $profil->tentang_paragraf_3 ?? 'Pantai Pelawan memiliki potensi untuk dikembangkan sebagai destinasi wisata daerah.' }}</p>
     </div>
 </div>
 
+{{-- GAMBARAN UMUM --}}
 <section class="section section-soft">
     <div class="container">
         <div class="section-heading">
             <span class="section-label">
-                {{ $profil->gambaran_label ?? 'Identitas Pantai' }}
+                {{ $profil->gambaran_label ?? 'Gambaran Umum' }}
             </span>
 
             <h2>
-                <strong>{{ $profil->gambaran_judul ?? 'Gambaran Umum Pantai Pelawan' }}</strong>
+                {{ $profil->gambaran_judul ?? 'Gambaran Umum Pantai Pelawan' }}
             </h2>
 
             <p>
@@ -74,56 +77,50 @@
             </p>
         </div>
 
-        <div class="profil-overview-grid">
-            <div class="overview-card">
-                <div class="overview-icon">📍</div>
-                <h3><strong>{{ $profil->lokasi_judul ?? 'Lokasi Pantai' }}</strong></h3>
-                <p>{{ $profil->lokasi_deskripsi ?? 'Pantai Pelawan berada di kawasan wisata alam yang dikenal masyarakat sekitar sebagai tempat rekreasi dan menikmati suasana pantai.' }}</p>
+        <div class="unique-premium-wrapper">
+
+            <div class="unique-big-card">
+                <h3>
+                    {{ $profil->gambaran_big_judul ?? '🌊 Pesona Pantai Pelawan yang Menenangkan' }}
+                </h3>
+
+                <p>
+                    {{ $profil->gambaran_big_deskripsi ?? 'Pantai Pelawan menghadirkan suasana pesisir yang nyaman dengan hamparan pantai yang indah, menjadikannya tempat ideal untuk bersantai, menikmati pemandangan laut, dan melepas penat bersama keluarga maupun teman.' }}
+                </p>
             </div>
 
-            <div class="overview-card">
-                <div class="overview-icon">🏖️</div>
-                <h3><strong>{{ $profil->karakter_destinasi_judul ?? 'Karakter Destinasi' }}</strong></h3>
-                <p>{{ $profil->karakter_destinasi_deskripsi ?? 'Pantai ini memiliki karakter wisata alam berupa pemandangan laut, suasana pesisir, dan lingkungan yang nyaman.' }}</p>
-            </div>
+            <div class="unique-small-grid">
 
-            <div class="overview-card">
-                <div class="overview-icon">🌿</div>
-                <h3><strong>{{ $profil->nilai_alam_judul ?? 'Nilai Alam' }}</strong></h3>
-                <p>{{ $profil->nilai_alam_deskripsi ?? 'Keindahan alam Pantai Pelawan menjadi nilai utama yang dapat dikenalkan kepada wisatawan.' }}</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section">
-    <div class="container">
-        <div class="profil-grid profil-hero-box profil-story-new">
-
-            <div class="profil-image">
-                <img src="{{ $image }}" alt="Perkembangan Pantai Pelawan">
-            </div>
-
-            <div class="profil-text">
-                <div class="mini-title">
-                    {{ $profil->perkembangan_label ?? 'Perkembangan' }}
+                <div class="unique-small-card">
+                    <span>📍</span>
+                    <h3>{{ $profil->lokasi_judul ?? 'Lokasi Pantai' }}</h3>
+                    <p>{{ $profil->lokasi_deskripsi ?? 'Pantai Pelawan berada di kawasan wisata alam yang dikenal masyarakat sebagai destinasi rekreasi untuk menikmati suasana pantai dan keindahan pesisir.' }}</p>
                 </div>
 
-                <h2>
-                    <strong>{{ $profil->perkembangan_judul ?? 'Perkembangan Pantai Pelawan' }}</strong>
-                </h2>
+                <div class="unique-small-card">
+                    <span>🏖️</span>
+                    <h3>{{ $profil->karakter_destinasi_judul ?? 'Karakter Destinasi' }}</h3>
+                    <p>{{ $profil->karakter_destinasi_deskripsi ?? 'Pantai Pelawan memiliki karakter wisata alam dengan panorama laut, area pesisir yang nyaman, serta suasana yang mendukung aktivitas santai bagi pengunjung.' }}</p>
+                </div>
 
-                <p>{{ $profil->perkembangan_paragraf_1 ?? 'Pantai Pelawan mulai dikenal sebagai salah satu tujuan wisata masyarakat karena memiliki suasana alam yang menarik dan cocok untuk kegiatan rekreasi.' }}</p>
+                <div class="unique-small-card">
+                    <span>🌿</span>
+                    <h3>{{ $profil->nilai_alam_judul ?? 'Nilai Alam' }}</h3>
+                    <p>{{ $profil->nilai_alam_deskripsi ?? 'Keindahan alam Pantai Pelawan menjadi daya tarik utama yang memberikan pengalaman wisata alami dan menyegarkan bagi wisatawan.' }}</p>
+                </div>
 
-                <p>{{ $profil->perkembangan_paragraf_2 ?? 'Seiring meningkatnya minat masyarakat terhadap wisata lokal, Pantai Pelawan menjadi salah satu destinasi yang memiliki peluang untuk dipromosikan secara lebih luas.' }}</p>
+                <div class="unique-small-card">
+                    <span>👨‍👩‍👧</span>
+                    <h3>{{ $profil->semua_kalangan_judul ?? 'Wisata untuk Semua Kalangan' }}</h3>
+                    <p>{{ $profil->semua_kalangan_deskripsi ?? 'Pantai Pelawan dapat dinikmati oleh berbagai kalangan, baik keluarga, pasangan, maupun wisatawan yang ingin menikmati suasana pantai dengan nyaman.' }}</p>
+                </div>
 
-                <p>{{ $profil->perkembangan_paragraf_3 ?? 'Penyajian profil Pantai Pelawan melalui website menjadi salah satu cara untuk memperkenalkan identitas destinasi secara lebih rapi, modern, dan mudah diakses oleh masyarakat.' }}</p>
             </div>
-
         </div>
     </div>
 </section>
 
+{{-- KARAKTERISTIK --}}
 <section class="section section-soft">
     <div class="container">
         <div class="section-heading">
@@ -170,6 +167,59 @@
     </div>
 </section>
 
+{{-- PERKEMBANGAN --}}
+<section class="profile-story-final-section">
+    <div class="container">
+        <div class="profile-story-final-grid">
+
+            <div class="profile-story-final-text">
+                <span class="profile-story-final-label">
+                    {{ $profil->perkembangan_label ?? 'Perkembangan' }}
+                </span>
+
+                <h2>{{ $profil->perkembangan_judul ?? 'Perkembangan Pantai Pelawan' }}</h2>
+
+                <div class="profile-story-final-list">
+                    <div class="profile-story-final-item">
+                        <b>01</b>
+                        <p>{{ $profil->perkembangan_paragraf_1 ?? 'Pantai Pelawan mulai dikenal sebagai salah satu tujuan wisata masyarakat karena memiliki suasana alam yang menarik dan cocok untuk kegiatan rekreasi.' }}</p>
+                    </div>
+
+                    <div class="profile-story-final-item">
+                        <b>02</b>
+                        <p>{{ $profil->perkembangan_paragraf_2 ?? 'Seiring meningkatnya minat masyarakat terhadap wisata lokal, Pantai Pelawan menjadi salah satu destinasi yang memiliki peluang untuk dipromosikan secara lebih luas.' }}</p>
+                    </div>
+
+                    <div class="profile-story-final-item">
+                        <b>03</b>
+                        <p>{{ $profil->perkembangan_paragraf_3 ?? 'Penyajian profil Pantai Pelawan melalui website menjadi salah satu cara untuk memperkenalkan identitas destinasi secara lebih rapi, modern, dan mudah diakses.' }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-story-gallery-grid">
+                <div class="gallery-box">
+                    <img src="{{ $image }}" alt="Pantai Pelawan">
+                </div>
+
+                <div class="gallery-box">
+                    <img src="{{ $image }}" alt="Pantai Pelawan">
+                </div>
+
+                <div class="gallery-box">
+                    <img src="{{ $image }}" alt="Pantai Pelawan">
+                </div>
+
+                <div class="gallery-box">
+                    <img src="{{ $image }}" alt="Pantai Pelawan">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{{-- VISI MISI --}}
 <section class="section section-soft">
     <div class="container">
         <div class="section-heading">
@@ -202,6 +252,7 @@
     </div>
 </section>
 
+{{-- CTA --}}
 <section class="section">
     <div class="container">
         <div class="profil-cta">

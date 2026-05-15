@@ -8,7 +8,9 @@
         <ul class="nav-menu">
             <li><a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">Beranda</a></li>
             <li><a href="{{ route('profil.pantai') }}" class="{{ request()->routeIs('profil.pantai') ? 'active' : '' }}">Profil Pantai</a></li>
-            <li><a href="{{ route('daya.tarik') }}" class="{{ request()->routeIs('daya.tarik*') ? 'active' : '' }}">Daya Tarik</a></li>
+            <!--
+            <li><a href="{{ route('daya.tarik') }}" class="{{ request()->routeIs('daya.tarik*') ? 'active' : '' }}">Daya Tarik</a></li> 
+           -->
             <li><a href="{{ route('fasilitas') }}" class="{{ request()->routeIs('fasilitas*') ? 'active' : '' }}">Fasilitas</a></li>
             <li><a href="{{ route('galeri') }}" class="{{ request()->routeIs('galeri*') ? 'active' : '' }}">Galeri</a></li>
             <li><a href="{{ route('informasi.pantai') }}" class="{{ request()->routeIs('informasi.pantai*') ? 'active' : '' }}">Informasi Pantai</a></li>

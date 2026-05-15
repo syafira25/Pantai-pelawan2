@@ -20,7 +20,7 @@ class AdminUlasanController extends Controller
         $ulasan->status = 'disetujui';
         $ulasan->save();
 
-        return back()->with('success', 'Ulasan berhasil disetujui.');
+        return back()->with('success', 'Ulasan berhasil ditampilkan.');
     }
 
     public function sembunyikan($id)

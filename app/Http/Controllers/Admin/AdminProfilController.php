@@ -11,7 +11,24 @@ class AdminProfilController extends Controller
 {
     public function index()
     {
-        $profil = ProfilPantai::firstOrCreate([], $this->defaultData());
+        $profil = ProfilPantai::first();
+
+        if (!$profil) {
+            $profil = ProfilPantai::create($this->defaultData());
+        } else {
+            $dataKosong = [];
+
+            foreach ($this->defaultData() as $key => $value) {
+                if ($profil->$key === null || $profil->$key === '') {
+                    $dataKosong[$key] = $value;
+                }
+            }
+
+            if (!empty($dataKosong)) {
+                $profil->update($dataKosong);
+                $profil->refresh();
+            }
+        }
 
         return view('admin.profil.index', compact('profil'));
     }
@@ -20,10 +37,18 @@ class AdminProfilController extends Controller
     {
         $profil = ProfilPantai::firstOrCreate([], $this->defaultData());
 
-        $data = $request->except(['_token', '_method', 'gambar']);
+        $data = $request->except([
+            '_token',
+            '_method',
+            'gambar',
+        ]);
 
         if ($request->hasFile('gambar')) {
-            if ($profil->gambar && !str_starts_with($profil->gambar, 'images/') && Storage::disk('public')->exists($profil->gambar)) {
+            if (
+                $profil->gambar &&
+                !str_starts_with($profil->gambar, 'images/') &&
+                Storage::disk('public')->exists($profil->gambar)
+            ) {
                 Storage::disk('public')->delete($profil->gambar);
             }
 
@@ -47,25 +72,26 @@ class AdminProfilController extends Controller
             'tentang_paragraf_2' => 'Keindahan Pantai Pelawan menjadi daya tarik bagi wisatawan yang ingin menikmati suasana alam, bersantai bersama keluarga, maupun sekadar menikmati panorama pantai.',
             'tentang_paragraf_3' => 'Selain sebagai tempat rekreasi, Pantai Pelawan juga menjadi bagian dari potensi pariwisata daerah yang dapat terus dikembangkan melalui penyajian informasi yang lebih lengkap, rapi, dan mudah diakses oleh wisatawan.',
 
-            'gambaran_label' => 'Identitas Pantai',
+            'gambaran_label' => 'Gambaran Umum',
             'gambaran_judul' => 'Gambaran Umum Pantai Pelawan',
             'gambaran_deskripsi' => 'Profil Pantai Pelawan disajikan untuk memberikan gambaran mengenai lokasi, karakter wisata, dan nilai destinasi yang dimiliki.',
 
             'lokasi_judul' => 'Lokasi Pantai',
-            'lokasi_deskripsi' => 'Pantai Pelawan berada di kawasan wisata alam yang dikenal masyarakat sekitar sebagai tempat rekreasi dan menikmati suasana pantai.',
+            'lokasi_deskripsi' => 'Pantai Pelawan berada di kawasan wisata alam yang dikenal masyarakat sebagai destinasi rekreasi untuk menikmati suasana pantai dan keindahan pesisir.',
 
             'karakter_destinasi_judul' => 'Karakter Destinasi',
-            'karakter_destinasi_deskripsi' => 'Pantai ini memiliki karakter wisata alam berupa pemandangan laut, suasana pesisir, dan lingkungan yang nyaman.',
+            'karakter_destinasi_deskripsi' => 'Pantai Pelawan memiliki karakter wisata alam dengan panorama laut, area pesisir yang nyaman, serta suasana yang mendukung aktivitas santai bagi pengunjung.',
 
             'nilai_alam_judul' => 'Nilai Alam',
-            'nilai_alam_deskripsi' => 'Keindahan alam Pantai Pelawan menjadi nilai utama yang dapat dikenalkan kepada wisatawan.',
+            'nilai_alam_deskripsi' => 'Keindahan alam Pantai Pelawan menjadi daya tarik utama yang memberikan pengalaman wisata alami dan menyegarkan bagi wisatawan.',
 
             'gambar' => 'images/profil_pantai.jpg',
+
             'perkembangan_label' => 'Perkembangan',
             'perkembangan_judul' => 'Perkembangan Pantai Pelawan',
             'perkembangan_paragraf_1' => 'Pantai Pelawan mulai dikenal sebagai salah satu tujuan wisata masyarakat karena memiliki suasana alam yang menarik dan cocok untuk kegiatan rekreasi.',
             'perkembangan_paragraf_2' => 'Seiring meningkatnya minat masyarakat terhadap wisata lokal, Pantai Pelawan menjadi salah satu destinasi yang memiliki peluang untuk dipromosikan secara lebih luas.',
-            'perkembangan_paragraf_3' => 'Penyajian profil Pantai Pelawan melalui website menjadi salah satu cara untuk memperkenalkan identitas destinasi secara lebih rapi, modern, dan mudah diakses oleh masyarakat.',
+            'perkembangan_paragraf_3' => 'Penyajian profil Pantai Pelawan melalui website menjadi salah satu cara untuk memperkenalkan identitas destinasi secara lebih rapi, modern, dan mudah diakses.',
 
             'karakteristik_label' => 'Karakteristik',
             'karakteristik_judul' => 'Karakteristik Pantai Pelawan',
@@ -73,13 +99,16 @@ class AdminProfilController extends Controller
 
             'karakter_1_icon' => '🌊',
             'karakter_1_judul' => 'Pemandangan Laut',
-            'karakter_1_deskripsi' => 'Pantai Pelawan memiliki pemandangan laut yang menjadi daya tarik utama bagi wisatawan.',
+            'karakter_1_deskripsi' => 'Pantai Pelawan memiliki pemandangan laut yang menjadi daya tarik utama bagi wisatawan yang ingin menikmati suasana alam pesisir.',
+
             'karakter_2_icon' => '🌤️',
             'karakter_2_judul' => 'Suasana Tenang',
             'karakter_2_deskripsi' => 'Suasana pantai yang nyaman membuat Pantai Pelawan cocok untuk melepas penat dan menikmati waktu santai.',
+
             'karakter_3_icon' => '🏝️',
             'karakter_3_judul' => 'Nuansa Pesisir',
             'karakter_3_deskripsi' => 'Lingkungan pesisir memberikan pengalaman wisata alam yang berbeda dan menjadi identitas khas Pantai Pelawan.',
+
             'karakter_4_icon' => '📸',
             'karakter_4_judul' => 'Daya Tarik Visual',
             'karakter_4_deskripsi' => 'Keindahan alam pantai dapat menjadi daya tarik visual yang mendukung dokumentasi dan promosi wisata.',
@@ -95,7 +124,7 @@ class AdminProfilController extends Controller
             'misi_deskripsi' => 'Menyajikan profil Pantai Pelawan secara lengkap, memperkenalkan potensi wisata daerah, membantu wisatawan memahami karakter destinasi, dan mendukung promosi wisata secara digital.',
 
             'cta_judul' => 'Kenali Pantai Pelawan Lebih Dekat',
-            'cta_deskripsi' => 'Pantai Pelawan memiliki potensi wisata alam yang menarik untuk diperkenalkan lebih luas.',
+            'cta_deskripsi' => 'Pantai Pelawan memiliki potensi wisata alam yang menarik untuk diperkenalkan lebih luas. Melalui profil digital ini, wisatawan dapat memahami gambaran umum, karakteristik, dan nilai destinasi Pantai Pelawan.',
             'cta_tombol_1' => 'Lihat Informasi Pantai',
             'cta_tombol_2' => 'Pesan Tiket Sekarang',
         ];

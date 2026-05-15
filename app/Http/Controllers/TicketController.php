@@ -300,32 +300,14 @@ class TicketController extends Controller
     }
 
         public function scanQr($qr_code)
-    {
-        $pemesanan = Pemesanan::where('qr_code', $qr_code)->first();
+        {
+            if (!auth()->check() || auth()->user()->role !== 'admin') {
+                abort(403, 'QR hanya boleh discan oleh admin/petugas.');
+            }
 
-        if (!$pemesanan) {
-            abort(404, 'QR tidak ditemukan');
+            return redirect()->route('admin.scan-tiket.index')
+                ->with('qr_code_from_link', $qr_code);
         }
-
-        // ❌ SUDAH DIGUNAKAN
-        if ($pemesanan->qr_used_at) {
-            return view('tiket.scan-result', [
-                'status' => 'used',
-                'pemesanan' => $pemesanan
-            ]);
-        }
-
-        // ✅ PERTAMA KALI SCAN
-        $pemesanan->update([
-            'qr_used_at' => now(),
-            'status_tiket' => 'nonaktif' // 🔥 TAMBAH INI
-        ]);
-
-        return view('tiket.scan-result', [
-            'status' => 'valid',
-            'pemesanan' => $pemesanan
-        ]);
-    }
 
     
 }

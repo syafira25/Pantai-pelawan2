@@ -49,6 +49,7 @@
                                             <select name="role" class="role-select">
                                                 <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
                                                 <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                                                <option value="pengelola" {{ $user->role == 'pengelola' ? 'selected' : '' }}>pengelola</option>
                                             </select>
 
                                             <button type="submit" class="btn-action btn-save">

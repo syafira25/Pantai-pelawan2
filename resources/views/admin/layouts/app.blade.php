@@ -29,11 +29,18 @@
                     Pemesanan
                 </a>
 
+                <a href="{{ route('admin.scan-tiket.index') }}" class="{{ request()->routeIs('admin.scan-tiket.*') ? 'active' : '' }}">
+                    Scan Tiket
+                </a>
+
                 <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
                     User
                 </a>
                 <a href="{{ route('admin.ulasan.index') }}" class="{{ request()->routeIs('admin.ulasan.*') ? 'active' : '' }}">
                     Kelola Ulasan
+                </a>
+                <a href="{{ route('admin.catatan-pengelola.index') }}" class="{{ request()->routeIs('admin.catatan-pengelola.*') ? 'active' : '' }}">
+                    Catatan Pengelola
                 </a>
 
                 <div class="admin-nav-divider"></div>
@@ -42,9 +49,6 @@
 </a>
                 <a href="{{ route('admin.profil.index') }}" class="{{ request()->routeIs('admin.profil.*') ? 'active' : '' }}">
     Profil
-</a>
-               <a href="{{ route('admin.daya-tarik.index') }}" class="{{ request()->routeIs('admin.daya-tarik.*') ? 'active' : '' }}">
-    Daya Tarik
 </a>
                 <a href="{{ route('admin.informasi.edit') }}" class="{{ request()->routeIs('admin.informasi.*') ? 'active' : '' }}">
                     Informasi

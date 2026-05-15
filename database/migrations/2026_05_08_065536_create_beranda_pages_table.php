@@ -8,51 +8,60 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('beranda_pages', function (Blueprint $table) {
-            $table->id();
+        Schema::table('beranda_pages', function (Blueprint $table) {
 
-            $table->string('hero_badge')->nullable();
-            $table->string('hero_judul')->nullable();
-            $table->text('hero_deskripsi')->nullable();
-            $table->string('hero_tombol_1')->nullable();
-            $table->string('hero_tombol_2')->nullable();
+            if (!Schema::hasColumn('beranda_pages', 'aktivitas_label')) {
+                $table->string('aktivitas_label')->nullable()->after('alur_deskripsi');
+            }
 
-            $table->string('layanan_label')->nullable();
-            $table->string('layanan_judul')->nullable();
-            $table->text('layanan_deskripsi')->nullable();
+            if (!Schema::hasColumn('beranda_pages', 'aktivitas_judul')) {
+                $table->string('aktivitas_judul')->nullable()->after('aktivitas_label');
+            }
 
-            $table->string('about_label')->nullable();
-            $table->string('about_judul')->nullable();
-            $table->text('about_deskripsi_1')->nullable();
-            $table->text('about_deskripsi_2')->nullable();
-            $table->string('about_gambar')->nullable();
-            $table->string('about_tombol')->nullable();
+            if (!Schema::hasColumn('beranda_pages', 'aktivitas_deskripsi')) {
+                $table->text('aktivitas_deskripsi')->nullable()->after('aktivitas_judul');
+            }
 
-            $table->string('keunggulan_label')->nullable();
-            $table->string('keunggulan_judul')->nullable();
-            $table->text('keunggulan_deskripsi')->nullable();
+            if (!Schema::hasColumn('beranda_pages', 'galeri_label')) {
+                $table->string('galeri_label')->nullable()->after('aktivitas_deskripsi');
+            }
 
-            $table->string('info_label')->nullable();
-            $table->string('info_judul')->nullable();
-            $table->text('info_deskripsi')->nullable();
+            if (!Schema::hasColumn('beranda_pages', 'galeri_judul')) {
+                $table->string('galeri_judul')->nullable()->after('galeri_label');
+            }
 
-            $table->string('alur_label')->nullable();
-            $table->string('alur_judul')->nullable();
-            $table->text('alur_deskripsi')->nullable();
+            if (!Schema::hasColumn('beranda_pages', 'galeri_deskripsi')) {
+                $table->text('galeri_deskripsi')->nullable()->after('galeri_judul');
+            }
 
-            $table->string('cta_label')->nullable();
-            $table->string('cta_judul')->nullable();
-            $table->text('cta_deskripsi')->nullable();
-            $table->string('cta_tombol_1')->nullable();
-            $table->string('cta_tombol_2')->nullable();
-            $table->string('cta_wa_link')->nullable();
+            if (!Schema::hasColumn('beranda_pages', 'fitur_label')) {
+                $table->string('fitur_label')->nullable()->after('galeri_deskripsi');
+            }
 
-            $table->timestamps();
+            if (!Schema::hasColumn('beranda_pages', 'fitur_judul')) {
+                $table->string('fitur_judul')->nullable()->after('fitur_label');
+            }
+
+            if (!Schema::hasColumn('beranda_pages', 'fitur_deskripsi')) {
+                $table->text('fitur_deskripsi')->nullable()->after('fitur_judul');
+            }
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('beranda_pages');
+        Schema::table('beranda_pages', function (Blueprint $table) {
+            $table->dropColumn([
+                'aktivitas_label',
+                'aktivitas_judul',
+                'aktivitas_deskripsi',
+                'galeri_label',
+                'galeri_judul',
+                'galeri_deskripsi',
+                'fitur_label',
+                'fitur_judul',
+                'fitur_deskripsi',
+            ]);
+        });
     }
 };

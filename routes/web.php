@@ -26,7 +26,11 @@ use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\Admin\AdminFasilitasController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\Admin\AdminBerandaController;
-
+use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\Admin\AdminScanTiketController;
+use App\Http\Controllers\Pengelola\PengelolaDashboardController;
+use App\Http\Controllers\Pengelola\PengelolaCatatanController;
+use App\Http\Controllers\Admin\AdminCatatanPengelolaController;
 /*
 |--------------------------------------------------------------------------
 | HALAMAN UTAMA USER
@@ -36,7 +40,15 @@ use App\Http\Controllers\Admin\AdminBerandaController;
 Route::get('/', [BerandaController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
-    return redirect('/');
+    if (auth()->user()->role === 'admin') {
+        return redirect()->route('admin.dashboard');
+    }
+
+    if (auth()->user()->role === 'pengelola') {
+        return redirect()->route('pengelola.dashboard');
+    }
+
+    return redirect()->route('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 /*
@@ -255,6 +267,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/ganti-password', function () {
         return view('ganti-password');
     })->name('password.ganti');
+
+    Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 });
 
 Route::get('/tiket/scan/{qr_code}', [TicketController::class, 'scanQr'])
@@ -280,6 +294,13 @@ Route::middleware('auth')->group(function () {
 | ADMIN ROUTES
 |--------------------------------------------------------------------------
 */
+Route::get('/cek-jam', function () {
+    return [
+        'timezone' => config('app.timezone'),
+        'now' => now()->format('Y-m-d H:i:s'),
+        'php_date' => date('Y-m-d H:i:s'),
+    ];
+});
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
@@ -314,10 +335,20 @@ Route::delete('/kuliner/{id}', [AdminKulinerController::class, 'destroy'])->name
 Route::post('/kuliner/{warungId}/menu', [AdminKulinerController::class, 'storeMenu'])->name('kuliner.menu.store');
 Route::delete('/kuliner/menu/{id}', [AdminKulinerController::class, 'destroyMenu'])->name('kuliner.menu.destroy');
 
-Route::get('/galeri', [GaleriAdminController::class, 'index'])->name('galeri.index');
-Route::post('/galeri', [GaleriAdminController::class, 'store'])->name('galeri.store');
-Route::put('/galeri/{galeri}', [GaleriAdminController::class, 'update'])->name('galeri.update');
-Route::delete('/galeri/{galeri}', [GaleriAdminController::class, 'destroy'])->name('galeri.destroy');
+Route::get('/galeri', [GaleriAdminController::class, 'index'])
+    ->name('galeri.index');
+
+Route::post('/galeri', [GaleriAdminController::class, 'store'])
+    ->name('galeri.store');
+
+Route::put('/galeri/page/update', [GaleriAdminController::class, 'updatePage'])
+    ->name('galeri.page.update');
+
+Route::put('/galeri/{galeri}', [GaleriAdminController::class, 'update'])
+    ->name('galeri.update');
+
+Route::delete('/galeri/{galeri}', [GaleriAdminController::class, 'destroy'])
+    ->name('galeri.destroy');
 
 Route::get('/fasilitas', [AdminFasilitasController::class, 'index'])->name('fasilitas.index');
 Route::put('/fasilitas/page', [AdminFasilitasController::class, 'updatePage'])->name('fasilitas.page.update');
@@ -330,7 +361,9 @@ Route::put('/beranda/page', [AdminBerandaController::class, 'updatePage'])->name
 Route::post('/beranda', [AdminBerandaController::class, 'store'])->name('beranda.store');
 Route::put('/beranda/{id}', [AdminBerandaController::class, 'update'])->name('beranda.update');
 Route::delete('/beranda/{id}', [AdminBerandaController::class, 'destroy'])->name('beranda.destroy');
-
+Route::put('/beranda/section/{section_key}', [AdminBerandaController::class, 'updateSection'])
+    ->name('beranda.section.update');
+    
 Route::get('/kuliner/paksa-isi-menu', [AdminKulinerController::class, 'paksaIsiMenu'])
     ->name('kuliner.paksa-isi-menu');
 
@@ -341,12 +374,26 @@ Route::get('/kuliner/paksa-isi-menu', [AdminKulinerController::class, 'paksaIsiM
     Route::post('/kuliner/{id}/menu', [AdminKulinerController::class, 'storeMenu'])
     ->name('kuliner.menu.store');
     Route::post('/kuliner/{id}', [AdminKulinerController::class, 'update'])->name('kuliner.update');
-});
+
+    Route::get('/scan-tiket', [AdminScanTiketController::class, 'index'])->name('scan-tiket.index');
+    Route::post('/scan-tiket/cek', [AdminScanTiketController::class, 'cek'])->name('scan-tiket.cek');
+    Route::post('/scan-tiket/validasi/{id}', [AdminScanTiketController::class, 'validasi'])->name('scan-tiket.validasi');
+ 
+    Route::get('/catatan-pengelola', [AdminCatatanPengelolaController::class, 'index'])->name('catatan-pengelola.index');
+    Route::patch('/catatan-pengelola/{id}/status', [AdminCatatanPengelolaController::class, 'updateStatus'])->name('catatan-pengelola.status');
+    Route::delete('/catatan-pengelola/{id}', [AdminCatatanPengelolaController::class, 'destroy'])->name('catatan-pengelola.destroy');
+
+    });
 
 /*
 |--------------------------------------------------------------------------
 | AUTH ROUTES
 |--------------------------------------------------------------------------
 */
+Route::middleware(['auth', 'pengelola'])->prefix('pengelola')->name('pengelola.')->group(function () {
+    Route::get('/dashboard', [PengelolaDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/catatan', [PengelolaCatatanController::class, 'index'])->name('catatan.index');
+    Route::post('/catatan', [PengelolaCatatanController::class, 'store'])->name('catatan.store');
+});
 
 require __DIR__ . '/auth.php';
